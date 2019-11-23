@@ -1,0 +1,14 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Payment
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+  
+<ion-content padding>
+    <ion-card padding>
+        <p>Please pay Rs.100 to proceed</p>
+        <button class="btn-pay" (tap)="payment()" [disabled]="!reqSent" ion-button block type="button">Pay Now</button>
+    </ion-card>
+</ion-content>

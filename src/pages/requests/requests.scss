@@ -1,0 +1,37 @@
+page-requests{
+    .SwipedTabs-tabs .segment-button{
+        color: #d2890a;
+    }
+    .segment-md .segment-button.activated, .segment-md .segment-button.segment-activated{
+        border-color: transparent;
+    }
+    .track-icon{
+        float:right;
+    }
+    .SwipedTabs-tabs ion-segment-button.SwipedTabs-activeTab
+    {
+        color: #d2890a;
+    }
+    .SwipedTabs-indicatorSegment
+    {
+        -webkit-transition: 0.3s all;
+        -moz-transition:  0.3s all;
+        -o-transition:  0.3s all;
+        transition:  0.3s all;
+        transform-origin: top 0 left 0;
+        height: 2px;
+	    position: relative;
+	    top: -2px;
+	    background-color: #d2890a !important;
+    }
+    .SwipedTabs-tabs
+    {
+  
+    }
+    ion-slide.swiper-slide {
+        align-items: flex-start;
+    }
+    ion-list{
+        padding-top: 0px !important;
+    }
+}

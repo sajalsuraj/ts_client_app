@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600');
+* {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+//all theme color
+$bg-light: #f5f5f5;
+$white: #ffffff;
+$black: #000000;
+$bg-theme: #18c2ef;
+$text-theme: #18c2ef;
+$text-light: #c0c0c0;
+$text-muted: #9c9c9c;
+$text-dark: #2e2e2e;
+$text-black: #000000;
+.bg-light {
+    background-color: $bg-light;
+}
+
+.button {
+    text-transform: none;
+}
+
+.back-button {
+    color: $text-theme !important;
+}
+
+.back-button-text-ios {
+    color: transparent;
+}
+
+//default form style
+.form {
+    .item {
+        padding-left: 0;
+        border-bottom: 1px solid #eeeeee !important;
+        box-shadow: none !important;
+        .item-inner {
+            border: none !important;
+            box-shadow: none !important;
+            margin-left: 16px !important;
+            .text-input-wp {
+                border-color: transparent !important;
+                padding-left: 0 !important;
+                margin-left: 0 !important;
+            }
+            h5 {
+                margin: 0;
+                position: absolute;
+                right: 0;
+                top: 40px;
+                z-index: 9;
+                color: $text-theme;
+            }
+            .label {
+                font-size: 1.5rem;
+                font-weight: 300;
+                color: $text-light;
+            }
+        }
+        ion-icon {
+            display: inline-block;
+            font-size: 1.2em !important;
+            margin-bottom: 0 !important;
+            margin-top: 30px !important;
+            margin-right: 0px !important;
+            min-height: 0;
+            color: $text-theme;
+        }
+        &.item-wp {
+            h5 {
+                margin: 0;
+                position: absolute;
+                right: 0;
+                top: 49px;
+                z-index: 9;
+            }
+        }
+        &.item-input-has-focus {
+            .label {
+                color: $text-theme;
+            }
+        }
+    }
+}
+
+//header style
+.header {
+    &::after {
+        display: none;
+    }
+    .toolbar-background {
+        background-color: $white;
+        border-color: transparent;
+    }
+}
+
+//tab style
+.tab-button {
+    position: relative;
+    .tab-button-icon {
+        font-size: 24px;
+        color: $text-light !important;
+    }
+    &[aria-selected="true"] {
+        .tab-button-icon {
+            color:#d2890a !important;
+        }
+        &::after {
+            content: '';
+            background-color: $bg-theme;
+            height: 3px;
+            width: 60%;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+            position: absolute;
+        }
+    }
+}
+
+[dir="rtl"] body {
+    page-pickup .order-list .item {
+        .d-flex .end {
+            margin-left: 0;
+            margin-right: auto;
+        }
+        .d-flex .end {
+            margin-left: 0;
+            margin-right: auto;
+        }
+        ion-avatar {
+            width: 45px;
+            height: 45px;
+            margin-left: 10px;
+        }
+    }
+    page-earnings {
+        .item {
+            .payment-type {
+                text-align: left;
+            }
+            .earned {
+                text-align: left;
+            }
+        }
+    }
+    page-orderinfo .order-list .cloth_list .receipt .row .col p strong {
+        margin-left: 0;
+        margin-right: auto;
+    }
+}

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "283669128616",
+    "firebase_url": "https://troubleshooter-413c6.firebaseio.com",
+    "project_id": "troubleshooter-413c6",
+    "storage_bucket": "troubleshooter-413c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283669128616:android:3f79b287b6e720e6c3a99d",
+        "android_client_info": {
+          "package_name": "com.troubleshooter.customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283669128616-ucjegeo251ovlha6g17q4eu58e2d61lk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6JeRfrf3CI1f4RIx6CBvlO8duklv5J7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283669128616-ucjegeo251ovlha6g17q4eu58e2d61lk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

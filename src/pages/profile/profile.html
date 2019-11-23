@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>My Profile</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="profile-img"><img src="assets/imgs/profilepic.jpg">
+        <!--        <ion-icon name="md-camera" item-start></ion-icon>-->
+    </div>
+
+    <ion-list no-lines class="form">
+        <ion-item>
+            <ion-icon name="md-person" item-start></ion-icon>
+            <ion-label floating>Enter Full Name</ion-label>
+            <ion-input type="text" [(ngModel)]="userData.name" value="{{userData.name}}"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="md-mail" item-start></ion-icon>
+            <ion-label floating>Email Address</ion-label>
+            <ion-input type="email" [(ngModel)]="userData.email" value="{{userData.email}}"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="md-phone-portrait" item-start></ion-icon>
+            <ion-label floating>Phone Number</ion-label>
+            <ion-input type="text" [(ngModel)]="userData.phone" value="{{userData.phone}}"></ion-input>
+        </ion-item>
+    </ion-list>
+    <!--    <button ion-button full>Register Now</button>-->
+    <div class="fixed-bottom" padding>
+        <button class="btn-update" ion-button outline block (click)="updateProfile()">Update Profile</button>
+    </div>
+</ion-content>

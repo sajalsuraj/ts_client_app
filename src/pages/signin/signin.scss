@@ -1,0 +1,49 @@
+page-signin {
+    //    .logo {
+    //        width: 130px;
+    //        margin: auto;
+    //        margin-bottom: 50px;
+    //        display: block;
+    //    }
+    .form .item .item-inner h5{
+        color: #d2890a;
+    }
+    
+    h3 {
+        margin-top: 0;
+    }
+    ion-icon{
+        color:#d2890a !important;
+    }
+    .password-eye{
+        z-index:1;
+    }
+    .button {
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    .form {
+        margin-bottom: 30px;
+    }
+    .btn-submit{
+        background:linear-gradient(to bottom, #facb74 0%,#d2890a 100%);
+    }
+    p {
+        line-height: 30px;
+        padding-top: 10px;
+        font-size: 1.3rem;
+        font-weight: 500;
+        color: darken($text-light, 40%);
+    }
+    .fixed-bottom {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        padding-bottom: 8px !important;
+    }
+    .btn-register{
+        color: #d2890a;
+        border: 1px solid #d2890a;
+    }
+}

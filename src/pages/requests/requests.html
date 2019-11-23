@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Bookings</ion-title>
+  </ion-navbar>
+  
+</ion-header>
+<ion-content class="bg-light">
+
+    <ion-segment class="SwipedTabs-tabs">
+        <ion-segment-button *ngFor='let tab of tabs ; let i = index ' value="IngoreMe" (click)="selectTab(i)"
+        [ngClass]='{ "SwipedTabs-activeTab" : ( this.SwipedTabsSlider  && ( this.SwipedTabsSlider.getActiveIndex() === i || (  tabs.length -1 === i&& this.SwipedTabsSlider.isEnd()))) }' >
+          {{tab}}
+        </ion-segment-button>
+      <!-- <ion-segment-button value="assigned">
+        Pending
+      </ion-segment-button>
+      <ion-segment-button value="completed">
+        Completed
+      </ion-segment-button> -->
+    </ion-segment>
+    <div id='indicator' class="SwipedTabs-indicatorSegment" [ngStyle]="{'width.%': (100/this.tabs.length)}"></div>
+    <ion-slides #SwipedTabsSlider  (ionSlideDrag)="animateIndicator($event)"
+        (ionSlideWillChange)="updateIndicatorPosition()"
+        (ionSlideDidChange)="updateIndicatorPosition()"
+        (pan)="updateIndicatorPosition()"
+        [pager]="false"
+    >
+    <ion-slide>
+        <ion-list no-lines class="assigned" padding-top>
+            <ion-item *ngFor="let booking of pendingBookings">
+              <ion-avatar item-start>
+                <img src="assets/imgs/dispatched.png" />
+              </ion-avatar>
+              <div class="contant">
+                <h2 class="d-flex">Booking ID: {{ booking.booking_id }}</h2>
+                <h3 class="d-flex">
+                  <span class="text">
+                    <strong>
+                      {{ booking.vendor_name }}
+                    </strong>
+                    <small> | {{ booking.service }} | {{booking.vendor_phone}}</small>
+                  </span>
+                  <ion-icon (click)="goToTrackBooking(booking)" class="track-icon" name="compass"></ion-icon>
+                </h3>
+                <h3 class="d-flex">
+                  <span class="text">
+                    <small>
+                      Booked at {{booking.created_at*1000 | date:'MMM d, y, h:mm a'}}
+                    </small>
+                  </span>
+                </h3>
+              </div>
+            </ion-item>
+            <ion-item *ngIf="pendingBookings.length < 1">0 booking to show</ion-item>
+          </ion-list> 
+    </ion-slide>
+    <ion-slide>
+        <ion-list
+        no-lines
+        class="completed"
+        padding-top
+        >
+        <ion-item *ngIf="completedBookings.length < 1">0 booking completed</ion-item>
+      </ion-list>
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>

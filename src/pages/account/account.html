@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Account</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-light">
+    <div class="order-head">
+        <ion-row>
+            <ion-col col-4><img src="assets/imgs/profilepic.jpg"></ion-col>
+            <ion-col>
+                <p>{{userData.name}}<span>{{userData.phone}}</span></p>
+            </ion-col>
+        </ion-row>
+    </div>
+    <ion-list no-lines>
+        <ion-item (click)="profile()">
+            <ion-icon name="md-person" item-start></ion-icon>
+            View Profile
+        </ion-item>
+        <ion-item (click)="contact()">
+            <ion-icon name="md-mail" item-start></ion-icon>
+            Contact us
+        </ion-item>
+        <ion-item (click)="tnc()">
+            <ion-icon name="md-clipboard" item-start></ion-icon>
+            Terms & Conditions
+        </ion-item>
+        <ion-item (click)="logout()">
+            <ion-icon name="md-open" item-start></ion-icon>
+            Logout
+        </ion-item>
+    </ion-list>
+    <!--    <p text-center class="about">Opus labs Version 2.0.101</p>-->
+    <div class="logo" text-center padding>
+        <!-- <img src="assets/imgs/logo2.png"> -->
+    </div>
+</ion-content>

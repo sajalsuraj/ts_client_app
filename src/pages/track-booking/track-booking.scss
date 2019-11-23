@@ -1,0 +1,40 @@
+page-trackbooking{
+    #map{
+        height: 70%;
+    }
+    .detail-container{
+        display: flex;
+    }
+    ion-avatar{
+        margin: 8px 16px 8px 10px;
+        img{
+            border-radius: 50%;
+            overflow: hidden;
+            width: 85px;
+            height: 40px;
+        }
+    }
+    div.detail-container{
+        padding:10px;
+    }
+    div.content{
+        h5{
+            span:first-of-type{
+                color: #d2890a !important;
+            }
+            span:last-of-type{
+                color: #d2890a !important;
+                font-size: 12px;
+            }
+        }
+        ion-label
+        {
+            color: #333;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        ion-label+span{
+            font-size:12px;
+        }
+    }
+}

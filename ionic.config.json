@@ -1,0 +1,7 @@
+{
+  "name": "troubleshooter",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

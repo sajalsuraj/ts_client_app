@@ -1,0 +1,33 @@
+page-signup {
+    .cam-icon {
+        width: 75px;
+        height: 75px;
+        font-size: 2.6rem;
+        background-color: $bg-light;
+        text-align: center;
+        line-height: 75px;
+        color: $white;
+        border-radius: 50%;
+        display: block;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+    .password-eye{
+        z-index:1;
+        font-size: 1.6em !important;
+    }
+    .button {
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    .form {
+        margin-bottom: 35px;
+    }
+    ion-icon{
+        color:#d2890a !important;
+    }
+    .btn-submit{
+        background:linear-gradient(to bottom, #facb74 0%,#d2890a 100%);
+    }
+
+}

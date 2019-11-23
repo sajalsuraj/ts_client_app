@@ -1,0 +1,74 @@
+page-services {
+    h2:first-of-type{
+        margin-top: 10px;
+    }
+    h2:last-of-type{
+        margin-top:0px;
+    }
+    .location-icon{
+        position: absolute;
+        z-index: 1000;
+        right: 18px;
+        margin-top: -37px;
+        font-size: 1.7em;
+        color: #b37509 !important;
+    }
+    h2{
+        width: 100%;
+        margin-left: 13px;
+        line-height: 0;
+        margin-bottom: 0;
+        font-weight: bold;  
+    }
+    .service-icon{
+        font-size: 40px;
+        margin-left: 36px;
+        margin-top: 10px;
+    }
+    .upper-section{
+        height:200px;
+        background: linear-gradient(to bottom, #facb74 0%,#d2890a 100%);
+        ion-toolbar{
+            margin-top: 9%;
+            position: absolute;
+            input.searchbar-input{
+                border: 0;
+                box-shadow: none;
+                background-color: rgba(0,0,0,0.0);
+            }
+            input.searchbar-input::-webkit-input-placeholder {
+                color: #fff;
+              }
+            .toolbar-background{
+                height: auto;
+            }
+        }
+        ion-list{
+            position: absolute;
+            margin-top: 20%;
+            width: 100%;
+            z-index: 1;
+        }
+        .upper-label{
+            margin: 13px 8px 13px 10px;
+        }
+    }
+    .service-container{
+        padding:15px;
+        ion-col{
+            padding:1px;
+        }
+        div.service-holder{
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 0px;
+            height: 100px;
+            box-shadow: 1px 1px 6px 2px #ddd;
+            p{
+                font-size: 12px;
+                text-align: center;
+            }
+        }
+    }
+    
+}

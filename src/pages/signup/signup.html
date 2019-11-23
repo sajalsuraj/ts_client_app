@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Register now</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form (submit)="doReg()" [formGroup]="registerForm" novalidate>
+        <!-- <ion-icon name="md-camera" class="cam-icon"></ion-icon>
+        <p text-center>Add Photo</p> -->
+        <ion-list no-lines class="form">
+            <ion-item>
+                <ion-icon name="md-phone-portrait" item-start></ion-icon>
+                <ion-label floating>Phone Number</ion-label>
+                <ion-input formControlName="Phone" [(ngModel)]="regData.phone" name="phone" type="number"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="md-lock" item-start></ion-icon>
+                <ion-label floating>Create Password</ion-label>
+                <ion-input formControlName="Password" [(ngModel)]="regData.password" name="password" type="{{passwordType}}"></ion-input>
+                <ion-icon class="password-eye" name="{{passwordIcon}}" (click)="passwordViewSwitch($event); $event.stopPropagation()" item-end></ion-icon>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="md-lock" item-start></ion-icon>
+                <ion-label floating>Confirm Password</ion-label>
+                <ion-input formControlName="confirm_pass" [(ngModel)]="confirm_pass" name="confirm_pass" type="{{passwordType2}}"></ion-input>
+                <ion-icon class="password-eye" name="{{passwordIcon2}}" (click)="confirmPasswordViewSwitch($event); $event.stopPropagation()" item-end></ion-icon>
+            </ion-item>
+        </ion-list>
+        <button class="btn-submit" ion-button block [disabled]="!registerForm.valid" type="submit">Register Now</button>
+    </form>
+</ion-content>

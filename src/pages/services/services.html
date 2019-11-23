@@ -1,0 +1,27 @@
+<ion-content class="bg-light">
+      <ion-row class="upper-section">
+        <ion-label class="upper-label">Location for service</ion-label>
+        <h2>
+          How Can We
+        </h2>
+        <h2>
+          Help You Today?
+        </h2>
+        <ion-toolbar>
+            <ion-searchbar placeholder="Enter your address" [(ngModel)]="query" (ionInput)="searchPlace()"></ion-searchbar>
+            <ion-icon *ngIf="query.length < 1" (click)="getCurrentLocation()" class="location-icon" name="locate"></ion-icon>
+        </ion-toolbar>
+        <ion-list>
+            <ion-item *ngFor="let place of places" (touchstart)="selectPlace(place)">{{place.description}}</ion-item>
+        </ion-list>
+      </ion-row>
+      <ion-row class="service-container">
+        <ion-col col-4 *ngFor="let service of serviceData" (tap)="selectService(service)">
+          <div class="service-holder">
+            <!-- <img src=""/> -->
+            <ion-icon class="service-icon" name="person"></ion-icon>
+            <p>{{service.service_name}}</p>
+          </div>
+        </ion-col>
+      </ion-row>
+</ion-content>

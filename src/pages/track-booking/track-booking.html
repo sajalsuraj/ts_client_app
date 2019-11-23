@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Booking Details</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <div #map id="map">
+
+    </div>
+    <div class="detail-container">
+        <ion-avatar item-start>
+            <img src="assets/imgs/dispatched.png" />
+        </ion-avatar>
+        <div class="content">
+            <h5>{{booking?.vendor_name}} <span>|</span> <span>{{booking?.service}}</span></h5>
+            <ion-label>Booked at</ion-label>
+            <span>{{booking?.created_at}}</span>
+            <ion-label>Address</ion-label>
+            <span>{{address}}</span>
+            <button *ngIf="!isCancelled" ion-button round (click)="callVendor(booking?.vendor_phone)">Call</button>
+            <button ion-button color="danger" [disabled] = "isCancelled" round (click)="cancelBooking()">Cancel</button>
+        </div>
+    </div>
+</ion-content>
