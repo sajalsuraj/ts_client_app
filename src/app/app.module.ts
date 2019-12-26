@@ -19,20 +19,26 @@ import { SignupPage } from '../pages/signup/signup';
 import { ServicesPage } from '../pages/services/services';
 import { TncPage } from '../pages/tnc/tnc';
 import { PasswordPage } from '../pages/password/password';
+import { ChangepasswordPage } from '../pages/changepassword/changepassword';
+import { NewpasswordPage } from '../pages/newpassword/newpassword';
 import { PaymentPage } from '../pages/payment/payment';
 import { RequestMessagePage } from '../pages/requestmessage/requestmessage';
 import { RequestsPage } from '../pages/requests/requests';
 import { NotificationPage } from '../pages/notification/notification';
 import { TrackBookingPage } from '../pages/track-booking/track-booking';
 import {EarningPage} from '../pages/earnings/earnings';
+import {SubcategorylistPage} from '../pages/subcategorylist/subcategorylist';
+import { AboutPage } from '../pages/about/about';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '../providers/google-map-service/google-map-service';
 import { NativeGeocoder} from '@ionic-native/native-geocoder';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { Sim } from '@ionic-native/sim';
 
 import { FCM } from '@ionic-native/fcm';
 import { Push } from '@ionic-native/push';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -51,13 +57,17 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     SignupPage,
     ServicesPage,
     TncPage,
+    AboutPage,
     PasswordPage,
     PaymentPage,
     RequestMessagePage,
     RequestsPage,
     TrackBookingPage,
     NotificationPage,
-    EarningPage
+    EarningPage,
+    ChangepasswordPage,
+    NewpasswordPage,
+    SubcategorylistPage
   ],
   imports: [
     BrowserModule,
@@ -77,13 +87,17 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     SignupPage,
     ServicesPage,
     TncPage,
+    AboutPage,
     PasswordPage,
     PaymentPage,
     RequestMessagePage,
     RequestsPage,
     TrackBookingPage,
     NotificationPage,
-    EarningPage
+    EarningPage,
+    ChangepasswordPage,
+    NewpasswordPage,
+    SubcategorylistPage
   ],
   providers: [
     StatusBar,
@@ -94,10 +108,12 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     AuthService,
     FCM,
     Push,
+    SocialSharing,
     CallNumber,
     LocalNotifications,
     NativeGeocoder,
     AndroidPermissions,
+    Sim,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

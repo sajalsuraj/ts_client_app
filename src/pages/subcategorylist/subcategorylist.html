@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{subCategoryName}} Services</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item class="list-item" *ngFor="let subcat of subCategoriesList" (tap)="selectSubCategory(subcat, $event)">
+            {{subcat.service_name}}
+            <ion-icon *ngIf="subcat.level==='2'" item-end name="arrow-dropright"></ion-icon>
+            <button ion-button item-end (tap)="selectService(subcat, $event)" *ngIf="subcat.level==='3'">Select Service</button>
+        </ion-item>
+        <ion-item *ngIf="subCategoriesList.length < 1">
+            Sub categories not available :(
+        </ion-item>
+    </ion-list>
+</ion-content>

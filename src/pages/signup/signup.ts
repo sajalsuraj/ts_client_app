@@ -4,7 +4,6 @@ import { FormBuilder, Validators, ValidatorFn, AbstractControl  }  from '@angula
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { SigninPage } from '../signin/signin';
 import { CommonService } from '../../providers/common-service/common-service';
-
 import { OtpPage } from '../otp/otp';
 
 @Component({
@@ -26,10 +25,14 @@ export class SignupPage {
 
   constructor(public navCtrl: NavController, private commonservice:CommonService, private platform:Platform, public alertCtrl: AlertController, private _formBuilder: FormBuilder, public authService: AuthService, private toastCtrl: ToastController) {
     this.registerForm = this._formBuilder.group({
-      Phone: ["", Validators.required],
+      Phone: ["", [Validators.required, Validators.pattern('[6-9]\\d{9}')]],
       Password: ["", Validators.required],
       confirm_pass: ["", [Validators.required, this.equalto('Password')]]
    });
+  }
+
+  ionViewDidLoad(){
+    
   }
 
   passwordViewSwitch(){
@@ -72,7 +75,6 @@ export class SignupPage {
   }
  
   doReg(){
-    
     let formData = new FormData();
     formData.append('phone', this.regData.phone);
     formData.append('password', this.regData.password);
@@ -80,8 +82,10 @@ export class SignupPage {
     this.authService.register(formData).then((result) => {
       if(result['status']){
         this.showAlert(result['message']);
-        localStorage.setItem('phone', result['phone']);
-        this.navCtrl.push(OtpPage);
+        this.navCtrl.push(OtpPage,{
+          "phone": result['phone'],
+          "page": "signup"
+        });
       }
       else{
         this.showAlert(result['message']);

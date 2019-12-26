@@ -66,6 +66,61 @@ export class CommonService {
     });
   }
 
+  getAllBanners(){
+    return new Promise((resolve, reject) => {
+        this.http.get(baseURL+'get/banners')
+          .subscribe(res => {
+            resolve(res.json());
+        }, (err) => {
+            reject(err);
+          });
+    });
+  }
+
+  getTerms(){
+    return new Promise((resolve, reject) => {
+        this.http.get(baseURL+'get/terms')
+          .subscribe(res => {
+            resolve(res.json());
+        }, (err) => {
+            reject(err);
+          });
+    });
+  }
+
+  getHowItWorks(){
+    return new Promise((resolve, reject) => {
+        this.http.get(baseURL+'get/howitworks')
+          .subscribe(res => {
+            resolve(res.json());
+        }, (err) => {
+            reject(err);
+          });
+    });
+  }
+
+  getContact(){
+    return new Promise((resolve, reject) => {
+        this.http.get(baseURL+'get/contact')
+          .subscribe(res => {
+            resolve(res.json());
+        }, (err) => {
+            reject(err);
+          });
+    });
+  }
+
+  getSubcategories(data){
+    return new Promise((resolve, reject) => {
+        this.http.post(baseURL+'get/subcategories',data)
+          .subscribe(res => {
+            resolve(res.json());
+        }, (err) => {
+            reject(err);
+          });
+    });
+  }
+
   getNearbyVendor(data) {
     return new Promise((resolve, reject) => {
         let headers = new Headers();

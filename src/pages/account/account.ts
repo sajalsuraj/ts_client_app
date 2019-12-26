@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, App, LoadingController } from 'ionic-angular';
 
 import { ProfilePage } from '../profile/profile';
 import { ContactPage } from '../contact/contact';
 import { TncPage } from '../tnc/tnc';
 import { SigninPage } from '../signin/signin';
+import {AboutPage} from '../about/about';
 import { CommonService } from '../../providers/common-service/common-service';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
   selector: 'page-account',
@@ -18,7 +20,7 @@ export class AccountPage {
     "phone": "",
     "email": ""
   }
-  constructor(public navCtrl: NavController, public commonService: CommonService) {
+  constructor(public navCtrl: NavController, public loading: LoadingController, private socialSharing: SocialSharing, public appCtrl:App, public commonService: CommonService) {
 
   }
   ionViewDidLoad(){
@@ -51,11 +53,22 @@ export class AccountPage {
   }
 
   ionViewWillEnter(){
-    let user_id = localStorage.getItem('user_id');
-    let postData = new FormData();
-    postData.append('user_id', user_id);
-    this.commonService.customerProfileInfo(postData, "get").then((result) => {
-      this.userData = result['data'];
+    let loader = this.loading.create({
+      spinner: 'bubbles',
+      content: 'Getting name & phone...',
+    });
+
+    loader.present().then(() => {
+      let user_id = localStorage.getItem('user_id');
+      let postData = new FormData();
+      postData.append('user_id', user_id);
+      this.commonService.customerProfileInfo(postData, "get").then((result) => {
+        this.userData = result['data'];
+        loader.dismiss();
+      },
+      error => {
+        loader.dismiss();
+      });
     });
   }
   
@@ -68,9 +81,23 @@ export class AccountPage {
   tnc(){
    this.navCtrl.push(TncPage);
   }
+
+  about(){
+    this.navCtrl.push(AboutPage);
+  }
+
+  shareProp(){
+    var message = "Troubleshooter Message";
+    this.socialSharing.share(message, "", "", "").then(() => {
+      // Sharing via email is possible
+    }).catch(() => {
+      // Sharing via email is not possible
+    });
+  }
+  
    logout(){
     localStorage.clear();
-    this.navCtrl.setRoot(SigninPage);
+    this.appCtrl.getRootNav().setRoot(SigninPage);
   }
 
 }

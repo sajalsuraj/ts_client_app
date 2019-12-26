@@ -12,6 +12,11 @@ page-signup {
         margin: auto;
         margin-bottom: 20px;
     }
+    .validator-error{
+        font-size: 12px;
+        font-weight: 100;
+        color: red;
+    }
     .password-eye{
         z-index:1;
         font-size: 1.6em !important;

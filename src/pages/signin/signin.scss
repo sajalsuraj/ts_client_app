@@ -15,6 +15,11 @@ page-signin {
     ion-icon{
         color:#d2890a !important;
     }
+    .pass{
+        margin-top: 0px;
+        padding-top: 0px;
+        text-align: right;
+    }
     .password-eye{
         z-index:1;
     }
@@ -23,7 +28,7 @@ page-signin {
         font-size: 1.5rem;
     }
     .form {
-        margin-bottom: 30px;
+        margin-bottom: 10px;
     }
     .btn-submit{
         background:linear-gradient(to bottom, #facb74 0%,#d2890a 100%);

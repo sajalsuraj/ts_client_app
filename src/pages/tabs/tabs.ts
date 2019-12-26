@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component, ViewChild } from '@angular/core';
+import {Tabs} from 'ionic-angular';
 import { AccountPage } from '../account/account';
 import { ServicesPage } from '../services/services';
 import { RequestsPage } from '../requests/requests';
@@ -17,7 +17,15 @@ export class TabsPage {
   tab4Root = AccountPage;
   tab5Root = ServicesPage;
 
+  @ViewChild('myTabs') tabRef: Tabs;
+
   constructor() {
 
   }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.tabRef.select(0);
+      }, 500);
+    }
 }

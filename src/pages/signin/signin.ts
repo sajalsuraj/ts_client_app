@@ -3,6 +3,7 @@ import { NavController,AlertController } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
 import { PasswordPage } from '../password/password';
+import { ChangepasswordPage } from '../changepassword/changepassword';
 import { SignupPage } from '../signup/signup';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { FormBuilder, Validators, ValidatorFn, AbstractControl  }  from '@angular/forms';
@@ -99,8 +100,8 @@ export class SigninPage {
   tab(){
         this.navCtrl.setRoot(TabsPage);
 	}
-  password(){
-        this.navCtrl.push(PasswordPage);
+  forgotpassword(){
+        this.navCtrl.push(ChangepasswordPage);
     }
   signup(){
         this.navCtrl.push(SignupPage);

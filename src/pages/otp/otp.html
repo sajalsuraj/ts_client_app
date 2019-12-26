@@ -4,11 +4,13 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <p text-center>Let us know One time password (OTP)<br>we'll send you OTP on your registered<br>email address or phone number</p>
+    <p text-center>Let us know One time password (OTP)<br>we'll send you OTP on your registered<br> phone number</p>
     <ion-list no-lines class="form">
         <ion-item>
             <ion-input type="number" [(ngModel)]="otpData.otp" placeholder="Enter One Time Password" text-center></ion-input>
         </ion-item>
     </ion-list>
+    <p class="pass"><span *ngIf="isTimerOn">{{timer+" Sec left"}}</span>
+        <span *ngIf="!isTimerOn" (click)="resendOTP()">Resend OTP</span></p>
     <button ion-button block (click)="signin()">Submit</button>
 </ion-content>

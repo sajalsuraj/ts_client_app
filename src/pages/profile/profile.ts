@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { CommonService } from '../../providers/common-service/common-service';
 
 import { ChangepasswordPage } from '../changepassword/changepassword';
@@ -9,7 +9,7 @@ import { ChangepasswordPage } from '../changepassword/changepassword';
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController, public commonService: CommonService, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public loading: LoadingController, public commonService: CommonService, public alertCtrl: AlertController) {
 
   }
 
@@ -23,11 +23,22 @@ export class ProfilePage {
    
   }
   ionViewWillEnter(){
-    let user_id = localStorage.getItem('user_id');
-    let postData = new FormData();
-    postData.append('user_id', user_id);
-    this.commonService.customerProfileInfo(postData, "get").then((result) => {
-      this.userData = result['data'];
+    let loader = this.loading.create({
+      spinner: 'bubbles',
+      content: 'Getting data...',
+    });
+
+    loader.present().then(() => {
+      let user_id = localStorage.getItem('user_id');
+      let postData = new FormData();
+      postData.append('user_id', user_id);
+      this.commonService.customerProfileInfo(postData, "get").then((result) => {
+        this.userData = result['data'];
+        loader.dismiss();
+      },
+      error => {
+        loader.dismiss();
+      });
     });
   }
   

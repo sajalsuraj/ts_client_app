@@ -22,8 +22,13 @@ page-services {
     }
     .service-icon{
         font-size: 40px;
-        margin-left: 36px;
+        margin-left: 38%;
         margin-top: 10px;
+    }
+    ion-slide{
+        img{
+            height: 100px !important;
+        }
     }
     .upper-section{
         height:200px;
@@ -69,6 +74,37 @@ page-services {
                 text-align: center;
             }
         }
+    }
+
+    .loader-service{
+        width:129px;
+        height:100px;
+    }
+    // Animation
+    @keyframes placeHolderShimmer{
+        0%{
+            background-position: -468px 0
+        }
+        100%{
+            background-position: 468px 0
+        }
+    }
+    .loader-image{
+        -webkit-animation-duration: 1.25s;
+        animation-duration: 1.25s;
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-animation-name: placeHolderShimmer;
+        animation-name: placeHolderShimmer;
+        -webkit-animation-timing-function: linear;
+        animation-timing-function: linear;
+        background: #F6F6F6;
+        background: linear-gradient(to right, #f6f6f6 8%, #f0f0f0 18%, #f3f2f2 33%);
+        background-size: 800px 104px;
+        height: 100px;
+        position: relative;
     }
     
 }

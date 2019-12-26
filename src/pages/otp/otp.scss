@@ -2,13 +2,21 @@ page-otp {
     .button {
         height: 50px;
         font-size: 1.5rem;
+        background:linear-gradient(to bottom, #facb74 0%,#d2890a 100%);
     }
     p {
         margin-bottom: 50px;
         margin-top: 30px;
     }
     .form {
-        margin-bottom: 30px;
+        margin-bottom: 15px;
+    }
+
+    .pass{
+        margin-top: 0px;
+        padding-top: 0px;
+        text-align: right;
+        margin-bottom: 15px;
     }
 
 }

@@ -1,8 +1,8 @@
 import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, AlertController, Slides } from 'ionic-angular';
 import { CommonService } from '../../providers/common-service/common-service';
 import { Geolocation, Coordinates } from '@ionic-native/geolocation';
-import { PaymentPage } from '../../pages/payment/payment';
+import {SubcategorylistPage} from '../../pages/subcategorylist/subcategorylist';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
 /**
  * Generated class for the ServicesPage page.
@@ -26,6 +26,8 @@ export class ServicesPage {
   currLocation = "";
   coords1:Coordinates;
   watchLocationUpdates:any; 
+  bannerArr = [];
+  @ViewChild(Slides) slides: Slides;
 
 
 
@@ -37,6 +39,11 @@ export class ServicesPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ServicesPage');
+    this.commonService.getAllBanners().then(res=>{
+      if(res['status']){
+        this.bannerArr = res['banners'];
+      }
+    });
     this.commonService.getAllServices().then(res => {
       if(res['status']){
         this.serviceData = res['data'];
@@ -121,8 +128,9 @@ export class ServicesPage {
       this.showAlert("Alert!","Please select the location");
     }
     else{
-      this.navCtrl.push(PaymentPage, {
+      this.navCtrl.push(SubcategorylistPage, {
         profession:service.service_name,
+        service_id: service.id,
         lat: this.latitude,
         lng: this.longitude
       });

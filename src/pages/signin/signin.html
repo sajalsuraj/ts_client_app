@@ -19,9 +19,9 @@
                 <ion-label floating>Password</ion-label>
                 <ion-input formControlName="Password" [(ngModel)]="logData.password" name="password" type="{{passwordType}}"></ion-input>
                 <ion-icon class="password-eye" name="{{passwordIcon}}" (click)="passwordViewSwitch($event); $event.stopPropagation()" item-end></ion-icon>
-                <!-- <h5 item-end>Forgot ?</h5> -->
             </ion-item>
         </ion-list>
+        <p (click)="forgotpassword()" class="pass">Forgot Password?</p>
         <button class="btn-submit" ion-button block [disabled]="!loginForm.valid" type="submit">Sign in</button>
     </form>
     <div class="fixed-bottom" padding>

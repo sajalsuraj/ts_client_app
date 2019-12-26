@@ -15,7 +15,48 @@
             <ion-item *ngFor="let place of places" (touchstart)="selectPlace(place)">{{place.description}}</ion-item>
         </ion-list>
       </ion-row>
-      <ion-row class="service-container">
+      <ion-row>
+          <ion-slides>
+              <ion-slide *ngFor="let banner of bannerArr">
+                  <img src="{{banner.banner_image}}" />
+              </ion-slide>
+            </ion-slides>
+      </ion-row>
+
+      <ion-row *ngIf="serviceData.length < 1" class="service-container">
+        <ion-col col-4>
+          <div class="service-holder loader-image">
+     
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="service-holder loader-image">
+     
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="service-holder loader-image">
+     
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="service-holder loader-image">
+     
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="service-holder loader-image">
+     
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="service-holder loader-image">
+     
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="serviceData.length > 0" class="service-container">
         <ion-col col-4 *ngFor="let service of serviceData" (tap)="selectService(service)">
           <div class="service-holder">
             <!-- <img src=""/> -->

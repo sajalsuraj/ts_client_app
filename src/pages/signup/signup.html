@@ -12,8 +12,11 @@
             <ion-item>
                 <ion-icon name="md-phone-portrait" item-start></ion-icon>
                 <ion-label floating>Phone Number</ion-label>
-                <ion-input formControlName="Phone" [(ngModel)]="regData.phone" name="phone" type="number"></ion-input>
+                <ion-input formControlName="Phone" minlength="10" maxlength="10" [(ngModel)]="regData.phone" name="phone" type="number"></ion-input>
             </ion-item>
+            <div *ngIf="registerForm.controls.Phone.invalid && registerForm.controls.Phone.errors.pattern" class="validator-error">
+            Please enter a valid mobile number(10 digits, should start from 6-9).
+            </div>
             <ion-item>
                 <ion-icon name="md-lock" item-start></ion-icon>
                 <ion-label floating>Create Password</ion-label>
@@ -26,6 +29,9 @@
                 <ion-input formControlName="confirm_pass" [(ngModel)]="confirm_pass" name="confirm_pass" type="{{passwordType2}}"></ion-input>
                 <ion-icon class="password-eye" name="{{passwordIcon2}}" (click)="confirmPasswordViewSwitch($event); $event.stopPropagation()" item-end></ion-icon>
             </ion-item>
+            <div *ngIf="registerForm.controls.Phone.invalid && registerForm.controls.confirm_pass.errors && registerForm.controls.confirm_pass.errors.equalTo" class="validator-error">
+                Password doesn't match
+            </div>
         </ion-list>
         <button class="btn-submit" ion-button block [disabled]="!registerForm.valid" type="submit">Register Now</button>
     </form>

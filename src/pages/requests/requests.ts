@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { CommonService } from '../../providers/common-service/common-service';
-import { NavController, Slides } from 'ionic-angular';
+import { NavController, Slides, LoadingController } from 'ionic-angular';
 
 import { TrackBookingPage } from '../track-booking/track-booking';
 
@@ -16,7 +16,7 @@ export class RequestsPage {
   completedBookings = [];
   tabs:any=[];
   SwipedTabsIndicator :any= null;
-  constructor(public commonService:CommonService, private navCtrl: NavController) {
+  constructor(public commonService:CommonService, public loading: LoadingController, private navCtrl: NavController) {
     this.tabs=["Upcoming","Completed"];
   }
 
@@ -47,12 +47,23 @@ export class RequestsPage {
   }
 
   ionViewWillEnter(){
-    let fd = new FormData();
-    fd.append('user_id', localStorage.getItem('user_id'));
-    this.commonService.pendingBookings(fd).then((result) => {
-      if(result['status']){
-        this.pendingBookings = result['bookings'];
-      }
+    let loader = this.loading.create({
+      spinner: 'bubbles',
+      content: 'Getting data...',
+    });
+
+    loader.present().then(() => {
+      let fd = new FormData();
+      fd.append('user_id', localStorage.getItem('user_id'));
+      this.commonService.pendingBookings(fd).then((result) => {
+        if(result['status']){
+          this.pendingBookings = result['bookings'];
+        }
+        loader.dismiss();
+      },
+      error=>{
+        loader.dismiss();
+      });
     });
   }
 
