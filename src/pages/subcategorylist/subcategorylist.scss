@@ -2,5 +2,67 @@ page-subcategorylist{
     .list-item{
         border-bottom: 0.5px solid #aaa;
         border-style: none;
+        .item-inner{
+            padding-right: 0px !important;
+        }
+    }
+    .cat-button{
+        padding: 1.2em 1.2em !important;
+        background-color: #fff;
+        color: #d2890a !important;
+        box-shadow: none;
+        border: 1px solid #d2890a !important;
+        font-size: 1.5rem !important;
+        margin-right: 0px !important; 
+    }
+    .quantity-button-holder{
+        font-size: 1.5rem !important;
+        margin-right: 0px !important;
+        ion-icon{
+            border: 1px solid;
+            padding-left: 8.5px;
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+            padding-top: 5px;
+            
+        }
+        ion-icon:first-of-type{
+            margin-right: 5px;
+        }
+        ion-icon:last-of-type{
+            margin-left: 5px;
+        }
+    }
+    .fixed-bottom {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        padding-bottom: 8px !important;
+        .btn-update{
+            background-color: #d2890a;
+            border:none;
+            padding:20px;
+        }
+        p {
+            color: #d2890a;
+            padding-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        span.total_order{
+            border: 1px solid;
+            padding: 5px 10px;
+            margin-right: 25%;
+            color:#fff;
+        }
+        span.total_amount{
+            margin-right: 20%;
+            color:#fff;
+            font-weight: bold;
+        }
+        span.place_order{
+            color:#fff;
+        }
     }
 }

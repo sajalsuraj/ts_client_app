@@ -11,13 +11,13 @@
         <ion-item>
             <p>Call us</p>
             <h2>{{phone}}</h2>
-            <ion-avatar item-end>
+            <ion-avatar (click)="callVendor(phone)" item-end>
                 <ion-icon name="md-call"></ion-icon>
             </ion-avatar>
         </ion-item>
         <ion-item>
             <p>Email us</p>
-            <h2>help@troubleshooters.com</h2>
+            <h2>{{email}}</h2>
             <ion-avatar item-end>
                 <ion-icon name="md-mail"></ion-icon>
             </ion-avatar>

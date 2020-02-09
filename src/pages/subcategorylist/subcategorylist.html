@@ -6,13 +6,25 @@
 
 <ion-content padding>
     <ion-list>
-        <ion-item class="list-item" *ngFor="let subcat of subCategoriesList" (tap)="selectSubCategory(subcat, $event)">
+        <ion-item class="list-item" *ngFor="let subcat of subCategoriesList" (click)="selectSubCategory(subcat, $event)">
             {{subcat.service_name}}
             <ion-icon *ngIf="subcat.level==='2'" item-end name="arrow-dropright"></ion-icon>
-            <button ion-button item-end (tap)="selectService(subcat, $event)" *ngIf="subcat.level==='3'">Select Service</button>
+            <button ion-button item-end class="cat-button" (click)="selectService(subcat, $event)" *ngIf="subcat.level==='3' && subcat.orderCount < 1">Add +</button>
+            <div *ngIf="subcat.level==='3' && subcat.orderCount > 0" item-end class="quantity-button-holder">
+                <ion-icon (click)="decreaseQuantity(subcat, $event)" name="remove"></ion-icon>
+                <span>{{subcat.orderCount}}</span>
+                <ion-icon (click)="addQuantity(subcat, $event)" name="add"></ion-icon>
+            </div>
         </ion-item>
         <ion-item *ngIf="subCategoriesList.length < 1">
             Sub categories not available :(
         </ion-item>
     </ion-list>
+    <div *ngIf="commonServices.cartList.length > 0" class="fixed-bottom" padding>
+        <button class="btn-update" (click)="goToPaymentPage()" ion-button outline block>
+            <span class="total_order">{{orderButtonData.totalOrders}}</span> 
+            <span class="total_amount">&#8377; {{orderButtonData.totalAmount}}</span>
+            <span class="place_order">Place Order >>></span>
+        </button>
+    </div>
 </ion-content>

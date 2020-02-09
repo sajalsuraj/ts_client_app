@@ -27,6 +27,12 @@ export class ServicesPage {
   coords1:Coordinates;
   watchLocationUpdates:any; 
   bannerArr = [];
+  searchText;
+  upperContent = {
+    "upper_content_heading":"",
+    "upper_content_subheading": ""
+  };
+  lowerContent = "";
   @ViewChild(Slides) slides: Slides;
 
 
@@ -48,6 +54,12 @@ export class ServicesPage {
       if(res['status']){
         this.serviceData = res['data'];
       }
+    });
+
+    this.commonService.getHomePageData().then((res)=>{
+      this.upperContent.upper_content_heading = res['data'].upper_content_heading;
+      this.upperContent.upper_content_subheading = res['data'].upper_content_subheading;
+      this.lowerContent = res['data'].lower_content;
     });
     this.autocompleteService = new google.maps.places.AutocompleteService();
 

@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
@@ -29,6 +30,8 @@ import { TrackBookingPage } from '../pages/track-booking/track-booking';
 import {EarningPage} from '../pages/earnings/earnings';
 import {SubcategorylistPage} from '../pages/subcategorylist/subcategorylist';
 import { AboutPage } from '../pages/about/about';
+import { ReferralPage } from '../pages/referral/referral';
+import { SubFaqPage } from '../pages/sub-faq/sub-faq';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '../providers/google-map-service/google-map-service';
@@ -67,13 +70,16 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     EarningPage,
     ChangepasswordPage,
     NewpasswordPage,
-    SubcategorylistPage
+    SubcategorylistPage,
+    ReferralPage,
+    SubFaqPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    Ng2SearchPipeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -97,7 +103,9 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     EarningPage,
     ChangepasswordPage,
     NewpasswordPage,
-    SubcategorylistPage
+    SubcategorylistPage,
+    ReferralPage,
+    SubFaqPage
   ],
   providers: [
     StatusBar,

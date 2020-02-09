@@ -1,19 +1,20 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            Customer Support
+            {{faqTitle}}
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content class="bg-light">
-    <p class="heading">F.A.Q.</p>
-    <ion-list>
+    <p *ngIf="faqLevel === 1" class="heading">F.A.Q.</p>
+    <ion-list *ngIf="faqLevel === 1">
         <button ion-item *ngFor="let title of faqTitles" (click)="openFaq(title)">
-          {{ title.title }}
+          {{ title.faq_category }}
           <ion-icon name="ios-arrow-dropright" item-end></ion-icon>
         </button>  
 
         <ion-item *ngIf="faqTitles.length < 1">FAQs not available</ion-item>
-      </ion-list>
+    </ion-list>
+    <p *ngIf="faqLevel === 2" class="heading">{{faqData}}</p>
 </ion-content>

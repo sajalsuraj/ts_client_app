@@ -6,6 +6,7 @@ import { ContactPage } from '../contact/contact';
 import { TncPage } from '../tnc/tnc';
 import { SigninPage } from '../signin/signin';
 import {AboutPage} from '../about/about';
+import {ReferralPage} from '../referral/referral';
 import { CommonService } from '../../providers/common-service/common-service';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
@@ -70,6 +71,10 @@ export class AccountPage {
         loader.dismiss();
       });
     });
+  }
+
+  inviteFriends(){
+    this.navCtrl.push(ReferralPage);
   }
   
   profile(){

@@ -15,6 +15,12 @@
             <ion-item *ngFor="let place of places" (touchstart)="selectPlace(place)">{{place.description}}</ion-item>
         </ion-list>
       </ion-row>
+      <div class="search-holder">
+        <ion-searchbar
+          placeholder = "Search for service"
+          [(ngModel)]="searchText">
+        </ion-searchbar>
+      </div>
       <ion-row>
           <ion-slides>
               <ion-slide *ngFor="let banner of bannerArr">
@@ -57,12 +63,24 @@
       </ion-row>
 
       <ion-row *ngIf="serviceData.length > 0" class="service-container">
-        <ion-col col-4 *ngFor="let service of serviceData" (tap)="selectService(service)">
+        <ion-col col-4 *ngFor="let service of serviceData | filter:searchText" (tap)="selectService(service)">
           <div class="service-holder">
             <!-- <img src=""/> -->
             <ion-icon class="service-icon" name="person"></ion-icon>
             <p>{{service.service_name}}</p>
           </div>
         </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="upperContent.upper_content_heading || upperContent.upper_content_subheading" class="footer-row">
+        <ion-col col-2></ion-col>
+        <ion-col col-10>
+          <h5>{{upperContent.upper_content_heading}}</h5>
+          <p>{{upperContent.upper_content_subheading}}</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="lowerContent" class="footer-row-2">
+        <p>{{lowerContent}}</p>
       </ion-row>
 </ion-content>

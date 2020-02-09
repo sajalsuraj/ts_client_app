@@ -1,0 +1,41 @@
+page-referral{
+    .heading {
+        color: $text-light;
+        font-size: 1.5rem;
+    }
+    p{
+        text-align: center;
+    }
+    .p-big{
+        font-size: 20px;
+    }
+    .p-small{
+        font-size: 12px;
+    }
+    ion-row{
+        div.invite-code-holder{
+            width: 95%;
+            margin: 0px auto;
+            background-color: #fff;
+            border-radius: 5px;
+            text-align: center;
+            padding-bottom: 10px;
+            box-shadow: 1px 1px 4px 0px #ccc;
+            .p-small{
+                font-size: 10px;
+            }
+            button ion-icon{
+                color: #fff !important;
+                margin-right: 15px;
+            }
+            .p-code{
+                font-size: 22px;
+                margin-bottom: 10px;
+                margin-top: 10px;
+            }
+            .more-share{
+                color:#d2890a;
+            }
+        }
+    }
+}

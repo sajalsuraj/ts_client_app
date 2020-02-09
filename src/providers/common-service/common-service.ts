@@ -11,6 +11,8 @@ export class CommonService {
   constructor(public http: Http) {}  
 
   device_id:any;
+  cartList = [];
+  faqArr:any;
 
   createAuthorizationHeader(headers: Headers) {
     headers.append('access_token', localStorage.getItem('access_token')); 
@@ -66,6 +68,17 @@ export class CommonService {
     });
   }
 
+  getHomePageData(){
+    return new Promise((resolve, reject) => {
+        this.http.get(baseURL+'get/homepage')
+          .subscribe(res => {
+            resolve(res.json());
+        }, (err) => {
+            reject(err);
+          });
+    });
+  }
+
   getAllBanners(){
     return new Promise((resolve, reject) => {
         this.http.get(baseURL+'get/banners')
@@ -113,6 +126,17 @@ export class CommonService {
   getSubcategories(data){
     return new Promise((resolve, reject) => {
         this.http.post(baseURL+'get/subcategories',data)
+          .subscribe(res => {
+            resolve(res.json());
+        }, (err) => {
+            reject(err);
+          });
+    });
+  }
+
+  getFaqs(){
+    return new Promise((resolve, reject) => {
+        this.http.get(baseURL+'get/faq')
           .subscribe(res => {
             resolve(res.json());
         }, (err) => {
