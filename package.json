@@ -25,19 +25,21 @@
     "@ionic-native/core": "~4.20.0",
     "@ionic-native/fcm": "^4.20.0",
     "@ionic-native/geolocation": "^4.20.0",
+    "@ionic-native/keyboard": "^4.12.0",
     "@ionic-native/local-notifications": "^4.20.0",
     "@ionic-native/native-geocoder": "^4.20.0",
     "@ionic-native/network": "^4.20.0",
     "@ionic-native/push": "^4.20.0",
     "@ionic-native/sim": "^4.20.0",
     "@ionic-native/social-sharing": "^4.20.0",
-    "@ionic-native/splash-screen": "~4.20.0",
+    "@ionic-native/splash-screen": "^4.20.0",
     "@ionic-native/status-bar": "~4.20.0",
     "@ionic/storage": "2.2.0",
     "@types/google-maps": "^3.2.1",
     "@types/underscore": "^1.8.20",
     "call-number": "^1.0.1",
     "cordova-android": "7.1.0",
+    "cordova-plugin-advanced-geolocation": "git+https://github.com/esri/cordova-plugin-advanced-geolocation.git",
     "cordova-plugin-android-permissions": "^1.0.2",
     "cordova-plugin-badge": "^0.8.8",
     "cordova-plugin-device": "^2.0.2",
@@ -78,7 +80,6 @@
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
-      "cordova-plugin-ionic-keyboard": {},
       "mx.ferreyra.callnumber": {},
       "cordova-plugin-fcm-with-dependecy-updated": {},
       "phonegap-plugin-push": {
@@ -91,7 +92,9 @@
       "cordova-plugin-sim": {},
       "cordova-plugin-x-socialsharing": {
         "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
-      }
+      },
+      "cordova-plugin-advanced-geolocation": {},
+      "cordova-plugin-ionic-keyboard": {}
     },
     "platforms": [
       "android"

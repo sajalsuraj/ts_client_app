@@ -1,0 +1,226 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <ion-toolbar>
+        <ion-searchbar placeholder="Enter your address" [(ngModel)]="query" (ionInput)="searchPlace()"></ion-searchbar>
+        <ion-icon *ngIf="query.length < 1" (click)="getCurrentLocation()" class="location-icon" name="locate">
+        </ion-icon>
+      </ion-toolbar>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="page-holder bg-light">
+  <ion-list class="place-list">
+      <ion-item *ngFor="let place of places" (touchstart)="selectPlace(place)">{{place.description}}</ion-item>
+    </ion-list>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Search for services" [(ngModel)]="serviceText"></ion-searchbar>
+  </ion-toolbar>
+  <ion-list *ngIf="serviceText.length" class="service-list">
+    <ion-item *ngFor="let service of serviceList | filter:serviceText" (touchstart)="selectServiceFromList(service)">{{service.service_name}}</ion-item>
+  </ion-list>
+  <ion-row class="membership-row page-row">
+    <p class="heading"><span>Trending Services & Membership <br> packages</span> <a (click)="goToMembership()">See More</a></p>
+    <ion-slides pager autoplay="1000" loop="true" slidesPerView="1.95">
+      <ion-slide>
+        <ion-card>
+          <img src="assets/imgs/sample-3.jpg" />
+          <ion-card-content>
+            <ion-card-title>
+              Deep Cleaning Combo
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card>
+          <img src="assets/imgs/sample-3.jpg" />
+          <ion-card-content>
+            <ion-card-title>
+              Deep Cleaning Combo
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card>
+          <img src="assets/imgs/sample-3.jpg" />
+          <ion-card-content>
+            <ion-card-title>
+              Deep Cleaning Combo
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card>
+          <img src="assets/imgs/sample-3.jpg" />
+          <ion-card-content>
+            <ion-card-title>
+              Deep Cleaning Combo
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card>
+          <img src="assets/imgs/sample-3.jpg" />
+          <ion-card-content>
+            <ion-card-title>
+              Deep Cleaning Combo
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </ion-row>
+  <ion-row class="services-row page-row">
+    <p class="heading"><span>Our Services</span> <a (click)="goToService()">See More</a></p>
+    <ion-grid class="service-grid">
+      <ion-row>
+        <ion-col col-6 *ngFor="let service of serviceData" (click)="selectServiceFromList(service)">
+          <div class="service-holder">
+            <img class="service-img" src="assets/imgs/salon.jpg" alt="">
+            <div class="lower-content">
+              <img src="assets/icon/right-arrow.png" alt="">
+              <span>{{service.service_name}}</span>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-row>
+  <ion-row class="page-row insurance-row" *ngIf="upperContent.upper_content_heading || upperContent.upper_content_subheading">
+      <p class="heading"><span>{{upperContent.upper_content_heading}}</span></p>
+      <p class="subheading">{{upperContent.upper_content_subheading}}</p>
+  </ion-row>
+  <ion-row class="page-row partner-row">
+      <p class="heading"><span>Our Partners</span></p>
+      <ion-slides pager autoplay="1000" loop="true" slidesPerView="3">
+        <ion-slide>
+            <div class="service-holder">
+              <img class="service-img" src="assets/imgs/ts_logo.jpg" alt="">
+              <div class="lower-content">
+                <span>Partner</span>
+              </div>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div class="service-holder">
+              <img class="service-img" src="assets/imgs/ts_logo.jpg" alt="">
+              <div class="lower-content">
+                <span>Partner</span>
+              </div>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div class="service-holder">
+              <img class="service-img" src="assets/imgs/ts_logo.jpg" alt="">
+              <div class="lower-content">
+                <span>Partner</span>
+              </div>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div class="service-holder">
+              <img class="service-img" src="assets/imgs/ts_logo.jpg" alt="">
+              <div class="lower-content">
+                <span>Partner</span>
+              </div>
+            </div>
+        </ion-slide>
+      </ion-slides>
+  </ion-row>
+  <ion-row class="page-row bottom-row" *ngIf="lowerContent">
+    <div [innerHTML]="lowerContent">
+
+    </div>
+  </ion-row>
+</ion-content>
+<!-- <ion-content class="bg-light">
+      <ion-row class="upper-section">
+        <ion-label class="upper-label">Location for service</ion-label>
+        <h2>
+          How Can We
+        </h2>
+        <h2>
+          Help You Today?
+        </h2>
+        <ion-toolbar>
+            <ion-searchbar placeholder="Enter your address" [(ngModel)]="query" (ionInput)="searchPlace()"></ion-searchbar>
+            <ion-icon *ngIf="query.length < 1" (click)="getCurrentLocation()" class="location-icon" name="locate"></ion-icon>
+        </ion-toolbar>
+        <ion-list>
+            <ion-item *ngFor="let place of places" (touchstart)="selectPlace(place)">{{place.description}}</ion-item>
+        </ion-list>
+      </ion-row>
+      <div class="search-holder">
+        <ion-searchbar
+          placeholder = "Search for service"
+          [(ngModel)]="searchText">
+        </ion-searchbar>
+      </div>
+      <ion-row>
+          <ion-slides>
+              <ion-slide *ngFor="let banner of bannerArr">
+                  <img src="{{banner.banner_image}}" />
+              </ion-slide>
+            </ion-slides>
+      </ion-row>
+
+      <ion-row *ngIf="serviceData.length < 1" class="service-container">
+        <ion-col col-4>
+          <div class="service-holder loader-image">
+     
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="service-holder loader-image">
+     
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="service-holder loader-image">
+     
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="service-holder loader-image">
+     
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="service-holder loader-image">
+     
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="service-holder loader-image">
+     
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="serviceData.length > 0" class="service-container">
+        <ion-col col-4 *ngFor="let service of serviceData | filter:searchText" (tap)="selectService(service)">
+          <div class="service-holder">
+            <!-- <img src=""/> 
+            <ion-icon class="service-icon" name="person"></ion-icon>
+            <p>{{service.service_name}}</p>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="upperContent.upper_content_heading || upperContent.upper_content_subheading" class="footer-row">
+        <ion-col col-2></ion-col>
+        <ion-col col-10>
+          <h5>{{upperContent.upper_content_heading}}</h5>
+          <p>{{upperContent.upper_content_subheading}}</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="lowerContent" class="footer-row-2">
+        <p>{{lowerContent}}</p>
+      </ion-row>
+</ion-content> -->

@@ -1,4 +1,26 @@
 page-tnc {
+    ion-header{
+        ion-navbar{
+            .toolbar-background{
+                background: url('../assets/imgs/common_bg.jpg');
+                background-size: cover;
+            }
+            ion-title{
+                img{
+                    width: 10px;
+                    margin-right: 10px;
+                }
+                .toolbar-title-md{
+                    font-size: 15px;
+                    color: #fff;
+                    font-weight: 400;
+                }
+                span{
+                    float:right;
+                }
+            }
+        }
+    }
     .heading {
         color: $text-light;
         font-size: 1.5rem;

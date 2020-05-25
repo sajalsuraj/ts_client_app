@@ -13,7 +13,7 @@ export class OtpPage {
   constructor(public navCtrl: NavController, public navParams:NavParams, public authService: AuthService, public alertCtrl: AlertController) {
 
   }
-
+  shouldHeight = document.body.clientHeight + 'px' ;
   otpData = { phone:'', otp:'' }; 
 
   timer = 30;

@@ -1,14 +1,28 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Booking Details</ion-title>
+        <ion-title>
+            <img src="assets/icon/calendar-white.png" alt="">
+            Booking
+            <span (click)="goBack()">Back</span>
+        </ion-title>
     </ion-navbar>
 </ion-header>
-<ion-content>
+<ion-content padding class="bg-light">
     <div #map id="map">
 
     </div>
     <div class="detail-container">
-        <ion-avatar item-start>
+        <div class="booking-item">
+            <div class="profile-pic" style="background:url(assets/imgs/plumber-profile.jpg)"></div>
+
+            <div class="content">
+                <h2 class="d-flex">{{booking?.vendor_name}}</h2>
+                <h2 class="d-flex customer-name">Vendor ID: {{booking?.vendor_id}}</h2>
+                <h2 class="d-flex">Booking ID: {{booking?.booking_id}}</h2>
+            </div>
+        </div>
+
+        <!-- <ion-avatar item-start>
             <img src="assets/imgs/dispatched.png" />
         </ion-avatar>
         <div class="content">
@@ -19,6 +33,111 @@
             <span>{{address}}</span>
             <button *ngIf="!isCancelled" ion-button round (click)="callVendor(booking?.vendor_phone)">Call</button>
             <button ion-button color="danger" [disabled] = "isCancelled" round (click)="cancelBooking()">Cancel</button>
+        </div> -->
+    </div>
+    <div class="detail-container">
+        <div class="detail-box">
+            <span class="detail-heading">Package: </span><span *ngFor="let service of booking?.services">
+                {{service.service_name+ " | "}}</span>
         </div>
+    </div>
+
+    <div class="detail-container">
+        <div class="detail-box">
+            <span class="detail-heading">Address: </span><span>{{address}}</span>
+        </div>
+    </div>
+
+    <div class="detail-container">
+        <div class="detail-box activity-box">
+            <span class="detail-heading">Activity:</span>
+            <span *ngIf="!hasFinallyCompleted" class="detail-heading heading-right">OTP: {{booking?.booking_otp}}</span>
+            <div *ngFor="let activity of timelineArr">
+                <div class="activity-item" *ngIf="activity.time !== ''">
+                    <div class="activity-time">
+                        <h5>{{activity.time*1000 | date: 'MMMM d, y'}}</h5>
+                        <h5>{{activity.time*1000 | date: 'h:mm a'}}</h5>
+                    </div>
+                    <div class="activity-task">
+                        <h5>{{activity.action}}</h5>
+                        <h5>{{activity.activity}}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="comment-section" *ngIf="!hasFinallyCompleted">
+                <div class="textbox-section">
+                    <textarea [(ngModel)]="comment" placeholder="Comment..." name=""></textarea>
+                </div>
+                <div class="button-section">
+                    <button (click)="addComment()" type="button" class="btn-item">
+                        Add
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-container">
+        <ion-grid class="service-grid">
+            <ion-row>
+                <ion-col class="button-holder" col-6>
+                    <button type="button" class="btn-item" (click)="callVendor(booking?.vendor_phone)">
+                        <div class="img-content">
+                            <ion-icon name="call"></ion-icon>
+                        </div>
+                        <div>
+                            <h2 class="d-flex">Call Now</h2>
+                        </div>
+                    </button>
+                </ion-col>
+                <ion-col class="button-holder" col-6>
+                    <button type="button" [disabled]="isCancelled" (click)="cancelBooking()" class="btn-item">
+                        <div class="img-content">
+                            <ion-icon name="close-circle"></ion-icon>
+                        </div>
+                        <div>
+                            <h2 class="d-flex">Cancel Now</h2>
+                        </div>
+                    </button>
+                </ion-col>
+                <ion-col class="button-holder" col-6>
+                    <button type="button" (click)="startBooking()" [disabled]="hasStarted && !hasReachedLocation"
+                        class="btn-item">
+                        <div class="img-content">
+                            <ion-icon name="play"></ion-icon>
+                        </div>
+                        <div>
+                            <h2 class="d-flex">Start Now</h2>
+                        </div>
+                    </button>
+                </ion-col>
+                <ion-col class="button-holder" col-6>
+                    <button type="button" [disabled]="hasCompleted" (click)="completeBooking()" class="btn-item">
+                        <div class="img-content">
+                            <ion-icon name="checkbox"></ion-icon>
+                        </div>
+                        <div>
+                            <h2 class="d-flex">End Now</h2>
+                        </div>
+                    </button>
+                </ion-col>
+                <ion-col class="button-holder" col-6>
+                    <button type="button" (click)="resumeBooking()" [disabled]="hasResumed" class="btn-item">
+                        <div class="img-content">
+                            <ion-icon name="refresh-circle"></ion-icon>
+                        </div>
+                        <div>
+                            <h2 class="d-flex">Resume Now</h2>
+                        </div>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+    <div class="detail-container" *ngIf="hasFinallyCompleted && !hasPaid">
+        <button type="button" (click)="payment()" class="pay-button">
+            <h2>Pay Now</h2>
+        </button>
     </div>
 </ion-content>

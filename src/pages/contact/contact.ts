@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 import { CommonService } from '../../providers/common-service/common-service';
 import { CallNumber } from '@ionic-native/call-number';
+import { AccountPage } from '../account/account';
 
 @Component({
   selector: 'page-contact',
@@ -39,6 +40,10 @@ export class ContactPage {
     this.callNumber.callNumber(mob_num, true)
     .then(res => console.log('Launched dialer!', res))
     .catch(err => console.log('Error launching dialer', err));
+  }
+
+  goBack(){
+    this.navCtrl.setRoot(AccountPage,{},{ animate: true, direction: 'back' });
   }
 
 }

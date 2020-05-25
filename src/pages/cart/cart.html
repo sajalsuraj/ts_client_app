@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Cart
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="page-holder bg-light">
+    <div class="empty-cart" *ngIf="cartList.length < 1">Oops, your cart is empty</div>
+    <ion-list>
+        <ion-item no-lines class="list-item" *ngFor="let subcat of cartList"
+            (click)="selectSubCategory(subcat, $event)">
+            <img class="tick-icon" item-start src="assets/icon/tick.png">
+            <span class="service-name">{{subcat.service_name}}</span>
+            <button ion-button item-end class="cat-button" (click)="selectService(subcat, $event)"
+                *ngIf="subcat.level==='3' && subcat.orderCount < 1">Add +</button>
+            <div *ngIf="subcat.level==='3' && subcat.orderCount > 0" item-end class="quantity-button-holder">
+                <ion-icon (click)="decreaseQuantity(subcat, $event)" name="remove"></ion-icon>
+                <span>{{subcat.orderCount}}</span>
+                <ion-icon (click)="addQuantity(subcat, $event)" name="add"></ion-icon>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <div *ngIf="cartList.length > 0" class="fixed-bottom">
+        <button class="btn-update" (click)="goToPaymentPage()" ion-button outline block>
+            <span class="total_order">{{orderButtonData.totalOrders}}</span> 
+            <span class="total_amount">&#8377; {{orderButtonData.totalAmount}}</span>
+            <span class="place_order">Confirm Order</span>
+        </button>
+    </div>
+</ion-content>

@@ -1,30 +1,55 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>{{subCategoryName}} Services</ion-title>
+        <ion-title>
+            <img src="assets/icon/clipboard-white.png" alt="">
+            {{subCategoryName}}
+            <span (click)="goBack()">Back</span>
+        </ion-title>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="page-holder bg-light">
+    <img *ngIf="!internalPageFlag" src="assets/imgs/salon.jpg" alt="">
     <ion-list>
-        <ion-item class="list-item" *ngFor="let subcat of subCategoriesList" (click)="selectSubCategory(subcat, $event)">
-            {{subcat.service_name}}
-            <ion-icon *ngIf="subcat.level==='2'" item-end name="arrow-dropright"></ion-icon>
-            <button ion-button item-end class="cat-button" (click)="selectService(subcat, $event)" *ngIf="subcat.level==='3' && subcat.orderCount < 1">Add +</button>
-            <div *ngIf="subcat.level==='3' && subcat.orderCount > 0" item-end class="quantity-button-holder">
-                <ion-icon (click)="decreaseQuantity(subcat, $event)" name="remove"></ion-icon>
-                <span>{{subcat.orderCount}}</span>
-                <ion-icon (click)="addQuantity(subcat, $event)" name="add"></ion-icon>
+        <ion-item no-lines class="list-item" [ngClass]="{'white-bg':subcat.level==='2'}" *ngFor="let subcat of subCategoriesList"
+            (click)="selectSubCategory(subcat, $event)">
+            <img *ngIf="subcat.level==='2'" class="tick-icon" item-start src="assets/icon/tick.png">
+            <span *ngIf="subcat.level==='2'" class="service-name">{{subcat.service_name}}</span>
+            <img class="back-arrow" *ngIf="subcat.level==='2'" item-end src="assets/icon/back_arrow.png">
+
+            <div *ngIf="subcat.level==='3'" class="booking-item">
+                <div class="profile-pic" style="background:url(assets/imgs/plumber-profile.jpg)"></div>
+
+                <div class="content">
+                    <h2 class="d-flex">{{subcat.service_name}}</h2>
+                    <h2 class="d-flex customer-name">&#8377; {{subcat.rate_per_min}} / min</h2>
+                    <h2 class="d-flex">70 Min</h2>
+                </div>
             </div>
+            <div *ngIf="subcat.level==='3'" class="lower-content">
+                <div>
+                    <h2 class="d-flex">Point 1</h2>
+                    <h2 class="d-flex customer-name">Point 2</h2>
+                    <button ion-button item-end class="cat-button" (click)="selectService(subcat, $event)"
+                *ngIf="subcat.level==='3' && subcat.orderCount < 1">Add +</button>
+                    <div *ngIf="subcat.level==='3' && subcat.orderCount > 0" item-end class="quantity-button-holder">
+                        <ion-icon (click)="decreaseQuantity(subcat, $event)" name="remove"></ion-icon>
+                        <span>{{subcat.orderCount}}</span>
+                        <ion-icon (click)="addQuantity(subcat, $event)" name="add"></ion-icon>
+                    </div>
+                </div>
+            </div>
+
         </ion-item>
         <ion-item *ngIf="subCategoriesList.length < 1">
             Sub categories not available :(
         </ion-item>
     </ion-list>
-    <div *ngIf="commonServices.cartList.length > 0" class="fixed-bottom" padding>
+    <div *ngIf="commonServices.cartList.length > 0" class="fixed-bottom">
         <button class="btn-update" (click)="goToPaymentPage()" ion-button outline block>
-            <span class="total_order">{{orderButtonData.totalOrders}}</span> 
+            <span class="total_order">{{orderButtonData.totalOrders}}</span>
             <span class="total_amount">&#8377; {{orderButtonData.totalAmount}}</span>
-            <span class="place_order">Place Order >>></span>
+            <span class="place_order">View Cart</span>
         </button>
     </div>
 </ion-content>

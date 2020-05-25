@@ -7,14 +7,14 @@
 </ion-header>
 
 <ion-content class="bg-light">
-    <p *ngIf="faqLevel === 1" class="heading">F.A.Q.</p>
-    <ion-list *ngIf="faqLevel === 1">
+    <p *ngIf="faqLevel === 1" class="heading"><img src="assets/icon/email.png" alt=""> F.A.Q.</p>
+    <ion-list *ngIf="faqLevel === 1" class="faq_list">
         <button ion-item *ngFor="let title of faqTitles" (click)="openFaq(title)">
           {{ title.faq_category }}
-          <ion-icon name="ios-arrow-dropright" item-end></ion-icon>
+          <img src="assets/icon/back_arrow.png" item-end alt="">
         </button>  
 
         <ion-item *ngIf="faqTitles.length < 1">FAQs not available</ion-item>
     </ion-list>
-    <p *ngIf="faqLevel === 2" class="heading">{{faqData}}</p>
+    <p *ngIf="faqLevel === 2" class="heading-para">{{faqData}}</p>
 </ion-content>

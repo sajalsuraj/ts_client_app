@@ -1,14 +1,44 @@
 page-account {
+    ion-header{
+        ion-navbar{
+            .toolbar-background{
+                background: url('../assets/imgs/common_bg.jpg');
+                background-size: cover;
+            }
+            ion-title{
+                img{
+                    width: 10px;
+                    margin-right: 10px;
+                }
+                .toolbar-title-md{
+                    font-size: 15px;
+                    color: #fff;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
     .toolbar-title {
         color: #000;
     }
-    ion-icon{
-        color:#d2890a !important;
+    
+    .item-md ion-icon[item-left], .item-md ion-icon[item-right], .item-md ion-icon[item-start], .item-md ion-icon[item-end]{
+        margin:0 !important;
     }
+    
     .order-head {
         padding: 20px 16px 25px;
-        background-color: #fff;
-        border-bottom: 5px solid $bg-light;
+        background-image: url('../assets/imgs/blue-dots.png');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position-y: 12%;
+        //border-bottom: 5px solid $bg-light;
+        h4{
+            margin-top: 0px;
+            margin-bottom: 0px;
+            font-size: 1.2em;
+            color: #fff;
+        }
         .row {
             display: flex;
             align-items: center;
@@ -19,6 +49,7 @@ page-account {
                 margin: auto;
                 max-width: 100px;
                 border-radius: 50%;
+                border: 1px solid $text-theme;
             }
             p {
                 font-weight: 900;
@@ -27,9 +58,9 @@ page-account {
                 padding-left: 5px;
                 span {
                     display: block;
-                    color: $text-light;
+                    color: $text-theme;
                     font-size: 1.4rem;
-                    font-weight: 500;
+                    font-weight: 200;
                     margin-top: 3px;
                 }
             }
@@ -41,10 +72,21 @@ page-account {
         color: $text-muted;
     }
     .list {
-        margin-bottom: 20px !important;
-        .item:first-child {
-            padding-top: 16px;
+        .item{
+            background: transparent;
+            margin-bottom: -6px;
+            padding-bottom:1px;
+            .item-inner{
+                .label{
+                    font-size: 1.3rem;
+                    font-weight: 500;
+                    margin:0;
+                }
+            }
         }
+        // .item:first-child {
+        //     padding-top: 16px;
+        // }
         .item:last-child {
             padding-bottom: 16px;
         }
@@ -66,6 +108,12 @@ page-account {
                 padding-left: 16px;
             }
         }
+    }
+    ion-list{
+        background-image: url('../assets/imgs/profile-background.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position-y: 92%;
     }
     .logo {
         img {

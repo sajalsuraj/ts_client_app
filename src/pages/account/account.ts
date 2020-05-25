@@ -9,6 +9,8 @@ import {AboutPage} from '../about/about';
 import {ReferralPage} from '../referral/referral';
 import { CommonService } from '../../providers/common-service/common-service';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { PasswordPage } from '../password/password';
+import { NotificationPage } from '../notification/notification';
 
 @Component({
   selector: 'page-account',
@@ -19,8 +21,10 @@ export class AccountPage {
   userData = {
     "full_name": "",
     "phone": "",
-    "email": ""
+    "email": "",
+    "referral": ""
   }
+  shouldHeight = document.body.clientHeight + 'px' ;
   constructor(public navCtrl: NavController, public loading: LoadingController, private socialSharing: SocialSharing, public appCtrl:App, public commonService: CommonService) {
 
   }
@@ -74,21 +78,29 @@ export class AccountPage {
   }
 
   inviteFriends(){
-    this.navCtrl.push(ReferralPage);
+    this.navCtrl.setRoot(ReferralPage, {referral: this.userData['referral']}, {animate: true, direction: 'forward'});
   }
   
   profile(){
-   this.navCtrl.push(ProfilePage);
+   this.navCtrl.setRoot(ProfilePage, {}, {animate: true, direction: 'forward'});
   }
    contact(){
-   this.navCtrl.push(ContactPage);
+   this.navCtrl.setRoot(ContactPage, {}, {animate: true, direction: 'forward'});
   }
   tnc(){
-   this.navCtrl.push(TncPage);
+   this.navCtrl.setRoot(TncPage, {}, {animate: true, direction: 'forward'});
   }
 
   about(){
-    this.navCtrl.push(AboutPage);
+    this.navCtrl.setRoot(AboutPage, {}, {animate: true, direction: 'forward'});
+  }
+
+  faq(){
+    this.navCtrl.setRoot(NotificationPage, {}, {animate: true, direction: 'forward'});
+  }
+
+  changePassword(){
+    this.navCtrl.setRoot(PasswordPage, {phone: this.userData['phone']}, {animate: true, direction: 'forward'});
   }
 
   shareProp(){

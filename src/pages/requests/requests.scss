@@ -1,6 +1,25 @@
 page-requests{
+    ion-header{
+        ion-navbar{
+            .toolbar-background{
+                background: url('../assets/imgs/common_bg.jpg');
+                background-size: cover;
+            }
+            ion-title{
+                img{
+                    width: 10px;
+                    margin-right: 10px;
+                }
+                .toolbar-title-md{
+                    font-size: 15px;
+                    color: #fff;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
     .SwipedTabs-tabs .segment-button{
-        color: #d2890a;
+        color: #a4a4a4;
     }
     .segment-md .segment-button.activated, .segment-md .segment-button.segment-activated{
         border-color: transparent;
@@ -8,10 +27,16 @@ page-requests{
     .track-icon{
         float:right;
     }
+    .scroll-content{
+        padding-bottom: 0px !important;
+    }
     .SwipedTabs-tabs ion-segment-button.SwipedTabs-activeTab
     {
-        color: #d2890a;
+        color: $text-theme;
+        font-family: AlteHaasGroteskBold;
+        opacity: unset;
     }
+    .swiper-slide { overflow-y: scroll; display: block; }
     .SwipedTabs-indicatorSegment
     {
         -webkit-transition: 0.3s all;
@@ -22,16 +47,84 @@ page-requests{
         height: 2px;
 	    position: relative;
 	    top: -2px;
-	    background-color: #d2890a !important;
-    }
-    .SwipedTabs-tabs
-    {
-  
+	    background-color: $text-theme !important;
     }
     ion-slide.swiper-slide {
         align-items: flex-start;
     }
+    ion-scroll{
+        height: 72vh;
+    }
     ion-list{
         padding-top: 0px !important;
+        ion-label{
+            margin: 5px 8px 5px 0 !important;
+        }
+        ion-item{
+            background-color: transparent !important;
+            div.booking-item{
+                display: flex;
+                div.profile-pic{
+                    width: 70px;
+                    height: 70px;
+                    background-size: cover !important;
+                    background-repeat: no-repeat !important;
+                }
+                div.content{
+                    width: calc(100% - 70px);
+                    padding: 0px 10px;
+                    background: url(../assets/imgs/blue-dots.png);
+                    background-size: cover;
+                    background-position-y: 12%;
+                    h2{
+                        font-size: 14px;
+                        line-height: 1.4;
+                    }
+                    h2.customer-name{
+                        color: $text-theme;
+                    }
+                    img{
+                        position: absolute;
+                        width: 65px;
+                        right: 0;
+                        margin-right: 25px;
+                        margin-top: -55px;
+                    }
+                }
+            }
+            div.lower-content{
+                max-width:100%;
+                background:linear-gradient(to right,#6954e1, #322560);
+                height:50px;
+                padding: 7px;
+                margin-top: 2px;
+                display: flex;
+                h2{
+                    font-size: 14px;
+                    color: #fff;
+                }
+                div.img-content{
+                    padding: 5px;
+                    border-right: 1px solid #fff;
+                    padding-right: 10px;
+                    ion-icon{
+                        color: #fff;
+                        font-size: 25px;
+                    }
+                }
+                div:last-of-type{
+                    img{
+                        position: absolute;
+                        width: 20px;
+                        right: 0;
+                        margin-right: 30px;
+                        margin-top: -17px;
+                    }
+                }
+                div:nth-child(2){
+                    padding-left: 10px;
+                }
+            }
+        }
     }
 }

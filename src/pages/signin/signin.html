@@ -1,31 +1,34 @@
-<ion-header>
-    <ion-navbar>
-        <ion-title></ion-title>
-    </ion-navbar>
-</ion-header>
-
-<ion-content padding-left padding-right>
-    <!--    <img src="assets/imgs/logo.png" class="logo">-->
-    <h3 text-center>Sign in to TroubleShooter</h3>
-    <form (submit)="doLogin()" [formGroup]="loginForm" novalidate>
-        <ion-list no-lines class="form">
-            <ion-item>
-                <ion-icon name="md-call" item-start></ion-icon>
-                <ion-label floating>Phone Number</ion-label>
-                <ion-input formControlName="Phone" [(ngModel)]="logData.phone" name="phone" type="number"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-icon name="md-lock" item-start></ion-icon>
-                <ion-label floating>Password</ion-label>
-                <ion-input formControlName="Password" [(ngModel)]="logData.password" name="password" type="{{passwordType}}"></ion-input>
-                <ion-icon class="password-eye" name="{{passwordIcon}}" (click)="passwordViewSwitch($event); $event.stopPropagation()" item-end></ion-icon>
-            </ion-item>
-        </ion-list>
-        <p (click)="forgotpassword()" class="pass">Forgot Password?</p>
-        <button class="btn-submit" ion-button block [disabled]="!loginForm.valid" type="submit">Sign in</button>
-    </form>
-    <div class="fixed-bottom" padding>
-        <p text-center>Oh! Not Registered yet?</p>
-        <button class="btn-register" ion-button outline block (click)="signup()">Register Now</button>
+<ion-content class="page-holder" [style.background-size]="'100% ' + shouldHeight">
+    <div class="image-holder">
+        <!-- <img src="assets/imgs/background.jpeg" alt=""> -->
+        <div class="form-holder">
+            <form (submit)="doLogin()" [formGroup]="loginForm" novalidate>
+                <ion-list no-lines class="form">
+                    <ion-item>
+                        <ion-icon name="md-call" item-start></ion-icon>
+                        <ion-label floating>Phone Number</ion-label>
+                        <ion-input formControlName="Phone" [(ngModel)]="logData.phone" name="phone" type="number">
+                        </ion-input>
+                    </ion-item>
+                    <div *ngIf="loginForm.controls.Phone.invalid && loginForm.controls.Phone.errors.pattern"
+                        class="validator-error">
+                        Please enter a valid mobile number(10 digits, should start from 6-9).
+                    </div>
+                    <ion-item>
+                        <ion-icon name="md-lock" item-start></ion-icon>
+                        <ion-label floating>Password</ion-label>
+                        <ion-input formControlName="Password" [(ngModel)]="logData.password" name="password"
+                            type="{{passwordType}}"></ion-input>
+                        <ion-icon class="password-eye" name="{{passwordIcon}}"
+                            (click)="passwordViewSwitch($event); $event.stopPropagation()" item-end></ion-icon>
+                    </ion-item>
+                </ion-list>
+                <p (click)="forgotpassword()" class="pass">Forgot Password?</p>
+                <button class="btn-submit" ion-button block [disabled]="!loginForm.valid" type="submit">Sign in</button>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="!keyBoardShow" class="fixed-bottom" padding>
+        <p text-center>Don't have an Account? <a (click)="signup()">Create Account</a> </p>
     </div>
 </ion-content>

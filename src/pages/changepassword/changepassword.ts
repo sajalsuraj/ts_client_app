@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service/auth-service';
+import { SigninPage } from '../signin/signin';
+import { Keyboard } from '@ionic-native/keyboard';
 
 
 import { OtpPage } from '../otp/otp';
@@ -12,8 +14,24 @@ import { OtpPage } from '../otp/otp';
 export class ChangepasswordPage {
 
   phone:any;
-  constructor(public navCtrl: NavController, public authService: AuthService) {
+  keyBoardShow = false;
+  shouldHeight = document.body.clientHeight + 'px' ;
+  constructor(public navCtrl: NavController, private keyboard: Keyboard, public authService: AuthService) {
 
+  }
+
+  gotologin(){
+    this.navCtrl.push(SigninPage);
+  }
+
+  ionViewWillEnter(){
+    this.keyboard.onKeyboardShow().subscribe(res=>{
+      this.keyBoardShow = true;
+    });
+
+    this.keyboard.onKeyboardHide().subscribe(res=>{
+      this.keyBoardShow = false;
+    });
   }
 
   verifycustomerbyotp(){

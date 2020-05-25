@@ -4,8 +4,8 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content class="bg-light">
-    <div class="order-head">
+<ion-content class="page-holder bg-light">
+    <div class="order-head order-head-2">
         <ion-row>
             <ion-col col-4><img src="assets/imgs/profilepic.jpg"></ion-col>
             <ion-col>
@@ -30,6 +30,10 @@
             <ion-icon name="help-buoy" item-start></ion-icon>
             About Troubleshooters
         </ion-item>
+        <ion-item (click)="faq()">
+            <ion-icon name="help" item-start></ion-icon>
+            F.A.Q
+        </ion-item>
         <ion-item (click)="inviteFriends()">
             <ion-icon name="person-add" item-start></ion-icon>
             Invite Friends
@@ -41,6 +45,10 @@
         <ion-item>
             <ion-icon name="star" item-start></ion-icon>
             Rate Troubleshooters
+        </ion-item>
+        <ion-item (click)="changePassword()">
+            <ion-icon name="md-eye" item-start></ion-icon>
+            Change Password
         </ion-item>
         <ion-item (click)="logout()">
             <ion-icon name="md-open" item-start></ion-icon>

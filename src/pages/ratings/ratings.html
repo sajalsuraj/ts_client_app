@@ -1,0 +1,134 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <img src="assets/icon/white-star.png" alt="">
+            Rating
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="order-head order-head-2">
+        <ion-row>
+            <ion-col col-4><img src="assets/imgs/profilepic.jpg"></ion-col>
+            <ion-col>
+                <p>{{userData.name}}</p>
+            </ion-col>
+        </ion-row>
+    </div>
+    <div class="rating-body">
+        <ion-row class="rating-section">
+            <ion-label>Service Quality</ion-label>
+            <div class="img-holder">
+                <fieldset class="rating">
+                    <input type="radio" [name]="inputName" value="5" [checked]="serviceQuality===5" />
+                    <label title="" (click)='onClick("serviceQuality",5)'></label>
+                    <input type="radio" [name]="inputName" value="4" [checked]="serviceQuality===4" />
+                    <label title="" (click)='onClick("serviceQuality",4)'></label>
+                    <input type="radio" [name]="inputName" value="3" [checked]="serviceQuality===3" />
+                    <label title="" (click)='onClick("serviceQuality",3)'></label>
+                    <input type="radio" [name]="inputName" value="2" [checked]="serviceQuality===2" />
+                    <label title="" (click)='onClick("serviceQuality",2)'></label>
+                    <input type="radio" [name]="inputName" value="1" [checked]="serviceQuality===1" />
+                    <label title="" (click)='onClick("serviceQuality",1)'></label> 
+                </fieldset>
+            </div>
+        </ion-row>
+        <ion-row class="rating-section">
+            <ion-label>Speed of Work</ion-label>
+            <div class="img-holder">
+                <fieldset class="rating">
+                    <input type="radio" [name]="inputName1" value="5" [checked]="speedOfWork===5" />
+                    <label title="" (click)='onClick("speedOfWork",5)'></label>
+
+                    <input type="radio" [name]="inputName1" value="4" [checked]="speedOfWork===4" />
+                    <label title="" (click)='onClick("speedOfWork",4)'></label>
+
+                    <input type="radio" [name]="inputName1" value="3" [checked]="speedOfWork===3" />
+                    <label title="" (click)='onClick("speedOfWork",3)'></label>
+
+                    <input type="radio" [name]="inputName1" value="2" [checked]="speedOfWork===2" />
+                    <label title="" (click)='onClick("speedOfWork",2)'></label>
+
+                    <input type="radio" [name]="inputName1" value="1" [checked]="speedOfWork===1" />
+                    <label title="" (click)='onClick("speedOfWork",1)'></label> 
+                </fieldset>
+            </div>
+        </ion-row>
+        <ion-row class="rating-section">
+            <ion-label>Price Satisfaction</ion-label>
+            <div class="img-holder">
+                <fieldset class="rating">
+                    <input type="radio" [name]="inputName2" value="5" [checked]="priceSatisfaction===5" />
+                    <label title="" (click)='onClick("priceSatisfaction",5)'></label>
+
+                    <input type="radio" [name]="inputName2" value="4" [checked]="priceSatisfaction===4" />
+                    <label title="" (click)='onClick("priceSatisfaction",4)'></label>
+
+                    <input type="radio" [name]="inputName2" value="3" [checked]="priceSatisfaction===3" />
+                    <label title="" (click)='onClick("priceSatisfaction",3)'></label>
+
+                    <input type="radio" [name]="inputName2" value="2" [checked]="priceSatisfaction===2" />
+                    <label title="" (click)='onClick("priceSatisfaction",2)'></label>
+
+                    <input type="radio" [name]="inputName2" value="1" [checked]="priceSatisfaction===1" />
+                    <label title="" (click)='onClick("priceSatisfaction",1)'></label>
+                </fieldset>
+            </div>
+        </ion-row>
+        <ion-row class="rating-section">
+            <ion-label>Service Man Attitude</ion-label>
+            <div class="img-holder">
+                <fieldset class="rating">
+                    <input type="radio" [name]="inputName3" value="5" [checked]="serviceAttitude===5" />
+                    <label title="" (click)='onClick("serviceAttitude",5)'></label>
+
+                    <input type="radio" [name]="inputName3" value="4" [checked]="serviceAttitude===4" />
+                    <label title="" (click)='onClick("serviceAttitude",4)'></label>
+
+                    <input type="radio" [name]="inputName3" value="3" [checked]="serviceAttitude===3" />
+                    <label title="" (click)='onClick("serviceAttitude",3)'></label>
+
+                    <input type="radio" [name]="inputName3" value="2" [checked]="serviceAttitude===2" />
+                    <label title="" (click)='onClick("serviceAttitude",2)'></label>
+
+                    <input type="radio" [name]="inputName3" value="1" [checked]="serviceAttitude===1" />
+                    <label title="" (click)='onClick("serviceAttitude",1)'></label>
+                </fieldset>
+            </div>
+        </ion-row>
+
+        <ion-row *ngIf="attitudeAllow" class="rating-section last-section">
+            <ion-list>
+                <ion-item class="rating-message">
+                    <ion-checkbox color="primary" (ionChange)="sendFlagChanged($event, will_send_flag)" [(ngModel)] = "will_send_flag" slot="start"></ion-checkbox>
+                    <ion-label>Please don't send this service man again !</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-row>
+    </div>
+
+    <div class="rating-body">
+        <ion-row>
+            <ion-col col-1>
+                <ion-icon name="mail"></ion-icon>
+            </ion-col>
+            <ion-col col-11>
+                <ion-label class="note-box-heading">Note:</ion-label>
+                <ion-input class="note-box" [(ngModel)] = "note" type="text"></ion-input>
+            </ion-col>
+        </ion-row>
+    </div>
+
+    <div class="rating-body last-rating-body">
+        <button type="button" [disabled]="!isRatingSelected" (click)="submitRatings()" class="btn-item">
+            <div class="img-content">
+                <ion-icon name="mail"></ion-icon>
+            </div>
+            <div>
+                <h2 class="d-flex">Submit</h2>
+            </div>
+            <img class="right-arrow" src="assets/icon/right-arrow.png" alt="">
+        </button>
+    </div>
+</ion-content>

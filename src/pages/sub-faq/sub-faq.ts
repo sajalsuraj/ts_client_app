@@ -12,6 +12,7 @@ export class SubFaqPage {
   faqTitle = "";
   faqLevel = 1;
   faqData = "";
+  faqArr:any;
   constructor(public navCtrl: NavController, public commonService:CommonService, public navParams:NavParams) {
 
   }
@@ -20,10 +21,11 @@ export class SubFaqPage {
     this.faqTitles = [];
     this.faqLevel = 1;
     this.faqTitle = this.navParams.get('title_name');
-    if(this.commonService.faqArr){
-        for(let i = 0; i < this.commonService.faqArr['faqList'].length; i++){
-            if(this.commonService.faqArr['faqList'][i].faq_title == this.navParams.get('title_id')){
-                this.faqTitles.push(this.commonService.faqArr['faqList'][i]);
+    this.faqArr = JSON.parse(localStorage.getItem('faqArr'));
+    if(this.faqArr){
+        for(let i = 0; i < this.faqArr['faqList'].length; i++){
+            if(this.faqArr['faqList'][i].faq_title == this.navParams.get('title_id')){
+                this.faqTitles.push(this.faqArr['faqList'][i]);
             }
         }
     }

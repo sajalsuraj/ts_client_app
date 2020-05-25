@@ -1,4 +1,18 @@
 page-signup {
+    .page-holder{
+        background-image: url('../assets/imgs/background.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        .form-holder{
+            top: 34%;
+            position: absolute;
+            width: 90%;
+            left: 5%;
+            ion-item{
+                background-color: transparent;
+            }
+        }
+    }
     .cam-icon {
         width: 75px;
         height: 75px;
@@ -28,11 +42,18 @@ page-signup {
     .form {
         margin-bottom: 35px;
     }
-    ion-icon{
-        color:#d2890a !important;
+    .fixed-bottom {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        padding-bottom: 8px !important;
+        a{
+            color: #6954e1;
+        }
     }
     .btn-submit{
-        background:linear-gradient(to bottom, #facb74 0%,#d2890a 100%);
+        background:linear-gradient(to right,#6954e1, #322560);
     }
 
 }

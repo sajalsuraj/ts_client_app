@@ -1,0 +1,88 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <img src="assets/icon/rupee.png" alt="">
+            Payment
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="page-holder bg-light">
+    <ion-row class="payment-row page-row">
+        <p class="heading"><span>Pay Now</span> </p>
+        <button type="button" (click)="rateVendor()" class="btn-item">
+            <div class="img-content">
+                <img src="assets/icon/laptop-white.png" alt="">
+            </div>
+            <div>
+                <h2 class="d-flex">Netbanking</h2>
+            </div>
+            <img class="right-arrow" src="assets/icon/right-arrow.png" alt="">
+        </button>
+
+        <button type="button" (click)="rateVendor()" class="btn-item">
+            <div class="img-content">
+                <img src="assets/icon/credit-card.png" alt="">
+            </div>
+            <div>
+                <h2 class="d-flex">Credit/Debit Card</h2>
+            </div>
+            <img class="right-arrow" src="assets/icon/right-arrow.png" alt="">
+        </button>
+
+        <button type="button" (click)="rateVendor()" class="btn-item">
+            <div class="img-content">
+                <img src="assets/icon/mastercard-white.png" alt="">
+            </div>
+            <div>
+                <h2 class="d-flex">UPI</h2>
+            </div>
+            <img class="right-arrow" src="assets/icon/right-arrow.png" alt="">
+        </button>
+
+        <button type="button" (click)="rateVendor()" class="btn-item">
+            <div class="img-content">
+                <img src="assets/icon/cash-pay.png" alt="">
+            </div>
+            <div>
+                <h2 class="d-flex">Cash Pay</h2>
+            </div>
+            <img class="right-arrow" src="assets/icon/right-arrow.png" alt="">
+        </button>
+    </ion-row>
+    <ion-row class="page-row amount-row">
+        <ion-grid>
+            <ion-row class="amount-section">
+                <ion-col class="amount-section-heading" col-9>Summary</ion-col>
+                <ion-col class="amount-section-heading" col-3>&#8377;</ion-col>
+            </ion-row>
+            <ion-row class="amount-section">
+                <ion-col col-9>Calling Charges</ion-col>
+                <ion-col col-3>99</ion-col>
+            </ion-row>
+            <ion-row class="amount-section">
+                <ion-col col-9>Services Charges</ion-col>
+                <ion-col col-3>{{serviceCharges}}</ion-col>
+            </ion-row>
+            <ion-row class="amount-section section-last-row">
+                <ion-col col-9>Material Procurement Charges</ion-col>
+                <ion-col col-3>{{materialProcurementCharges}}</ion-col>
+            </ion-row>
+
+            <ion-row class="amount-section section-bold">
+                <ion-col col-9>Total</ion-col>
+                <ion-col col-3>{{billWithMaterialCharge}}</ion-col>
+            </ion-row>
+
+            <ion-row class="amount-section section-last-row">
+                <ion-col col-9>GST (18%)</ion-col>
+                <ion-col col-3>{{gst}}</ion-col>
+            </ion-row>
+
+            <ion-row class="amount-section section-bold">
+                <ion-col col-9>Grand Total</ion-col>
+                <ion-col col-3>{{finalBill}}</ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-row>
+</ion-content>

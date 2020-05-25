@@ -21,9 +21,11 @@ export class PaymentPage {
 
     formData.append('lat', this.navParams.get('lat'));
     formData.append('lng', this.navParams.get('lng'));
+    formData.append('quantity', this.navParams.get('quantity'));
     formData.append('profession', this.navParams.get('profession'));
     formData.append('user_id', localStorage.getItem('user_id'));
-
+    this.commonService.profession = "";
+    this.commonService.cartList = [];
     this.commonService.getNearbyVendor(formData).then((result) => {
       if(result['status']){
         this.reqSent = true;
@@ -48,6 +50,10 @@ export class PaymentPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  goBack(){
+    this.navCtrl.pop();
   }
 
 }

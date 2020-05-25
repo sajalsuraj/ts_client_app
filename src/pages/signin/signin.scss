@@ -1,10 +1,30 @@
 page-signin {
-    //    .logo {
-    //        width: 130px;
-    //        margin: auto;
-    //        margin-bottom: 50px;
-    //        display: block;
-    //    }
+    .image-holder{
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+    .page-holder{
+        background-image: url('../assets/imgs/background.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        .form-holder{
+            position: absolute;
+            top: 35%;
+            left: 5%;
+            width: 90%;
+            ion-item{
+                background-color: transparent;
+            }
+        }
+    }
+    .scroll-content{
+        padding-bottom: 0px !important;
+    }
+   
+    .item-md{
+        transition:none;
+    }
     .form .item .item-inner h5{
         color: #d2890a;
     }
@@ -12,16 +32,22 @@ page-signin {
     h3 {
         margin-top: 0;
     }
-    ion-icon{
-        color:#d2890a !important;
+
+    .validator-error{
+        font-size: 12px;
+        font-weight: 100;
+        color: red;
     }
+    
     .pass{
         margin-top: 0px;
         padding-top: 0px;
         text-align: right;
+        color: #6954e1;
     }
     .password-eye{
         z-index:1;
+        font-size: 1.5em !important;
     }
     .button {
         height: 50px;
@@ -31,7 +57,7 @@ page-signin {
         margin-bottom: 10px;
     }
     .btn-submit{
-        background:linear-gradient(to bottom, #facb74 0%,#d2890a 100%);
+        background:linear-gradient(to right,#6954e1, #322560);
     }
     p {
         line-height: 30px;
@@ -46,9 +72,12 @@ page-signin {
         width: 100%;
         left: 0;
         padding-bottom: 8px !important;
+        a{
+            color: #6954e1;
+        }
     }
     .btn-register{
-        color: #d2890a;
-        border: 1px solid #d2890a;
+        color: #6954e1;
+        border: 1px solid #6954e1;
     }
 }

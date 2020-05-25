@@ -1,4 +1,23 @@
 page-profile {
+    .page-holder{
+        background-image: url('../assets/imgs/background.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+        .form-holder{
+            top: 43%;
+            left: 5%;
+            width: 90%;
+            height: 40%;
+            overflow-y: scroll;
+            position: absolute;
+            ion-item{
+                background-color: transparent;
+                margin-bottom: 0px;
+                border-bottom:1px solid #a4a4a4 !important;
+            }
+        }
+    }
     .profile-img {
         width: 90px;
         margin: auto;
@@ -36,7 +55,6 @@ page-profile {
         margin-bottom: 30px;
         .item {
             margin-bottom: 10px;
-            border-bottom: none !important;
         }
     }
     .fixed-bottom {
@@ -52,7 +70,7 @@ page-profile {
         }
     }
     .btn-update{
-        color: #d2890a;
-        border: 1px solid #d2890a;
+        background:linear-gradient(to right,#6954e1, #322560);
+        color: #fff;
     }
 }

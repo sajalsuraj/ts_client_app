@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,AlertController, LoadingController } from 'ionic-angular';
+import { NavController,AlertController, LoadingController, Thumbnail } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
 import { PasswordPage } from '../password/password';
@@ -8,6 +8,7 @@ import { SignupPage } from '../signup/signup';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { FormBuilder, Validators, ValidatorFn, AbstractControl  }  from '@angular/forms';
 import { CommonService } from '../../providers/common-service/common-service';
+import { Keyboard } from '@ionic-native/keyboard';
 
 @Component({
   selector: 'page-signin',
@@ -15,15 +16,17 @@ import { CommonService } from '../../providers/common-service/common-service';
 })
 export class SigninPage {
 
+  shouldHeight = document.body.clientHeight + 'px' ;
   loginForm: any;
+  keyBoardShow = false;
   logData = { phone:'', password:'' };
   tabBarElement: any;
   isPasswordViewed:boolean = false;
   passwordIcon = "eye-off";
   passwordType = "password";
-  constructor(public navCtrl: NavController, public loading: LoadingController, public commonService:CommonService, public alertCtrl: AlertController, private _formBuilder: FormBuilder, public authService: AuthService) {
+  constructor(public navCtrl: NavController, private keyboard: Keyboard, public loading: LoadingController, public commonService:CommonService, public alertCtrl: AlertController, private _formBuilder: FormBuilder, public authService: AuthService) {
     this.loginForm = this._formBuilder.group({
-      Phone: ["", Validators.required],
+      Phone: ["", [Validators.required, Validators.pattern('[6-9]\\d{9}')]],
       Password: ["", Validators.required]
     });
 
@@ -50,6 +53,15 @@ export class SigninPage {
     if(document.querySelector('.tabbar.show-tabbar')){
       this.tabBarElement.style.display = 'none';
     }
+
+
+    this.keyboard.onKeyboardShow().subscribe(res=>{
+      this.keyBoardShow = true;
+    });
+
+    this.keyboard.onKeyboardHide().subscribe(res=>{
+      this.keyBoardShow = false;
+    });
   }
  
   ionViewWillLeave() {
@@ -66,6 +78,7 @@ export class SigninPage {
       this.navCtrl.setRoot(TabsPage);
     }
   }
+
 
   doLogin(){
     let loader = this.loading.create({
@@ -84,7 +97,7 @@ export class SigninPage {
           localStorage.setItem('access_token', result['access_token']);
           localStorage.setItem('user_id', result['user_id']);
           this.commonService.getFaqs().then((res)=>{
-            this.commonService.faqArr = res;
+            localStorage.setItem('faqArr',JSON.stringify(res));
           });
           this.navCtrl.setRoot(TabsPage, {opentab: 5});
         }

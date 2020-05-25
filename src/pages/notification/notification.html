@@ -1,19 +1,25 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar>   
         <ion-title>
-            Customer Support
+            <img src="assets/icon/qm.png" alt="">
+            Customer Support / F.A.Q.
+            <span (click)="goBack()">Back</span>
         </ion-title>
     </ion-navbar>
 </ion-header>
-
-<ion-content class="bg-light">
-    <p class="heading">F.A.Q.</p>
-    <ion-list>
-        <button ion-item *ngFor="let title of faqTitles" (click)="openFaq(title)">
-          {{ title.title }}
-          <ion-icon name="ios-arrow-dropright" item-end></ion-icon>
-        </button>  
+<ion-content class="page-holder bg-light">
+    <ion-toolbar>
+        <ion-searchbar placeholder="Search for customer support / F.A.Q." [(ngModel)]="query"></ion-searchbar>
+    </ion-toolbar>
+    <p class="heading"><img src="assets/icon/email.png" alt="">F.A.Q.</p>
+    <ion-list class="faq_list">
+        <button ion-item no-lines *ngFor="let title of faqTitles | filter:query" (click)="openFaq(title)">
+            {{ title.title }}
+            <img src="assets/icon/back_arrow.png" item-end alt="">
+            <!-- <ion-icon name="ios-arrow-dropright" item-end></ion-icon> -->
+        </button>
 
         <ion-item *ngIf="faqTitles.length < 1">FAQs not available</ion-item>
-      </ion-list>
+    </ion-list>
+    
 </ion-content>

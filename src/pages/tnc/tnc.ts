@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 import { CommonService } from '../../providers/common-service/common-service';
+import { AccountPage } from '../account/account';
 
 @Component({
   selector: 'page-tnc',
@@ -30,6 +31,10 @@ export class TncPage {
         loader.dismiss();
       });
     });
+  }
+
+  goBack(){
+    this.navCtrl.setRoot(AccountPage,{},{ animate: true, direction: 'back' });
   }
 
 }

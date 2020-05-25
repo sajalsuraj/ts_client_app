@@ -3,6 +3,9 @@ import { NavController, NavParams, AlertController, ToastController} from 'ionic
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { CommonService } from '../../providers/common-service/common-service';
 import { PaymentPage } from '../../pages/payment/payment';
+import { CartPage } from '../../pages/cart/cart';
+import { HomePage } from '../../pages/home/home';
+import { ServicesPage } from '../../pages/services/services';
 import _ from 'underscore';
 
 import { OtpPage } from '../otp/otp';
@@ -13,11 +16,15 @@ import { OtpPage } from '../otp/otp';
 })
 export class SubcategorylistPage {
     subCategoryName = "";
+    profession = "";
     subCategoriesList = [];
+    tempData = [];
+    internalPageFlag = false;
     orderButtonData = {
         "totalAmount": 0,
         "totalOrders": 0
     };
+    quantityObj = {};
     constructor(public navCtrl: NavController, public toastCtrl: ToastController, public commonServices: CommonService, public alertCtrl: AlertController, public navParams: NavParams){}
     ionViewDidLoad(){
         this.subCategoryName = this.navParams.get('profession');
@@ -26,6 +33,7 @@ export class SubcategorylistPage {
         this.commonServices.getSubcategories(catData).then(res=>{
             if(res['status']){
                 this.subCategoriesList = res['data'];
+                this.tempData = res['data'];
             }
         });
     }
@@ -54,6 +62,7 @@ export class SubcategorylistPage {
         this.subCategoryName = data.service_name;
         this.commonServices.getSubcategories(catData).then(res=>{
             if(res['status']){
+                this.internalPageFlag = true;
                 this.subCategoriesList = res['data'];
                 this.subCategoriesList.forEach(element => {
                     element.orderCount = 0;
@@ -67,9 +76,17 @@ export class SubcategorylistPage {
 
     selectService(detail, event){
         event.stopPropagation();
-        detail.orderCount = 1;
-        this.commonServices.cartList.push(detail);
-        this.updateCart(this.commonServices.cartList);
+        let itemIndex = _.findIndex(this.commonServices.cartList, {"id":detail.id});
+        if(itemIndex == -1){
+            detail.orderCount = 1;
+            this.commonServices.cartList.push(detail);
+            this.updateCart(this.commonServices.cartList);
+        }
+        else{
+            detail.orderCount = parseInt(this.commonServices.cartList[itemIndex]['orderCount']) + 1;
+            this.commonServices.cartList[itemIndex]['orderCount'] = detail.orderCount;
+            this.updateCart(this.commonServices.cartList);
+        } 
     }
 
     addQuantity(detail, event){
@@ -108,10 +125,33 @@ export class SubcategorylistPage {
     }
 
     goToPaymentPage(){
-        this.navCtrl.push(PaymentPage, {
-            profession:this.navParams.get('profession'),
-            lat: this.navParams.get('lat'),
-            lng: this.navParams.get('lng')
+        this.commonServices.profession = "";
+        this.commonServices.cartList.forEach(element => {
+            this.quantityObj[element.id] = element.orderCount;
+            this.commonServices.profession += element.id + ",";
         });
+        this.commonServices.profession = this.commonServices.profession.slice(0, -1);
+        
+        this.navCtrl.push(CartPage, {
+            profession:this.commonServices.profession,
+            lat: this.commonServices.subCategory.lat,
+            lng: this.commonServices.subCategory.lng,
+            quantity: JSON.stringify(this.quantityObj)
+        });
+    }
+
+    goBack(){
+        if(!this.internalPageFlag){
+            if(this.navParams.get('page') == "HomePage"){
+                this.navCtrl.setRoot(HomePage,{},{ animate: true, direction: 'back' });
+            }
+            else if(this.navParams.get('page') == "ServicesPage"){
+                this.navCtrl.setRoot(ServicesPage,{},{ animate: true, direction: 'back' });
+            }
+        }
+        else{
+            this.subCategoriesList = this.tempData;
+            this.internalPageFlag = false;
+        }
     }
 }

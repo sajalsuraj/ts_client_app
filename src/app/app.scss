@@ -3,14 +3,33 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
 }
+body{
+    -webkit-font-smoothing:unset;
+}
 
+.modal-wrapper {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom:0;
+}
+
+@font-face {
+    font-family: AlteHaasGroteskRegular;
+    src: url(../assets/fonts/AlteHaasGroteskRegular.ttf);
+}
+@font-face {
+    font-family: AlteHaasGroteskBold;
+    src: url(../assets/fonts/AlteHaasGroteskBold.ttf);
+}
 //all theme color
 $bg-light: #f5f5f5;
 $white: #ffffff;
 $black: #000000;
 $bg-theme: #18c2ef;
-$text-theme: #18c2ef;
-$text-light: #c0c0c0;
+$text-theme: #6954e1;
+$text-light: #a4a3a3;
 $text-muted: #9c9c9c;
 $text-dark: #2e2e2e;
 $text-black: #000000;
@@ -61,7 +80,7 @@ $text-black: #000000;
         }
         ion-icon {
             display: inline-block;
-            font-size: 1.2em !important;
+            font-size: 1.2em;
             margin-bottom: 0 !important;
             margin-top: 30px !important;
             margin-right: 0px !important;
@@ -80,6 +99,7 @@ $text-black: #000000;
         &.item-input-has-focus {
             .label {
                 color: $text-theme;
+                font-size: 18px;
             }
         }
     }
@@ -104,9 +124,9 @@ $text-black: #000000;
         color: $text-light !important;
     }
     &[aria-selected="true"] {
-        .tab-button-icon {
-            color:#d2890a !important;
-        }
+        // .tab-button-icon {
+        //     color:#d2890a !important;
+        // }
         &::after {
             content: '';
             background-color: $bg-theme;

@@ -6,37 +6,43 @@ import 'rxjs/add/operator/map';
 let baseURL = "http://www.grabthetrendz.com/troubleshooter/";
 
 @Injectable()
-export class CommonService { 
+export class CommonService {
 
-  constructor(public http: Http) {}  
+  constructor(public http: Http) { }
 
-  device_id:any;
+  device_id: any;
   cartList = [];
-  faqArr:any;
+  profession = '';
+  subCategory = {
+    "profession":"",
+    "service_id": "",
+    "lat":"",
+    "lng": ""
+  };
 
   createAuthorizationHeader(headers: Headers) {
-    headers.append('access_token', localStorage.getItem('access_token')); 
+    headers.append('access_token', localStorage.getItem('access_token'));
   }
 
-  extractDateFromTimestamp(timestamp){
+  extractDateFromTimestamp(timestamp) {
     var d = new Date(timestamp * 1000), // Convert the passed timestamp to milliseconds
-        yyyy = d.getFullYear(),
-        mm = ('0' + (d.getMonth() + 1)).slice(-2),  // Months are zero based. Add leading 0.
-        dd = ('0' + d.getDate()).slice(-2),         // Add leading 0.
-        hh = d.getHours(),
-        h = hh,
-        min = ('0' + d.getMinutes()).slice(-2),     // Add leading 0.
-        ampm = 'AM',
-        time;
+      yyyy = d.getFullYear(),
+      mm = ('0' + (d.getMonth() + 1)).slice(-2),  // Months are zero based. Add leading 0.
+      dd = ('0' + d.getDate()).slice(-2),         // Add leading 0.
+      hh = d.getHours(),
+      h = hh,
+      min = ('0' + d.getMinutes()).slice(-2),     // Add leading 0.
+      ampm = 'AM',
+      time;
 
     if (hh > 12) {
-        h = hh - 12;
-        ampm = 'PM';
+      h = hh - 12;
+      ampm = 'PM';
     } else if (hh === 12) {
-        h = 12;
-        ampm = 'PM';
+      h = 12;
+      ampm = 'PM';
     } else if (hh == 0) {
-        h = 12;
+      h = 12;
     }
 
     // ie: 2014-03-24, 3:00 PM
@@ -44,169 +50,289 @@ export class CommonService {
     return time;
   }
 
-  getUserDetails(){
+  getUserDetails() {
     return new Promise((resolve, reject) => {
-        let headers = new Headers();
-        this.createAuthorizationHeader(headers);   
-        this.http.get(baseURL+'user/profiledata', {headers:headers})
-          .subscribe(res => {
-            resolve(res.json());
+      let headers = new Headers();
+      this.createAuthorizationHeader(headers);
+      this.http.get(baseURL + 'user/profiledata', { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
         }, (err) => {
-            reject(err);
-          });
+          reject(err);
+        });
     });
   }
 
-  getAllServices(){
+  getAllServices() {
     return new Promise((resolve, reject) => {
-        this.http.get(baseURL+'get/services')
-          .subscribe(res => {
-            resolve(res.json());
+      this.http.get(baseURL + 'get/services')
+        .subscribe(res => {
+          resolve(res.json());
         }, (err) => {
-            reject(err);
-          });
+          reject(err);
+        });
     });
   }
 
-  getHomePageData(){
+  getServicesIncludingCategories() {
     return new Promise((resolve, reject) => {
-        this.http.get(baseURL+'get/homepage')
-          .subscribe(res => {
-            resolve(res.json());
+      this.http.get(baseURL + 'get/allservices')
+        .subscribe(res => {
+          resolve(res.json());
         }, (err) => {
-            reject(err);
-          });
+          reject(err);
+        });
     });
   }
 
-  getAllBanners(){
+  getTwoServices() {
     return new Promise((resolve, reject) => {
-        this.http.get(baseURL+'get/banners')
-          .subscribe(res => {
-            resolve(res.json());
+      this.http.get(baseURL + 'get/services2')
+        .subscribe(res => {
+          resolve(res.json());
         }, (err) => {
-            reject(err);
-          });
+          reject(err);
+        });
     });
   }
 
-  getTerms(){
+  getHomePageData() {
     return new Promise((resolve, reject) => {
-        this.http.get(baseURL+'get/terms')
-          .subscribe(res => {
-            resolve(res.json());
+      this.http.get(baseURL + 'get/homepage')
+        .subscribe(res => {
+          resolve(res.json());
         }, (err) => {
-            reject(err);
-          });
+          reject(err);
+        });
     });
   }
 
-  getHowItWorks(){
+  getAllBanners() {
     return new Promise((resolve, reject) => {
-        this.http.get(baseURL+'get/howitworks')
-          .subscribe(res => {
-            resolve(res.json());
+      this.http.get(baseURL + 'get/banners')
+        .subscribe(res => {
+          resolve(res.json());
         }, (err) => {
-            reject(err);
-          });
+          reject(err);
+        });
     });
   }
 
-  getContact(){
+  getTerms() {
     return new Promise((resolve, reject) => {
-        this.http.get(baseURL+'get/contact')
-          .subscribe(res => {
-            resolve(res.json());
+      this.http.get(baseURL + 'get/terms')
+        .subscribe(res => {
+          resolve(res.json());
         }, (err) => {
-            reject(err);
-          });
+          reject(err);
+        });
     });
   }
 
-  getSubcategories(data){
+  getHowItWorks() {
     return new Promise((resolve, reject) => {
-        this.http.post(baseURL+'get/subcategories',data)
-          .subscribe(res => {
-            resolve(res.json());
+      this.http.get(baseURL + 'get/howitworks')
+        .subscribe(res => {
+          resolve(res.json());
         }, (err) => {
-            reject(err);
-          });
+          reject(err);
+        });
     });
   }
 
-  getFaqs(){
+  getContact() {
     return new Promise((resolve, reject) => {
-        this.http.get(baseURL+'get/faq')
-          .subscribe(res => {
-            resolve(res.json());
+      this.http.get(baseURL + 'get/contact')
+        .subscribe(res => {
+          resolve(res.json());
         }, (err) => {
-            reject(err);
-          });
+          reject(err);
+        });
+    });
+  }
+
+  getSubcategories(data) {
+    return new Promise((resolve, reject) => {
+      this.http.post(baseURL + 'get/subcategories', data)
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  getFaqs() {
+    return new Promise((resolve, reject) => {
+      this.http.get(baseURL + 'get/faq')
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
     });
   }
 
   getNearbyVendor(data) {
     return new Promise((resolve, reject) => {
-        let headers = new Headers();
-        this.createAuthorizationHeader(headers);  
-        this.http.post(baseURL+'get/nearbyvendor', data, {headers:headers})
-          .subscribe(res => {
-            resolve(res.json());
+      let headers = new Headers();
+      this.createAuthorizationHeader(headers);
+      this.http.post(baseURL + 'get/nearbyvendor', data, { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
         }, (err) => {
-            reject(err);
-          });
+          reject(err);
+        });
     });
   }
 
   pendingBookings(data) {
     return new Promise((resolve, reject) => {
-        let headers = new Headers();
-        this.createAuthorizationHeader(headers);  
-        this.http.post(baseURL+'get/pendinguserbookings', data, {headers:headers})
-          .subscribe(res => {
-            resolve(res.json());
+      let headers = new Headers();
+      this.createAuthorizationHeader(headers);
+      this.http.post(baseURL + 'get/pendinguserbookings', data, { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
         }, (err) => {
-            reject(err);
-          });
+          reject(err);
+        });
+    });
+  }
+
+  bookingInfo(data) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      this.createAuthorizationHeader(headers);
+      this.http.post(baseURL + 'get/customerbookinginfo', data, { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  bookingStatus(data) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      this.createAuthorizationHeader(headers);
+      this.http.post(baseURL + 'get/customerbookingstatus', data, { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  addComment(data){
+    return new Promise((resolve, reject) => {
+      this.http.post(baseURL + 'add/bookingcomment', data)
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  getComments(data){
+    return new Promise((resolve, reject) => {
+      this.http.post(baseURL + 'get/bookingcomments', data)
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  vendorRating(data) {
+    return new Promise((resolve, reject) => {
+      this.http.post(baseURL + 'add/rating', data)
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  completedBookings(data) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      this.createAuthorizationHeader(headers);
+      this.http.post(baseURL + 'get/completeduserbookings', data, { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  bookingTimeline(data) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      this.createAuthorizationHeader(headers);
+      this.http.post(baseURL + 'get/bookingtimeline', data, { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
     });
   }
 
   getVendorLocation(data) {
     return new Promise((resolve, reject) => {
-        let headers = new Headers();
-        this.createAuthorizationHeader(headers);  
-        this.http.post(baseURL+'get/vendorlocation', data, {headers:headers})
-          .subscribe(res => {
-            resolve(res.json());
+      let headers = new Headers();
+      this.createAuthorizationHeader(headers);
+      this.http.post(baseURL + 'get/vendorlocation', data, { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
         }, (err) => {
-            reject(err);
-          });
+          reject(err);
+        });
     });
   }
 
-  cancelBooking(data) {
+  updateBooking(data) {
     return new Promise((resolve, reject) => {
-        let headers = new Headers();
-        this.createAuthorizationHeader(headers);  
-        this.http.post(baseURL+'update/customerbookingstatus', data, {headers:headers})
-          .subscribe(res => {
-            resolve(res.json());
+      let headers = new Headers();
+      this.createAuthorizationHeader(headers);
+      this.http.post(baseURL + 'update/customerbookingstatus', data, { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
         }, (err) => {
-            reject(err);
-          });
+          reject(err);
+        });
+    });
+  }
+
+  updatePayment(data){
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      this.createAuthorizationHeader(headers);
+      this.http.post(baseURL + 'update/bookingpaymentupdate', data, { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
     });
   }
 
   customerProfileInfo(data, type) {
     return new Promise((resolve, reject) => {
-        let headers = new Headers();
-        this.createAuthorizationHeader(headers);  
-        this.http.post(baseURL+''+type+'/customerinfo', data, {headers:headers})
-          .subscribe(res => {
-            resolve(res.json());
+      let headers = new Headers();
+      this.createAuthorizationHeader(headers);
+      this.http.post(baseURL + '' + type + '/customerinfo', data, { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
         }, (err) => {
-            reject(err);
-          });
+          reject(err);
+        });
     });
   }
 

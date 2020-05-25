@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { CommonService } from '../../providers/common-service/common-service';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
@@ -9,12 +9,17 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 })
 export class ReferralPage {
 
-    constructor(public navCtrl: NavController, private socialSharing: SocialSharing, public loading: LoadingController, public commonService:CommonService) {
+    referralCode = "";
+    constructor(public navCtrl: NavController, public navParams: NavParams, private socialSharing: SocialSharing, public loading: LoadingController, public commonService:CommonService) {
 
     }
 
+    ionViewDidLoad(){
+        this.referralCode = this.navParams.get('referral');
+    }
+
     shareWhatsapp(){
-        let message = "Use my invite code 4XTU8W to get a cash bonus of Rs. 100";
+        let message = "Use my invite code "+this.referralCode+" to get a cash bonus of Rs. 100";
         this.socialSharing.shareViaWhatsApp(message, "", "").then(() => {
             // Sharing via email is possible
         }).catch(() => {
@@ -23,7 +28,7 @@ export class ReferralPage {
     }
 
     shareSocial(){
-        let message = "Use my invite code 4XTU8W to get a cash bonus of Rs. 100";
+        let message = "Use my invite code "+this.referralCode+" to get a cash bonus of Rs. 100";
         this.socialSharing.share(message, "", "", "").then(() => {
             // Sharing via email is possible
         }).catch(() => {

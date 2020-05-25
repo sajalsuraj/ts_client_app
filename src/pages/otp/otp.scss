@@ -1,12 +1,22 @@
 page-otp {
+    .page-holder{
+        background-image: url('../assets/imgs/background.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        .form-holder{
+            margin-top: 36vh;
+            ion-item{
+                background-color: transparent;
+            }
+        }
+    }
+    p.para-text{
+        font-family: AlteHaasGroteskBold;
+    }
     .button {
         height: 50px;
         font-size: 1.5rem;
-        background:linear-gradient(to bottom, #facb74 0%,#d2890a 100%);
-    }
-    p {
-        margin-bottom: 50px;
-        margin-top: 30px;
+        background:linear-gradient(to right,#6954e1, #322560);
     }
     .form {
         margin-bottom: 15px;

@@ -17,7 +17,9 @@ import { OtpPage } from '../pages/otp/otp';
 import { ProfilePage } from '../pages/profile/profile';
 import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
+import { HomePage } from '../pages/home/home';
 import { ServicesPage } from '../pages/services/services';
+import { MembershipPage } from '../pages/membership/membership';
 import { TncPage } from '../pages/tnc/tnc';
 import { PasswordPage } from '../pages/password/password';
 import { ChangepasswordPage } from '../pages/changepassword/changepassword';
@@ -30,14 +32,19 @@ import { TrackBookingPage } from '../pages/track-booking/track-booking';
 import {EarningPage} from '../pages/earnings/earnings';
 import {SubcategorylistPage} from '../pages/subcategorylist/subcategorylist';
 import { AboutPage } from '../pages/about/about';
+import { RatingsPage } from '../pages/ratings/ratings';
 import { ReferralPage } from '../pages/referral/referral';
 import { SubFaqPage } from '../pages/sub-faq/sub-faq';
-
+import { FinalPaymentPage } from '../pages/finalpayment/finalpayment';
+import { CartPage } from '../pages/cart/cart';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Keyboard } from '@ionic-native/keyboard';
 import { GoogleMaps } from '../providers/google-map-service/google-map-service';
 import { NativeGeocoder} from '@ionic-native/native-geocoder';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { Sim } from '@ionic-native/sim';
+
+import { SplashPage } from '../pages/splash/splash';
 
 import { FCM } from '@ionic-native/fcm';
 import { Push } from '@ionic-native/push';
@@ -58,25 +65,34 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     ProfilePage,
     SigninPage,
     SignupPage,
-    ServicesPage,
+    HomePage,
     TncPage,
     AboutPage,
     PasswordPage,
+    MembershipPage,
+    ServicesPage,
     PaymentPage,
     RequestMessagePage,
     RequestsPage,
     TrackBookingPage,
+    FinalPaymentPage,
     NotificationPage,
+    CartPage,
     EarningPage,
     ChangepasswordPage,
     NewpasswordPage,
     SubcategorylistPage,
     ReferralPage,
-    SubFaqPage
+    SubFaqPage,
+    RatingsPage,
+    SplashPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      scrollAssist: false, 
+      autoFocusAssist: false
+    }),
     HttpClientModule,
     HttpModule,
     Ng2SearchPipeModule
@@ -89,14 +105,18 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     AccountPage,
     OtpPage,
     ProfilePage,
+    MembershipPage,
     SigninPage,
     SignupPage,
-    ServicesPage,
+    HomePage,
     TncPage,
     AboutPage,
+    ServicesPage,
     PasswordPage,
     PaymentPage,
     RequestMessagePage,
+    FinalPaymentPage,
+    CartPage,
     RequestsPage,
     TrackBookingPage,
     NotificationPage,
@@ -105,7 +125,9 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     NewpasswordPage,
     SubcategorylistPage,
     ReferralPage,
-    SubFaqPage
+    SubFaqPage,
+    RatingsPage,
+    SplashPage
   ],
   providers: [
     StatusBar,
@@ -122,6 +144,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     NativeGeocoder,
     AndroidPermissions,
     Sim,
+    Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

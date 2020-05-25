@@ -1,5 +1,71 @@
 page-tabs{
+    .tabs-md .tabbar{
+        background: #fff;
+    }
+    .tab-button .tab-button-icon{
+        color: $text-theme !important;
+    }
+    .tab-button[aria-selected="true"]::after{
+        background-color: $text-theme;
+    }
     ion-icon{
-        color:#d2890a !important;
+        color:$text-theme;
+    }
+    ion-icon {
+        &[class*="custom-"] {
+            // margin: 0 5px 0 0;
+            // vertical-align: middle;
+            // $sz: 20px;
+            // width: $sz;
+            height: 20px;
+        } // custom icons
+        &[class*="home"][ng-reflect-is-active="true"] {
+            background: url("../assets/icon/home.png") no-repeat 50% 50%;
+            background-size: contain;
+        }//in case of active
+        &[class*="home"][ng-reflect-is-active="false"] {
+            background: url("../assets/icon/home.png") no-repeat 50% 50%;
+            background-size: contain;
+        }//in case of inactive
+        &[class*="calendar"][ng-reflect-is-active="true"] {
+            background: url("../assets/icon/calendar.png") no-repeat 50% 50%;
+            background-size: contain;
+        }
+        &[class*="calendar"][ng-reflect-is-active="false"] {
+            background: url("../assets/icon/calendar.png") no-repeat 50% 50%;
+            background-size: contain;
+        }
+        &[class*="qm"][ng-reflect-is-active="true"] {
+            background: url("../assets/icon/qm2.png") no-repeat 50% 50%;
+            background-size: contain;
+        }
+        &[class*="qm"][ng-reflect-is-active="false"] {
+            background: url("../assets/icon/qm2.png") no-repeat 50% 50%;
+            background-size: contain;
+        }
+        &[class*="account"][ng-reflect-is-active="true"] {
+            background: url("../assets/icon/profile.png") no-repeat 50% 50%;
+            background-size: contain;
+        }
+        &[class*="account"][ng-reflect-is-active="false"] {
+            background: url("../assets/icon/profile.png") no-repeat 50% 50%;
+            background-size: contain;
+        }
+        &[class*="discount"][ng-reflect-is-active="true"] {
+            background: url("../assets/icon/discount.png") no-repeat 50% 50%;
+            background-size: contain;
+        }
+        &[class*="discount"][ng-reflect-is-active="false"] {
+            background: url("../assets/icon/discount.png") no-repeat 50% 50%;
+            background-size: contain;
+        }
+        &[class*="clipboard"][ng-reflect-is-active="true"] {
+            background: url("../assets/icon/clipboard.png") no-repeat 50% 50%;
+            background-size: contain;
+        }
+        &[class*="clipboard"][ng-reflect-is-active="false"] {
+            background: url("../assets/icon/clipboard.png") no-repeat 50% 50%;
+            background-size: contain;
+        }
     }
 }
