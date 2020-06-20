@@ -22,53 +22,13 @@
   </ion-list>
   <ion-row class="membership-row page-row">
     <p class="heading"><span>Trending Services & Membership <br> packages</span> <a (click)="goToMembership()">See More</a></p>
-    <ion-slides pager autoplay="1000" loop="true" slidesPerView="1.95">
-      <ion-slide>
-        <ion-card>
-          <img src="assets/imgs/sample-3.jpg" />
+    <ion-slides *ngIf="packageArr.length" pager autoplay="1000" loop="true" slidesPerView="1.95">
+      <ion-slide *ngFor="let package of packageArr">
+        <ion-card (click)="selectOffer(package)">
+          <img class="p-img" src="{{package.image}}" />
           <ion-card-content>
             <ion-card-title>
-              Deep Cleaning Combo
-            </ion-card-title>
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <img src="assets/imgs/sample-3.jpg" />
-          <ion-card-content>
-            <ion-card-title>
-              Deep Cleaning Combo
-            </ion-card-title>
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <img src="assets/imgs/sample-3.jpg" />
-          <ion-card-content>
-            <ion-card-title>
-              Deep Cleaning Combo
-            </ion-card-title>
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <img src="assets/imgs/sample-3.jpg" />
-          <ion-card-content>
-            <ion-card-title>
-              Deep Cleaning Combo
-            </ion-card-title>
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-      <ion-slide>
-        <ion-card>
-          <img src="assets/imgs/sample-3.jpg" />
-          <ion-card-content>
-            <ion-card-title>
-              Deep Cleaning Combo
+              {{package.name}}
             </ion-card-title>
           </ion-card-content>
         </ion-card>

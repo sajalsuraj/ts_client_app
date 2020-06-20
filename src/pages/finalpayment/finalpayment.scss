@@ -15,6 +15,9 @@ page-finalpayment{
                     color: #fff;
                     font-weight: 400;
                 }
+                span{
+                    float:right;
+                }
             }
         }
     }
@@ -92,6 +95,16 @@ page-finalpayment{
         ion-row.section-bold{
             ion-col{
                 font-weight:bold;
+            }
+        }
+    }
+
+    ion-row.extra-item{
+        button{
+            h2{
+                ion-icon{
+                    color: #fff;
+                }
             }
         }
     }

@@ -1,8 +1,9 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar hideBackButton="true">
         <ion-title>
             <img src="assets/icon/rupee.png" alt="">
             Payment
+            <span (click)="goBack()">Back</span>
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -84,5 +85,18 @@
                 <ion-col col-3>{{finalBill}}</ion-col>
             </ion-row>
         </ion-grid>
+    </ion-row>
+    <ion-row class="page-row extra-item">
+        <button *ngIf="isMembershipApplied" type="button" class="btn-item">
+            <div>
+                <h2 class="d-flex">Membership Applied <ion-icon name="checkmark"></ion-icon></h2>
+            </div>
+        </button>
+
+        <button *ngIf="isPackageApplied" type="button" class="btn-item">
+            <div>
+                <h2 class="d-flex">Package Applied <ion-icon name="checkmark"></ion-icon></h2>
+            </div>
+        </button>
     </ion-row>
 </ion-content>

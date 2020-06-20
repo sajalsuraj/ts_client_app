@@ -12,6 +12,7 @@ export class ContactPage {
 
   phone = "";
   email = "";
+  address = "";
   constructor(public navCtrl: NavController, private callNumber: CallNumber, public loading: LoadingController, public commonService:CommonService) {
 
   }
@@ -27,6 +28,7 @@ export class ContactPage {
         if(result['status']){
           this.phone = result['details']['phone'];
           this.email = result['details']['email'];
+          this.address = result['details']['address'];
         }
         loader.dismiss();
       },

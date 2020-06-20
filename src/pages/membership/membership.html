@@ -8,35 +8,17 @@
 </ion-header>
 <ion-content class="page-holder bg-light">
     <ion-toolbar class="services-search">
-        <ion-searchbar placeholder="Search plans"></ion-searchbar>
+        <ion-searchbar placeholder="Search plans" [(ngModel)]="planText"></ion-searchbar>
     </ion-toolbar>
 
     <ion-row class="page-row services-row">
         <ion-grid class="service-grid">
             <ion-row>
-                <ion-col col-6>
-                    <div class="service-holder">
-                        <img class="service-img" src="assets/imgs/sample.jpg" alt="">
+                <ion-col *ngFor="let package of packageArr | filter:planText" col-6>
+                    <div class="service-holder" (click)="openMembership(package)">
+                        <img class="service-img" src="{{package.image}}" alt="">
                         <div class="lower-content">
-                            <span>Membership 1</span>
-                        </div>
-                    </div>
-                </ion-col>
-
-                <ion-col col-6>
-                    <div class="service-holder">
-                        <img class="service-img" src="assets/imgs/sample.jpg" alt="">
-                        <div class="lower-content">
-                            <span>Membership 2</span>
-                        </div>
-                    </div>
-                </ion-col>
-
-                <ion-col col-6>
-                    <div class="service-holder">
-                        <img class="service-img" src="assets/imgs/sample.jpg" alt="">
-                        <div class="lower-content">
-                            <span>Membership 3</span>
+                            <span>{{package.name}}</span>
                         </div>
                     </div>
                 </ion-col>

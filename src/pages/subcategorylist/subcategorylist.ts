@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, ToastController} from 'ionic-angular';
-import { AuthService } from '../../providers/auth-service/auth-service';
 import { CommonService } from '../../providers/common-service/common-service';
-import { PaymentPage } from '../../pages/payment/payment';
 import { CartPage } from '../../pages/cart/cart';
 import { HomePage } from '../../pages/home/home';
 import { ServicesPage } from '../../pages/services/services';
 import _ from 'underscore';
-
-import { OtpPage } from '../otp/otp';
 
 @Component({
   selector: 'page-subcategorylist',
@@ -24,6 +20,7 @@ export class SubcategorylistPage {
         "totalAmount": 0,
         "totalOrders": 0
     };
+    cartData = [];
     quantityObj = {};
     constructor(public navCtrl: NavController, public toastCtrl: ToastController, public commonServices: CommonService, public alertCtrl: AlertController, public navParams: NavParams){}
     ionViewDidLoad(){
@@ -38,7 +35,10 @@ export class SubcategorylistPage {
         });
     }
     ionViewWillEnter(){
-        this.updateCart(this.commonServices.cartList);
+        if(localStorage.getItem('ts_cart')){
+            this.cartData = JSON.parse(localStorage.getItem('ts_cart'));
+        }
+        this.updateCart(this.cartData);
     }
 
     presentToast(msg) {
@@ -66,6 +66,13 @@ export class SubcategorylistPage {
                 this.subCategoriesList = res['data'];
                 this.subCategoriesList.forEach(element => {
                     element.orderCount = 0;
+                    if(this.cartData.length){
+                        this.cartData.forEach(val => {
+                            if(val.id === element.id){
+                                element.orderCount = val.orderCount;
+                            }
+                        });
+                    }
                 });
             }
             else{
@@ -76,38 +83,41 @@ export class SubcategorylistPage {
 
     selectService(detail, event){
         event.stopPropagation();
-        let itemIndex = _.findIndex(this.commonServices.cartList, {"id":detail.id});
+        let itemIndex = _.findIndex(this.cartData, {"id":detail.id});
         if(itemIndex == -1){
             detail.orderCount = 1;
-            this.commonServices.cartList.push(detail);
-            this.updateCart(this.commonServices.cartList);
+            this.cartData.push(detail);
+            this.updateCart(this.cartData);
         }
         else{
-            detail.orderCount = parseInt(this.commonServices.cartList[itemIndex]['orderCount']) + 1;
-            this.commonServices.cartList[itemIndex]['orderCount'] = detail.orderCount;
-            this.updateCart(this.commonServices.cartList);
+            detail.orderCount = parseInt(this.cartData[itemIndex]['orderCount']) + 1;
+            this.cartData[itemIndex]['orderCount'] = detail.orderCount;
+            this.updateCart(this.cartData);
         } 
+        localStorage.setItem("ts_cart", JSON.stringify(this.cartData));
     }
 
     addQuantity(detail, event){
         event.stopPropagation();
         detail.orderCount++;
-        let itemIndex = _.findIndex(this.commonServices.cartList, {"id":detail.id});
-        this.commonServices.cartList[itemIndex]['orderCount'] = detail.orderCount;
-        this.updateCart(this.commonServices.cartList);
+        let itemIndex = _.findIndex(this.cartData, {"id":detail.id});
+        this.cartData[itemIndex]['orderCount'] = detail.orderCount;
+        this.updateCart(this.cartData);
+        localStorage.setItem("ts_cart", JSON.stringify(this.cartData));
     }
 
     decreaseQuantity(detail, event){
         event.stopPropagation();
         detail.orderCount--;
-        let itemIndex = _.findIndex(this.commonServices.cartList, {"id":detail.id});
+        let itemIndex = _.findIndex(this.cartData, {"id":detail.id});
         if(detail.orderCount < 1){
-            this.commonServices.cartList.splice(itemIndex, 1);
+            this.cartData.splice(itemIndex, 1);
         }
         else{
-            this.commonServices.cartList[itemIndex]['orderCount'] = detail.orderCount;
+            this.cartData[itemIndex]['orderCount'] = detail.orderCount;
         }
-        this.updateCart(this.commonServices.cartList);
+        this.updateCart(this.cartData);
+        localStorage.setItem("ts_cart", JSON.stringify(this.cartData));
     }
 
     updateCart(cart){
@@ -126,10 +136,11 @@ export class SubcategorylistPage {
 
     goToPaymentPage(){
         this.commonServices.profession = "";
-        this.commonServices.cartList.forEach(element => {
+        this.cartData.forEach(element => {
             this.quantityObj[element.id] = element.orderCount;
             this.commonServices.profession += element.id + ",";
         });
+        console.log(this.commonServices.profession);
         this.commonServices.profession = this.commonServices.profession.slice(0, -1);
         
         this.navCtrl.push(CartPage, {

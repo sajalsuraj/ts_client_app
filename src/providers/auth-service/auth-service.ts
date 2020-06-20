@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-let baseURL = "http://www.grabthetrendz.com/troubleshooter/";
+let baseURL = "https://www.grabthetrendz.com/troubleshooter/";
 
 @Injectable()
 export class AuthService { 

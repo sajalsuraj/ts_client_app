@@ -46,7 +46,7 @@ export class OtpPage {
         }, 1000);
       }
     }, (err) => {
-      console.log(err);
+
       // this.loading.dismiss();
       // this.presentToast(err);
     });
@@ -64,7 +64,7 @@ export class OtpPage {
           this.navCtrl.setRoot(SigninPage);
         }
       }, (err) => {
-        console.log(err);
+
         // this.loading.dismiss();
         // this.presentToast(err);
       });
@@ -78,7 +78,7 @@ export class OtpPage {
           });
         }
       }, (err) => {
-        console.log(err);
+
         // this.loading.dismiss();
         // this.presentToast(err);
       });

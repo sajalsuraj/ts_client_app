@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { HTTP } from '@ionic-native/http';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
@@ -37,14 +38,14 @@ import { ReferralPage } from '../pages/referral/referral';
 import { SubFaqPage } from '../pages/sub-faq/sub-faq';
 import { FinalPaymentPage } from '../pages/finalpayment/finalpayment';
 import { CartPage } from '../pages/cart/cart';
+import { SingleMembershipPage } from '../pages/single-membership/single-membership';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Keyboard } from '@ionic-native/keyboard';
 import { GoogleMaps } from '../providers/google-map-service/google-map-service';
 import { NativeGeocoder} from '@ionic-native/native-geocoder';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { Sim } from '@ionic-native/sim';
-
-import { SplashPage } from '../pages/splash/splash';
+import {FaqDetailPage} from '../pages/faq-detail/faq-detail';
 
 import { FCM } from '@ionic-native/fcm';
 import { Push } from '@ionic-native/push';
@@ -85,7 +86,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     ReferralPage,
     SubFaqPage,
     RatingsPage,
-    SplashPage
+    SingleMembershipPage,
+    FaqDetailPage
   ],
   imports: [
     BrowserModule,
@@ -127,7 +129,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     ReferralPage,
     SubFaqPage,
     RatingsPage,
-    SplashPage
+    SingleMembershipPage,
+    FaqDetailPage
   ],
   providers: [
     StatusBar,
@@ -137,6 +140,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     GoogleMaps,
     AuthService,
     FCM,
+    HTTP,
     Push,
     SocialSharing,
     CallNumber,

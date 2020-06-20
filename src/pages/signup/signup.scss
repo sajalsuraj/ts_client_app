@@ -1,16 +1,16 @@
 page-signup {
     .page-holder{
-        background-image: url('../assets/imgs/background.jpeg');
-        background-size: cover;
-        background-repeat: no-repeat;
         .form-holder{
-            top: 34%;
-            position: absolute;
-            width: 90%;
-            left: 5%;
             ion-item{
-                background-color: transparent;
+               background: #F7F7F7; 
             }
+            form{
+                padding:16px;
+            }
+        }
+        .scroll-content{
+            padding:0 !important;
+            background: #F7F7F7;
         }
     }
     .cam-icon {
@@ -43,10 +43,10 @@ page-signup {
         margin-bottom: 35px;
     }
     .fixed-bottom {
-        position: fixed;
-        bottom: 0;
+      
+       
         width: 100%;
-        left: 0;
+        
         padding-bottom: 8px !important;
         a{
             color: #6954e1;

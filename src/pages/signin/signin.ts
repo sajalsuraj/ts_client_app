@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController,AlertController, LoadingController, Thumbnail } from 'ionic-angular';
+import { NavController,AlertController, LoadingController } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
-import { PasswordPage } from '../password/password';
 import { ChangepasswordPage } from '../changepassword/changepassword';
 import { SignupPage } from '../signup/signup';
 import { AuthService } from '../../providers/auth-service/auth-service';
-import { FormBuilder, Validators, ValidatorFn, AbstractControl  }  from '@angular/forms';
+import { FormBuilder, Validators }  from '@angular/forms';
 import { CommonService } from '../../providers/common-service/common-service';
 import { Keyboard } from '@ionic-native/keyboard';
 
@@ -106,6 +105,7 @@ export class SigninPage {
         }
       }, (err) => {
         loader.dismiss();
+        this.showAlert("Error", "Server issue, please try after sometime");
         // this.loading.dismiss();
         // this.presentToast(err);
       });

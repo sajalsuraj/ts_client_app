@@ -1,6 +1,6 @@
 <ion-content class="page-holder" [style.background-size]="'100% ' + shouldHeight">
     <div class="image-holder">
-        <!-- <img src="assets/imgs/background.jpeg" alt=""> -->
+        <img src="assets/imgs/background1.jpeg" alt="">
         <div class="form-holder">
             <form (submit)="doLogin()" [formGroup]="loginForm" novalidate>
                 <ion-list no-lines class="form">
@@ -23,7 +23,7 @@
                             (click)="passwordViewSwitch($event); $event.stopPropagation()" item-end></ion-icon>
                     </ion-item>
                 </ion-list>
-                <p (click)="forgotpassword()" class="pass">Forgot Password?</p>
+                <p class="pass"><span (click)="forgotpassword()">Forgot Password?</span></p>
                 <button class="btn-submit" ion-button block [disabled]="!loginForm.valid" type="submit">Sign in</button>
             </form>
         </div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { CommonService } from '../../providers/common-service/common-service';
+import {FaqDetailPage} from '../faq-detail/faq-detail';
 
 @Component({
   selector: 'page-subfaq',
@@ -32,9 +33,7 @@ export class SubFaqPage {
   }
 
   openFaq(title){
-    this.faqLevel = 2;
-    this.faqTitle = title.faq_category;
-    this.faqData = title.faq_description;
+    this.navCtrl.push(FaqDetailPage, {data:title});
   }
 
  

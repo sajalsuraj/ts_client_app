@@ -1,5 +1,5 @@
-import { Component, Injectable } from '@angular/core';
-import { Platform, AlertController, NavController, App, ModalController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { Platform, AlertController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -8,8 +8,6 @@ import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { CommonService } from '../providers/common-service/common-service';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 
-import { SplashPage } from '../pages/splash/splash';
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -17,15 +15,14 @@ export class MyApp {
   rootPage:any = SigninPage;
   alertButtons = [];
 
-  private navCtrl: NavController;
+  
 
-  constructor(platform: Platform, modalCtrl: ModalController, private app:App, private androidPermissions:AndroidPermissions, private commonservice:CommonService, public alertCtrl: AlertController, private push: Push, statusBar: StatusBar, splashScreen: SplashScreen) {
-    this.navCtrl = app.getActiveNav();
+  constructor(platform: Platform, private androidPermissions:AndroidPermissions, private commonservice:CommonService, public alertCtrl: AlertController, private push: Push, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
-      // splashScreen.hide();
+      splashScreen.hide();
       androidPermissions.requestPermissions([
         androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION,
         androidPermissions.PERMISSION.ACCESS_FINE_LOCATION,
@@ -35,8 +32,8 @@ export class MyApp {
       statusBar.backgroundColorByHexString('#6954e1');
       statusBar.styleLightContent();
 
-      let splash = modalCtrl.create(SplashPage);
-      splash.present();
+      // let splash = modalCtrl.create(SplashPage);
+      // splash.present();
     });
   }
 

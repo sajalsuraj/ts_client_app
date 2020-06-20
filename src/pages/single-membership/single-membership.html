@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+      <ion-title>
+          {{membership?.name}}
+      </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="page-holder bg-light" padding>
+  <ion-row>
+    <h3>Available at just <span>&#8377;{{membership?.price}}</span></h3>
+    <h4>What's included?</h4>
+    <ul *ngIf="membership?.type == 'package'">
+      <li *ngFor="let service of services">{{service.name}} Service, &#8377;{{service.detail.price}} off, {{service.detail.mode === 'rate_per_min'?"Per min":"Fixed"}}</li>
+    </ul>
+    <ul *ngIf="membership?.type == 'membership'">
+      <li *ngFor="let service of services">{{service.name}} Service</li>
+    </ul>
+    <p><span>Expiring on</span> - {{membership?.to_date}}</p>
+    <button *ngIf="!disabledBtnIfBought" ion-button (click)="buy()">Buy Now</button>
+  </ion-row>
+</ion-content>

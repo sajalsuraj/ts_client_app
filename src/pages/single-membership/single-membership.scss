@@ -1,0 +1,49 @@
+page-single-membership {
+    ion-header{
+        ion-navbar{
+            .toolbar-background{
+                background: url('../assets/imgs/common_bg.jpg');
+                background-size: cover;
+            }
+            ion-title{
+                img{
+                    width: 20px;
+                    margin-right: 10px;
+                    transform: rotate(-180deg);
+                }
+                .toolbar-title-md{
+                    font-size: 15px;
+                    color: #fff;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+    ion-content.page-holder{
+        color: #5e4acd;
+        ion-row{
+            h3{
+                font-size: 15px;
+                span{
+                    font-size: 20px;
+                    color: #634daf;
+                    font-weight: bold;
+                }
+            }
+            h4{
+                width: 100%;
+            }
+            p{
+                width: 100%;
+                span{
+                    font-weight: bold;
+                }
+            }
+            button{
+                height: 50px;
+                font-size: 1.5rem;
+                background:linear-gradient(to right,#6954e1, #322560);
+            }
+        }
+    }
+}

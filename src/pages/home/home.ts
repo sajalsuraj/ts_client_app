@@ -1,10 +1,10 @@
 import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, LoadingController, AlertController, Slides, Tabs } from 'ionic-angular';
+import { NavController, NavParams, Platform, LoadingController, AlertController, Slides, Tabs } from 'ionic-angular';
 import { CommonService } from '../../providers/common-service/common-service';
 import { Geolocation, Coordinates } from '@ionic-native/geolocation';
-import { MembershipPage } from '../membership/membership'
+import { SingleMembershipPage } from '../single-membership/single-membership';
 import { SubcategorylistPage } from '../subcategorylist/subcategorylist';
-import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
 /**
  * Generated class for the ServicesPage page.
  *
@@ -30,6 +30,7 @@ export class HomePage {
   coords1: Coordinates;
   watchLocationUpdates: any;
   bannerArr = [];
+  packageArr = [];
   searchText;
   upperContent = {
     "upper_content_heading": "",
@@ -48,9 +49,19 @@ export class HomePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ServicesPage');
-    this.commonService.getAllBanners().then(res => {
-      if (res['status']) {
-        this.bannerArr = res['banners'];
+    // this.commonService.getAllBanners().then(res => {
+    //   if (res['status']) {
+    //     this.bannerArr = res['banners'];
+    //   }
+    // });
+
+    this.commonService.getPackages().then(res=>{
+      console.log(res);
+      if(res['status']){
+        this.packageArr = res['data'];
+      }
+      else{
+        this.packageArr = [];
       }
     });
 
@@ -224,6 +235,10 @@ export class HomePage {
         lng: this.longitude
       });
     }
+  }
+
+  selectOffer(detail){
+    this.navCtrl.push(SingleMembershipPage,{data:detail});
   }
 
 }

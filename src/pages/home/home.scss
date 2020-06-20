@@ -119,6 +119,10 @@ page-home {
                 ion-card{
                     margin: 0px;
                     box-shadow: none;
+                    .p-img{
+                        width:180px;
+                        height:270px;
+                    }
                 }
             }
             ion-slide.swiper-slide-active, ion-slide.swiper-slide-next{

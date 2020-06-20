@@ -1,6 +1,6 @@
-import { Component, ViewChild, ElementRef, ChangeDetectorRef, NgZone } from '@angular/core';
+import { Component, ViewChild, ElementRef} from '@angular/core';
 import { CommonService } from '../../providers/common-service/common-service';
-import { NavController, NavParams, Platform, AlertController, Form } from 'ionic-angular';
+import { NavController, NavParams, Platform, AlertController} from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { FinalPaymentPage } from '../finalpayment/finalpayment';
@@ -38,7 +38,7 @@ export class TrackBookingPage {
     hasReachedLocation = false;
     timelineArr = [];
 
-    constructor(public commonService: CommonService, public platform: Platform, public alertCtrl: AlertController, private localNotifications: LocalNotifications, private callNumber: CallNumber, private navCtrl: NavController, private ngZone: NgZone, private navParams: NavParams, private ref: ChangeDetectorRef) {
+    constructor(public commonService: CommonService, public platform: Platform, public alertCtrl: AlertController, private localNotifications: LocalNotifications, private callNumber: CallNumber, private navCtrl: NavController, private navParams: NavParams) {
 
     }
 
@@ -185,11 +185,7 @@ export class TrackBookingPage {
         let timelinePayload = new FormData();
         timelinePayload.append('booking_id', this.booking['booking_id']);
         timelinePayload.append('user_id', localStorage.getItem('user_id'));
-        let timelineObj = {
-            "time": "",
-            "action": "",
-            "activity": ""
-        };
+
         this.commonService.bookingTimeline(timelinePayload).then(res => {
             
             let time = res['location'][0]['requested_at'];
@@ -494,7 +490,7 @@ export class TrackBookingPage {
     }
 
     payment() {
-        this.navCtrl.setRoot(FinalPaymentPage, { booking_id: this.booking['booking_id'], vendor_id: this.booking['vendor_id'], vendor_name: this.booking['vendor_name'] });
+        this.navCtrl.push(FinalPaymentPage, { booking_id: this.booking['booking_id'], vendor_id: this.booking['vendor_id'], vendor_name: this.booking['vendor_name'] });
     }
 
     goBack() {

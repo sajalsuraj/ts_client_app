@@ -1,5 +1,5 @@
-import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, AlertController } from 'ionic-angular';
+import { Component, NgZone } from '@angular/core';
+import { NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 import { CommonService } from '../../providers/common-service/common-service';
 import {SubcategorylistPage} from '../subcategorylist/subcategorylist';
 
@@ -24,7 +24,7 @@ export class ServicesPage {
     }
 
     selectService(service){
-        this.navCtrl.setRoot(SubcategorylistPage, {
+        this.navCtrl.push(SubcategorylistPage, {
             profession:service.service_name,
             service_id: service.id,
             page: "ServicesPage"

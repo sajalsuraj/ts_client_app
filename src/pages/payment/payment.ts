@@ -25,7 +25,7 @@ export class PaymentPage {
     formData.append('profession', this.navParams.get('profession'));
     formData.append('user_id', localStorage.getItem('user_id'));
     this.commonService.profession = "";
-    this.commonService.cartList = [];
+    localStorage.setItem('ts_cart', JSON.stringify([]));
     this.commonService.getNearbyVendor(formData).then((result) => {
       if(result['status']){
         this.reqSent = true;

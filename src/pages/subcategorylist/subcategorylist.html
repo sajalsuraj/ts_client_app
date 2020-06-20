@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar hideBackButton="true">
         <ion-title>
             <img src="assets/icon/clipboard-white.png" alt="">
             {{subCategoryName}}
@@ -28,8 +28,10 @@
             </div>
             <div *ngIf="subcat.level==='3'" class="lower-content">
                 <div>
-                    <h2 class="d-flex">Point 1</h2>
-                    <h2 class="d-flex customer-name">Point 2</h2>
+                    <div class="lower-detail">
+                        <h2 class="d-flex">{{subcat.detail}}</h2>
+                    </div>
+
                     <button ion-button item-end class="cat-button" (click)="selectService(subcat, $event)"
                 *ngIf="subcat.level==='3' && subcat.orderCount < 1">Add +</button>
                     <div *ngIf="subcat.level==='3' && subcat.orderCount > 0" item-end class="quantity-button-holder">
@@ -45,7 +47,7 @@
             Sub categories not available :(
         </ion-item>
     </ion-list>
-    <div *ngIf="commonServices.cartList.length > 0" class="fixed-bottom">
+    <div *ngIf="cartData.length > 0" class="fixed-bottom">
         <button class="btn-update" (click)="goToPaymentPage()" ion-button outline block>
             <span class="total_order">{{orderButtonData.totalOrders}}</span>
             <span class="total_amount">&#8377; {{orderButtonData.totalAmount}}</span>

@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import { HTTP } from '@ionic-native/http';
+import {Platform} from 'ionic-angular';
 
-let baseURL = "http://www.grabthetrendz.com/troubleshooter/";
+let baseURL = "https://www.grabthetrendz.com/troubleshooter/";
 
 @Injectable()
 export class CommonService {
 
-  constructor(public http: Http) { }
+  constructor(public http: Http, public httpNative: HTTP, public platform: Platform) { }
 
   device_id: any;
   cartList = [];
@@ -22,6 +23,11 @@ export class CommonService {
 
   createAuthorizationHeader(headers: Headers) {
     headers.append('access_token', localStorage.getItem('access_token'));
+  }
+
+  commonHeaders(headers: Headers){
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
   }
 
   extractDateFromTimestamp(timestamp) {
@@ -61,27 +67,59 @@ export class CommonService {
           reject(err);
         });
     });
-  }
+ }
 
-  getAllServices() {
+  getPackages() {
     return new Promise((resolve, reject) => {
-      this.http.get(baseURL + 'get/services')
+      let headers = new Headers();
+      this.createAuthorizationHeader(headers);
+      // if(this.platform.is('android')){
+      //   this.httpNative.get(baseURL + 'get/packages', {}, {}).then(res => {
+      //     resolve(JSON.parse(res.data));
+      //   });
+      // }
+      // else{
+        this.http.get(baseURL + 'get/packages', { headers: headers })
         .subscribe(res => {
           resolve(res.json());
         }, (err) => {
           reject(err);
         });
+      //}
+    });
+  }
+
+  getAllServices() {
+    return new Promise((resolve, reject) => {
+      // if(this.platform.is('android')){
+      //   this.httpNative.get(baseURL + 'get/services', {}, {}).then(res => {
+      //     console.log(res.data);
+      //     resolve(JSON.parse(res.data));
+      //   });
+      // }
+      // else{
+        this.http.get(baseURL + 'get/services')
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+      //}
+      
     });
   }
 
   getServicesIncludingCategories() {
     return new Promise((resolve, reject) => {
-      this.http.get(baseURL + 'get/allservices')
+      
+        this.http.get(baseURL + 'get/allservices')
         .subscribe(res => {
           resolve(res.json());
         }, (err) => {
           reject(err);
         });
+      
+      
     });
   }
 
@@ -154,6 +192,28 @@ export class CommonService {
   getSubcategories(data) {
     return new Promise((resolve, reject) => {
       this.http.post(baseURL + 'get/subcategories', data)
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  checkIfServicesBought(data){
+    return new Promise((resolve, reject) => {
+      this.http.post(baseURL + 'get/checkIfServicesBought', data)
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  buyServices(data, type) {
+    return new Promise((resolve, reject) => {
+      this.http.post(baseURL + 'add/'+type, data)
         .subscribe(res => {
           resolve(res.json());
         }, (err) => {

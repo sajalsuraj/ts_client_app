@@ -1,55 +1,108 @@
-<ion-content class="page-holder" [style.background-size]="'100% ' + shouldHeight" padding>
-    <div class="form-holder">
-        <form (submit)="doReg()" [formGroup]="registerForm" novalidate>
-            <!-- <ion-icon name="md-camera" class="cam-icon"></ion-icon>
+<ion-content
+  class="page-holder"
+  padding
+>
+  <div class="form-holder">
+    <img src="assets/imgs/background1.jpeg" alt="">
+    <form (submit)="doReg()" [formGroup]="registerForm" novalidate>
+      <!-- <ion-icon name="md-camera" class="cam-icon"></ion-icon>
             <p text-center>Add Photo</p> -->
-            <ion-list no-lines class="form">
-                <ion-item>
-                    <ion-icon name="md-phone-portrait" item-start></ion-icon>
-                    <ion-label floating>Phone Number</ion-label>
-                    <ion-input formControlName="Phone" minlength="10" maxlength="10" [(ngModel)]="regData.phone"
-                        name="phone" type="number"></ion-input>
-                </ion-item>
-                <div *ngIf="registerForm.controls.Phone.invalid && registerForm.controls.Phone.errors.pattern"
-                    class="validator-error">
-                    Please enter a valid mobile number(10 digits, should start from 6-9).
-                </div>
-                <ion-item>
-                    <ion-icon name="md-lock" item-start></ion-icon>
-                    <ion-label floating>Create Password</ion-label>
-                    <ion-input formControlName="Password" [(ngModel)]="regData.password" name="password"
-                        type="{{passwordType}}"></ion-input>
-                    <ion-icon class="password-eye" name="{{passwordIcon}}"
-                        (click)="passwordViewSwitch($event); $event.stopPropagation()" item-end></ion-icon>
-                </ion-item>
-                <div *ngIf="registerForm.controls.Password.invalid && registerForm.controls.Password.errors.pattern"
-                    class="validator-error">
-                    Password should contain atleast 8 characters, 1 Lowercase, 1 Uppercase, Number, Special Char).
-                </div>
-                <ion-item>
-                    <ion-icon name="md-lock" item-start></ion-icon>
-                    <ion-label floating>Confirm Password</ion-label>
-                    <ion-input formControlName="confirm_pass" [(ngModel)]="confirm_pass" name="confirm_pass"
-                        type="{{passwordType2}}"></ion-input>
-                    <ion-icon class="password-eye" name="{{passwordIcon2}}"
-                        (click)="confirmPasswordViewSwitch($event); $event.stopPropagation()" item-end></ion-icon>
-                </ion-item>
-                <div *ngIf="registerForm.controls.Phone.invalid && registerForm.controls.confirm_pass.errors && registerForm.controls.confirm_pass.errors.equalTo"
-                    class="validator-error">
-                    Password doesn't match
-                </div>
-                <ion-item>
-                    <ion-icon name="md-lock" item-start></ion-icon>
-                    <ion-label floating>Referral (Optional)</ion-label>
-                    <ion-input formControlName="referred_by" [(ngModel)]="regData.referred_by" name="referred_by"></ion-input>
-                </ion-item>
-            </ion-list>
-            <button class="btn-submit" ion-button block [disabled]="!registerForm.valid" type="submit">Register
-                Now</button>
-        </form>
-    </div>
+      <ion-list no-lines class="form">
+        <ion-item>
+          <ion-icon name="contact" item-start></ion-icon>
+          <ion-label floating>Full Name</ion-label>
+          <ion-input
+            formControlName="name"
+            [(ngModel)]="regData.name"
+            name="name"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="md-phone-portrait" item-start></ion-icon>
+          <ion-label floating>Phone Number</ion-label>
+          <ion-input
+            formControlName="Phone"
+            minlength="10"
+            maxlength="10"
+            [(ngModel)]="regData.phone"
+            name="phone"
+            type="number"
+          ></ion-input>
+        </ion-item>
+        <div
+          *ngIf="registerForm.controls.Phone.invalid && registerForm.controls.Phone.errors.pattern"
+          class="validator-error"
+        >
+          Please enter a valid mobile number(10 digits, should start from 6-9).
+        </div>
+        <ion-item>
+          <ion-icon name="md-lock" item-start></ion-icon>
+          <ion-label floating>Create Password</ion-label>
+          <ion-input
+            formControlName="Password"
+            [(ngModel)]="regData.password"
+            name="password"
+            type="{{passwordType}}"
+          ></ion-input>
+          <ion-icon
+            class="password-eye"
+            name="{{passwordIcon}}"
+            (click)="passwordViewSwitch($event); $event.stopPropagation()"
+            item-end
+          ></ion-icon>
+        </ion-item>
+        <div
+          *ngIf="registerForm.controls.Password.invalid && registerForm.controls.Password.errors.pattern"
+          class="validator-error"
+        >
+          Password should contain atleast 8 characters, 1 Lowercase, 1
+          Uppercase, Number, Special Char).
+        </div>
+        <ion-item>
+          <ion-icon name="md-lock" item-start></ion-icon>
+          <ion-label floating>Confirm Password</ion-label>
+          <ion-input
+            formControlName="confirm_pass"
+            [(ngModel)]="confirm_pass"
+            name="confirm_pass"
+            type="{{passwordType2}}"
+          ></ion-input>
+          <ion-icon
+            class="password-eye"
+            name="{{passwordIcon2}}"
+            (click)="confirmPasswordViewSwitch($event); $event.stopPropagation()"
+            item-end
+          ></ion-icon>
+        </ion-item>
+        <div
+          *ngIf="registerForm.controls.Phone.invalid && registerForm.controls.confirm_pass.errors && registerForm.controls.confirm_pass.errors.equalTo"
+          class="validator-error"
+        >
+          Password doesn't match
+        </div>
+        <ion-item>
+          <ion-icon name="contacts" item-start></ion-icon>
+          <ion-label floating>Referral (Optional)</ion-label>
+          <ion-input
+            formControlName="referred_by"
+            [(ngModel)]="regData.referred_by"
+            name="referred_by"
+          ></ion-input>
+        </ion-item>
+      </ion-list>
+      <button
+        class="btn-submit"
+        ion-button
+        block
+        [disabled]="!registerForm.valid"
+        type="submit"
+      >
+        Register Now
+      </button>
+    </form>
     <div *ngIf="!keyBoardShow" class="fixed-bottom" padding>
-        <p text-center>Back to <a (click)="gotologin()">Login</a> </p>
-        <!-- <button class="btn-register" ion-button outline block (click)="signup()">Register Now</button> -->
+      <p text-center>Back to <a (click)="gotologin()">Login</a></p>
+      <!-- <button class="btn-register" ion-button outline block (click)="signup()">Register Now</button> -->
     </div>
+  </div>
 </ion-content>

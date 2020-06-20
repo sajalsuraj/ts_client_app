@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, Tabs } from 'ionic-angular';
+import { NavController, NavParams, AlertController} from 'ionic-angular';
 import { CommonService } from '../../providers/common-service/common-service';
 import { RequestsPage } from '../requests/requests';
 
@@ -29,7 +29,7 @@ export class RatingsPage {
     will_send_flag = false;
 
 
-    constructor(public commonService: CommonService, private tabs: Tabs, public alertCtrl: AlertController, private navCtrl: NavController, private navParams: NavParams) { }
+    constructor(public commonService: CommonService, public alertCtrl: AlertController, private navCtrl: NavController, private navParams: NavParams) { }
 
     ionViewDidEnter() {
         this.userData.name = this.navParams.get('vendor_name');

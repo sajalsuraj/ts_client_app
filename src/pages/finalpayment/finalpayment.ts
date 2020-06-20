@@ -16,6 +16,8 @@ export class FinalPaymentPage {
     gst = "";
     finalBill = "";
     billWithMaterialCharge = "";
+    isPackageApplied = false;
+    isMembershipApplied = false;
     ionViewDidEnter(){
       let fd = new FormData();
       fd.append('user_id', localStorage.getItem('user_id'));
@@ -26,6 +28,8 @@ export class FinalPaymentPage {
         this.gst = res['info'][0]['gst'];
         this.finalBill = res['info'][0]['finalBill'];
         this.billWithMaterialCharge = res['info'][0]['billWithMaterialCharge'];
+        this.isMembershipApplied = res['info'][0]['membership'] !== "";
+        this.isPackageApplied = res['info'][0]['package'] !== "";
       });
     }
 
@@ -37,5 +41,9 @@ export class FinalPaymentPage {
         this.navCtrl.setRoot(RatingsPage,{booking_id: this.navParams.get('booking_id'), vendor_id: this.navParams.get('vendor_id'), vendor_name: this.navParams.get('vendor_name')});
       });
       
+    }
+
+    goBack(){
+      this.navCtrl.pop();
     }
 }

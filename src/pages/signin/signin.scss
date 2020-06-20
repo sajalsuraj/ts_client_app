@@ -3,20 +3,21 @@ page-signin {
         height: 100%;
         width: 100%;
         position: relative;
+        background: #F7F7F7;
     }
     .page-holder{
-        background-image: url('../assets/imgs/background.jpeg');
-        background-size: cover;
-        background-repeat: no-repeat;
         .form-holder{
-            position: absolute;
-            top: 35%;
-            left: 5%;
-            width: 90%;
             ion-item{
-                background-color: transparent;
+                background: #F7F7F7;
+            }
+            form{
+                padding:16px;
             }
         }
+        // .scroll-content{
+        //     padding:0 !important;
+        //     background: #F7F7F7;
+        // }
     }
     .scroll-content{
         padding-bottom: 0px !important;

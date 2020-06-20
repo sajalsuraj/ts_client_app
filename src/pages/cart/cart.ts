@@ -19,7 +19,9 @@ export class CartPage {
 
     }
     ionViewDidEnter(){
-        this.cartList = this.commonService.cartList;
+        if(localStorage.getItem('ts_cart')){
+            this.cartList = JSON.parse(localStorage.getItem('ts_cart'));
+        }
 
         if(this.cartList.length > 0){
             let totalAmount = 0, totalOrders = 0;
@@ -36,9 +38,12 @@ export class CartPage {
     }
 
     goToPaymentPage(){
-        this.commonService.cartList.forEach(element => {
+        this.commonService.profession = "";
+        this.cartList.forEach(element => {
             this.quantityObj[element.id] = element.orderCount;
+            this.commonService.profession += element.id + ",";
         });
+        this.commonService.profession = this.commonService.profession.slice(0, -1);
         this.navCtrl.push(PaymentPage, {
             profession:this.commonService.profession,
             lat: this.commonService.subCategory.lat,
@@ -50,22 +55,24 @@ export class CartPage {
     addQuantity(detail, event){
         event.stopPropagation();
         detail.orderCount++;
-        let itemIndex = _.findIndex(this.commonService.cartList, {"id":detail.id});
-        this.commonService.cartList[itemIndex]['orderCount'] = detail.orderCount;
-        this.updateCart(this.commonService.cartList);
+        let itemIndex = _.findIndex(this.cartList, {"id":detail.id});
+        this.cartList[itemIndex]['orderCount'] = detail.orderCount;
+        this.updateCart(this.cartList);
+        localStorage.setItem("ts_cart", JSON.stringify(this.cartList));
     }
 
     decreaseQuantity(detail, event){
         event.stopPropagation();
         detail.orderCount--;
-        let itemIndex = _.findIndex(this.commonService.cartList, {"id":detail.id});
+        let itemIndex = _.findIndex(this.cartList, {"id":detail.id});
         if(detail.orderCount < 1){
-            this.commonService.cartList.splice(itemIndex, 1);
+            this.cartList.splice(itemIndex, 1);
         }
         else{
-            this.commonService.cartList[itemIndex]['orderCount'] = detail.orderCount;
+            this.cartList[itemIndex]['orderCount'] = detail.orderCount;
         }
-        this.updateCart(this.commonService.cartList);
+        this.updateCart(this.cartList);
+        localStorage.setItem("ts_cart", JSON.stringify(this.cartList));
     }
 
     updateCart(cart){
