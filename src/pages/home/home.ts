@@ -4,6 +4,7 @@ import { CommonService } from '../../providers/common-service/common-service';
 import { Geolocation, Coordinates } from '@ionic-native/geolocation';
 import { SingleMembershipPage } from '../single-membership/single-membership';
 import { SubcategorylistPage } from '../subcategorylist/subcategorylist';
+import { Diagnostic } from '@ionic-native/diagnostic';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
 /**
  * Generated class for the ServicesPage page.
@@ -31,11 +32,14 @@ export class HomePage {
   watchLocationUpdates: any;
   bannerArr = [];
   packageArr = [];
+  partnerArr = [];
+  defaultPackagePic = "";
   searchText;
   upperContent = {
     "upper_content_heading": "",
     "upper_content_subheading": ""
   };
+  error = false;
   lowerContent = "";
   @ViewChild(Slides) slides: Slides;
 
@@ -43,20 +47,13 @@ export class HomePage {
 
   @ViewChild('pleaseConnect') pleaseConnect: ElementRef;
 
-  constructor(public navCtrl: NavController, private tabs: Tabs, public loading: LoadingController, private nativeGeocoder: NativeGeocoder, public zone: NgZone, public alertCtrl: AlertController, public navParams: NavParams, private commonService: CommonService, public platform: Platform, public geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, private diagnostic: Diagnostic, private tabs: Tabs, public loading: LoadingController, private nativeGeocoder: NativeGeocoder, public zone: NgZone, public alertCtrl: AlertController, public navParams: NavParams, private commonService: CommonService, public platform: Platform, public geolocation: Geolocation) {
     
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ServicesPage');
-    // this.commonService.getAllBanners().then(res => {
-    //   if (res['status']) {
-    //     this.bannerArr = res['banners'];
-    //   }
-    // });
-
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
     this.commonService.getPackages().then(res=>{
-      console.log(res);
       if(res['status']){
         this.packageArr = res['data'];
       }
@@ -82,6 +79,77 @@ export class HomePage {
       this.upperContent.upper_content_subheading = res['data'].upper_content_subheading;
       this.lowerContent = res['data'].lower_content;
     });
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ServicesPage');
+    // this.commonService.getAllBanners().then(res => {
+    //   if (res['status']) {
+    //     this.bannerArr = res['banners'];
+    //   }
+    // });
+
+    this.commonService.getPackages().then(res=>{
+      if(res['status']){
+        this.packageArr = res['data'];
+      }
+      else{
+        this.packageArr = [];
+      }
+      this.error = false;
+    },error=>{
+      this.error = true;
+    });
+
+    this.commonService.getPartners().then(res=>{
+      if(res['status']){
+        this.partnerArr = res['banners'];
+      }
+      this.error = false;
+    },
+    error=>{
+      this.error = true;
+    });
+
+    this.commonService.getServicesIncludingCategories().then(res => {
+      if (res['status']) {
+        this.serviceList = res['data'];
+      }
+      this.error = false;
+    },error=>{
+      this.error = true;
+    });
+
+    this.commonService.getTwoServices().then(res => {
+      if (res['status']) {
+        this.serviceData = res['data'];
+      }
+      this.error = false;
+    },error=>{
+      this.error = true;
+    });
+
+    this.commonService.getPartners().then(res=>{
+      if(res['status']){
+        this.partnerArr = res['banners'];
+      }
+      this.error = false;
+    },error=>{
+      this.error = true;
+    });
+
+    this.commonService.getHomePageData().then((res) => {
+      this.upperContent.upper_content_heading = res['data'].upper_content_heading;
+      this.upperContent.upper_content_subheading = res['data'].upper_content_subheading;
+      this.lowerContent = res['data'].lower_content;
+      this.error = false;
+    },error=>{
+      this.error = true;
+    });
     this.autocompleteService = new google.maps.places.AutocompleteService();
 
   }
@@ -92,6 +160,66 @@ export class HomePage {
 
   goToService() {
     this.tabs.select(3);
+  }
+
+  refreshData(){
+    this.commonService.getPackages().then(res=>{
+      if(res['status']){
+        this.packageArr = res['data'];
+      }
+      else{
+        this.packageArr = [];
+      }
+      this.error = false;
+    },error=>{
+      this.error = true;
+    });
+
+    this.commonService.getPartners().then(res=>{
+      if(res['status']){
+        this.partnerArr = res['banners'];
+      }
+      this.error = false;
+    },
+    error=>{
+      this.error = true;
+    });
+
+    this.commonService.getServicesIncludingCategories().then(res => {
+      if (res['status']) {
+        this.serviceList = res['data'];
+      }
+      this.error = false;
+    },error=>{
+      this.error = true;
+    });
+
+    this.commonService.getTwoServices().then(res => {
+      if (res['status']) {
+        this.serviceData = res['data'];
+      }
+      this.error = false;
+    },error=>{
+      this.error = true;
+    });
+
+    this.commonService.getPartners().then(res=>{
+      if(res['status']){
+        this.partnerArr = res['banners'];
+      }
+      this.error = false;
+    },error=>{
+      this.error = true;
+    });
+
+    this.commonService.getHomePageData().then((res) => {
+      this.upperContent.upper_content_heading = res['data'].upper_content_heading;
+      this.upperContent.upper_content_subheading = res['data'].upper_content_subheading;
+      this.lowerContent = res['data'].lower_content;
+      this.error = false;
+    },error=>{
+      this.error = true;
+    });
   }
 
   searchPlace() {
@@ -133,7 +261,8 @@ export class HomePage {
         service_id: service.id,
         lat: this.latitude,
         lng: this.longitude,
-        page: "HomePage"
+        page: "HomePage",
+        image: service.image,
       },{animate: true, direction: 'forward'});
     }
   }
@@ -159,32 +288,41 @@ export class HomePage {
   }
 
   ionViewDidEnter() {
-    this.platform.ready().then(() => {
+
+    if((this.commonService.subCategory.lat == "") && (this.commonService.subCategory.lng == "")){
+      this.platform.ready().then(() => {
 
      
-      let optionsGeo: NativeGeocoderOptions = {
-        useLocale: true,
-        maxResults: 5
-      };
-      //use the geolocation 
-      this.geolocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 5000 }).then(data => {
-        this.latitude = data.coords.latitude;
-        this.longitude = data.coords.longitude;
-        this.commonService.subCategory.lat = this.latitude;
-        this.commonService.subCategory.lng = this.longitude;
-        this.nativeGeocoder.reverseGeocode(data.coords.latitude, data.coords.longitude, optionsGeo)
-            .then((result: NativeGeocoderReverseResult[]) => {
-            
-              this.query = result[0]['thoroughfare'] + ', ' + result[0]['subLocality'] + ', ' + result[0]['locality'] + ', ' + result[0]['administrativeArea'] + ', ' + result[0]['postalCode'];
-            })
-            .catch((error: any) => {
-              //this.showAlert("Error!", "Not able to fetch the location, please enter manually or try again");
-            
-            });
-      }).catch((err) => {
-
+        let optionsGeo: NativeGeocoderOptions = {
+          useLocale: true,
+          maxResults: 5
+        };
+        //use the geolocation 
+        this.geolocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 20000 }).then(data => {
+          this.latitude = data.coords.latitude;
+          this.longitude = data.coords.longitude;
+          this.commonService.subCategory.lat = this.latitude;
+          this.commonService.subCategory.lng = this.longitude;
+          this.nativeGeocoder.reverseGeocode(data.coords.latitude, data.coords.longitude, optionsGeo)
+              .then((result: NativeGeocoderReverseResult[]) => {
+              
+                this.query = result[0]['thoroughfare'] + ', ' + result[0]['subLocality'] + ', ' + result[0]['locality'] + ', ' + result[0]['administrativeArea'] + ', ' + result[0]['postalCode'];
+                this.commonService.location = this.query;
+              })
+              .catch((error: any) => {
+                //this.showAlert("Error!", "Not able to fetch the location, please enter manually or try again");
+              
+              });
+        }).catch((err) => {
+  
+        });
       });
-    });
+    }
+    else{
+      this.latitude = this.commonService.subCategory.lat;
+      this.longitude = this.commonService.subCategory.lng;
+      this.query = this.commonService.location;
+    }
   }
 
   getCurrentLocation() {
@@ -194,30 +332,39 @@ export class HomePage {
     });
 
     loader.present().then(() => {
-      this.platform.ready().then(() => {
-        let options: NativeGeocoderOptions = {
-          useLocale: true,
-          maxResults: 5
-        };
-
-        this.geolocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 5000 }).then((res) => {
-          this.latitude = res.coords.latitude;
-          this.longitude = res.coords.longitude;
-          this.commonService.subCategory.lat = this.latitude;
-          this.commonService.subCategory.lng = this.longitude;
-          this.nativeGeocoder.reverseGeocode(res.coords.latitude, res.coords.longitude, options)
-            .then((result: NativeGeocoderReverseResult[]) => {
-              loader.dismiss();
-              this.query = result[0]['thoroughfare'] + ', ' + result[0]['subLocality'] + ', ' + result[0]['locality'] + ', ' + result[0]['administrativeArea'] + ', ' + result[0]['postalCode'];
-            })
-            .catch((error: any) => {
+      this.diagnostic.isLocationEnabled().then((isEnabled)=>{
+        if(isEnabled){
+          this.platform.ready().then(() => {
+            let options: NativeGeocoderOptions = {
+              useLocale: true,
+              maxResults: 5
+            };
+    
+            this.geolocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 20000 }).then((res) => {
+              this.latitude = res.coords.latitude;
+              this.longitude = res.coords.longitude;
+              this.commonService.subCategory.lat = this.latitude;
+              this.commonService.subCategory.lng = this.longitude;
+              this.nativeGeocoder.reverseGeocode(res.coords.latitude, res.coords.longitude, options)
+                .then((result: NativeGeocoderReverseResult[]) => {
+                  loader.dismiss();
+                  this.query = result[0]['thoroughfare'] + ', ' + result[0]['subLocality'] + ', ' + result[0]['locality'] + ', ' + result[0]['administrativeArea'] + ', ' + result[0]['postalCode'];
+                  this.commonService.location = this.query;
+                })
+                .catch((error: any) => {
+                  this.showAlert("Error!", "Not able to fetch the location, please enter manually or try again");
+                  loader.dismiss();
+                });
+            }).catch((error) => {
               this.showAlert("Error!", "Not able to fetch the location, please enter manually or try again");
               loader.dismiss();
             });
-        }).catch((error) => {
-          this.showAlert("Error!", "Not able to fetch the location, please enter manually or try again");
+          });
+        }
+        else{
+          this.diagnostic.switchToLocationSettings();
           loader.dismiss();
-        });
+        }
       });
     });
 
@@ -235,6 +382,10 @@ export class HomePage {
         lng: this.longitude
       });
     }
+  }
+
+  setDefaultPic(){
+    this.defaultPackagePic = "assets/imgs/blank_package.jpg";
   }
 
   selectOffer(detail){

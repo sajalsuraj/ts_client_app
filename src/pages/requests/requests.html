@@ -3,6 +3,7 @@
     <ion-title>
       <img src="assets/icon/calendar-white.png" alt="">
       Bookings
+      <span (click)="goBack()">Back</span>
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -38,7 +39,7 @@
             </div>
             <div>
               <h2 class="d-flex">{{booking.created_at*1000 | date:'d MMM y | h:mm a'}}</h2>
-              <h2 class="d-flex customer-name">Rs. 1001</h2>
+              <h2 class="d-flex customer-name"></h2>
               <img src="assets/icon/right-arrow.png" alt="">
             </div>
           </div>

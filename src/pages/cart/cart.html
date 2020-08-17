@@ -1,13 +1,16 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar hideBackButton>
         <ion-title>
             Cart
+            <span (click)="goBack()">Back</span>
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content class="page-holder bg-light">
-    <div class="empty-cart" *ngIf="cartList.length < 1">Oops, your cart is empty</div>
+    <div class="empty-cart" *ngIf="cartList.length < 1">
+        <img src="assets/imgs/empty-cart.png" alt="" />
+    </div>
     <ion-list>
         <ion-item no-lines class="list-item" *ngFor="let subcat of cartList"
             (click)="selectSubCategory(subcat, $event)">

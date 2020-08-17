@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, ToastController} from 'ionic-angular';
+import { NavController, NavParams, AlertController, ToastController, PopoverController} from 'ionic-angular';
 import { CommonService } from '../../providers/common-service/common-service';
 import { CartPage } from '../../pages/cart/cart';
 import { HomePage } from '../../pages/home/home';
+import { CategoryDescPage } from '../../pages/categorydesc/categorydesc';
 import { ServicesPage } from '../../pages/services/services';
+
 import _ from 'underscore';
 
 @Component({
@@ -20,11 +22,13 @@ export class SubcategorylistPage {
         "totalAmount": 0,
         "totalOrders": 0
     };
+    serviceImage = "";
     cartData = [];
     quantityObj = {};
-    constructor(public navCtrl: NavController, public toastCtrl: ToastController, public commonServices: CommonService, public alertCtrl: AlertController, public navParams: NavParams){}
+    constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public toastCtrl: ToastController, public commonServices: CommonService, public alertCtrl: AlertController, public navParams: NavParams){}
     ionViewDidLoad(){
         this.subCategoryName = this.navParams.get('profession');
+        this.serviceImage = this.navParams.get('image');
         let catData = new FormData();
         catData.append('id', this.navParams.get('service_id'));
         this.commonServices.getSubcategories(catData).then(res=>{
@@ -104,6 +108,13 @@ export class SubcategorylistPage {
         this.cartData[itemIndex]['orderCount'] = detail.orderCount;
         this.updateCart(this.cartData);
         localStorage.setItem("ts_cart", JSON.stringify(this.cartData));
+    }
+
+    openDescription(subcat, event){
+        event.stopPropagation();
+        let data = {subcat:subcat, subcategoryname:this.subCategoryName}
+        let popover = this.popoverCtrl.create(CategoryDescPage, data);
+        popover.present();
     }
 
     decreaseQuantity(detail, event){

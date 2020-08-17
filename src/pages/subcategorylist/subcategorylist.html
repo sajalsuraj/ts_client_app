@@ -9,26 +9,26 @@
 </ion-header>
 
 <ion-content class="page-holder bg-light">
-    <img *ngIf="!internalPageFlag" src="assets/imgs/salon.jpg" alt="">
+    <img *ngIf="!internalPageFlag && serviceImage" src="{{serviceImage}}" alt="">
     <ion-list>
         <ion-item no-lines class="list-item" [ngClass]="{'white-bg':subcat.level==='2'}" *ngFor="let subcat of subCategoriesList"
             (click)="selectSubCategory(subcat, $event)">
             <img *ngIf="subcat.level==='2'" class="tick-icon" item-start src="assets/icon/tick.png">
             <span *ngIf="subcat.level==='2'" class="service-name">{{subcat.service_name}}</span>
-            <img class="back-arrow" *ngIf="subcat.level==='2'" item-end src="assets/icon/back_arrow.png">
+            <img class="back-arrow" *ngIf="subcat.level==='2'" item-end src="assets/icon/back-arrow.png"> 
 
             <div *ngIf="subcat.level==='3'" class="booking-item">
-                <div class="profile-pic" style="background:url(assets/imgs/plumber-profile.jpg)"></div>
+                <div class="profile-pic" [ngStyle]="{'background':subcat.image?'url('+subcat.image+')':'url(assets/imgs/no-service-1.png)'}"></div>
 
                 <div class="content">
                     <h2 class="d-flex">{{subcat.service_name}}</h2>
-                    <h2 class="d-flex customer-name">&#8377; {{subcat.rate_per_min}} / min</h2>
-                    <h2 class="d-flex">70 Min</h2>
+                    <h2 class="d-flex customer-name">&#8377; {{subcat.rate_per_min}} {{subcat.mode == 'rate_per_min'?"/ min":"Fixed"}}</h2>
+                    <h2 class="d-flex">{{subcat.avg_time_taken}}</h2>
                 </div>
             </div>
             <div *ngIf="subcat.level==='3'" class="lower-content">
                 <div>
-                    <div class="lower-detail">
+                    <div class="lower-detail" (click)="openDescription(subcat, $event)">
                         <h2 class="d-flex">{{subcat.detail}}</h2>
                     </div>
 
@@ -47,11 +47,11 @@
             Sub categories not available :(
         </ion-item>
     </ion-list>
-    <div *ngIf="cartData.length > 0" class="fixed-bottom">
-        <button class="btn-update" (click)="goToPaymentPage()" ion-button outline block>
-            <span class="total_order">{{orderButtonData.totalOrders}}</span>
-            <span class="total_amount">&#8377; {{orderButtonData.totalAmount}}</span>
-            <span class="place_order">View Cart</span>
-        </button>
-    </div>
 </ion-content>
+<ion-footer *ngIf="cartData.length > 0" class="fixed-bottom">
+    <button class="btn-update" (click)="goToPaymentPage()" ion-button outline block>
+        <span class="total_order">{{orderButtonData.totalOrders}}</span>
+        <span class="total_amount">&#8377; {{orderButtonData.totalAmount}}</span>
+        <span class="place_order">View Cart</span>
+    </button>
+</ion-footer>

@@ -1,0 +1,120 @@
+page-categorydesc{
+    ion-header{
+        ion-navbar{
+            .toolbar-background{
+                background: url('../assets/imgs/common-bg-2.jpg');
+                background-size: cover;
+            }
+            ion-title{
+                img{
+                    width: 10px;
+                    margin-right: 10px;
+                }
+                .toolbar-title-md{
+                    font-size: 15px;
+                    color: #fff;
+                    font-weight: 400;
+                }
+                span{
+                    float:right;
+                }
+            }
+        }
+    }
+
+    .list-item{
+        margin-top: 5px;
+        
+        background: transparent;
+        .item-inner{
+            padding-right: 0px !important;
+        }
+        .back-arrow{
+            width: 20px;
+        }
+        .tick-icon{
+            width: 20px;
+        }
+        span.service-name{
+            font-weight: 400;
+        }
+        ion-label{
+            margin: 2px 8px 2px 0 !important;
+        }
+        p.detail{
+            white-space: pre-line;
+        }
+        div.booking-item{
+            display: flex;
+            box-shadow: 0px 1px 2px 1px #ccc;
+            div.profile-pic{
+                width: 70px;
+                height: 70px;
+                background-size: cover !important;
+                background-repeat: no-repeat !important;
+            }
+            div.content{
+                width: calc(100% - 70px);
+                padding: 0px 10px;
+                background: url(../assets/imgs/blue-dots.png);
+                background-size: cover;
+                background-position-y: 12%;
+                h2{
+                    font-size: 14px;
+                    line-height: 1.4;
+                }
+                h2.ser-name{
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                h2.customer-name{
+                    color: $text-theme;
+                }
+                img{
+                    position: absolute;
+                    width: 65px;
+                    right: 0;
+                    margin-right: 25px;
+                    margin-top: -55px;
+                }
+            }
+        }
+        div.lower-content{
+            max-width:100%;
+            background:linear-gradient(to right,#ffb400, $text-theme);
+            height:50px;
+            padding: 7px;
+            margin-top: 2px;
+            display: flex;
+            box-shadow: 0px 1px 2px 1px #ccc;
+            div.lower-detail{
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: normal;
+                max-width: 200px;
+                position: absolute;
+            }
+            h2{
+                font-size: 14px;
+                color: #fff;
+            }
+            div.img-content{
+                padding: 5px;
+                border-right: 1px solid #fff;
+                padding-right: 10px;
+                ion-icon{
+                    color: #fff;
+                    font-size: 25px;
+                }
+            }
+            
+            div:nth-child(2){
+                padding-left: 10px;
+            }
+        }
+    }
+}

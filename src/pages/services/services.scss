@@ -2,7 +2,7 @@ page-services{
     ion-header{
         ion-navbar{
             .toolbar-background{
-                background: url('../assets/imgs/common_bg.jpg');
+                background: url('../assets/imgs/common-bg-2.jpg');
                 background-size: cover;
             }
             ion-title{
@@ -14,6 +14,9 @@ page-services{
                     font-size: 15px;
                     color: #fff;
                     font-weight: 400;
+                }
+                span{
+                    float:right;
                 }
             }
         }
@@ -59,7 +62,7 @@ page-services{
                     }
                     div.lower-content{
                         max-width:100%;
-                        background:linear-gradient(to right,#6954e1, #322560);
+                        background:linear-gradient(to right,#ffb400, $text-theme);
                         height:48px;
                         padding: 7px;
                         span{
@@ -75,6 +78,17 @@ page-services{
                         }
                     }
                 }
+            }
+        }
+        .empty-cart{
+            img{
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                width: 100%;
             }
         }
     }

@@ -2,7 +2,8 @@
     <ion-navbar>
         <ion-title>
             <img src="assets/icon/clipboard-white.png" alt="">
-            Trending Services & Membership Packages
+            Trending packages & Member...
+            <span (click)="goBack()">Back</span>
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -11,12 +12,12 @@
         <ion-searchbar placeholder="Search plans" [(ngModel)]="planText"></ion-searchbar>
     </ion-toolbar>
 
-    <ion-row class="page-row services-row">
+    <ion-row *ngIf="!error" class="page-row services-row">
         <ion-grid class="service-grid">
             <ion-row>
                 <ion-col *ngFor="let package of packageArr | filter:planText" col-6>
                     <div class="service-holder" (click)="openMembership(package)">
-                        <img class="service-img" src="{{package.image}}" alt="">
+                        <img class="service-img" onerror="this.src='assets/imgs/blank_package.jpg'" src="{{package.image}}" alt="">
                         <div class="lower-content">
                             <span>{{package.name}}</span>
                         </div>
@@ -25,4 +26,7 @@
             </ion-row>
         </ion-grid>
     </ion-row>
+    <div class="empty-cart" *ngIf="error">
+        <img (click)="refreshData()" src="assets/imgs/error.jpg" alt="" />
+    </div>
 </ion-content>

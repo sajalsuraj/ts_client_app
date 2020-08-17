@@ -8,6 +8,7 @@ import { AuthService } from '../../providers/auth-service/auth-service';
 import { FormBuilder, Validators }  from '@angular/forms';
 import { CommonService } from '../../providers/common-service/common-service';
 import { Keyboard } from '@ionic-native/keyboard';
+import { OtpPage } from "../otp/otp";
 
 @Component({
   selector: 'page-signin',
@@ -93,12 +94,24 @@ export class SigninPage {
       this.authService.login(formData).then((result) => {
         loader.dismiss();
         if(result['status']){
-          localStorage.setItem('access_token', result['access_token']);
-          localStorage.setItem('user_id', result['user_id']);
-          this.commonService.getFaqs().then((res)=>{
-            localStorage.setItem('faqArr',JSON.stringify(res));
-          });
-          this.navCtrl.setRoot(TabsPage, {opentab: 5});
+          if(result['otp_verified'] == "0"){
+            let fd = new FormData();
+            fd.append('phone', this.logData.phone);
+            this.authService.verifycustomerbyotp(fd).then((res)=>{
+              this.navCtrl.push(OtpPage, {
+                phone: this.logData.phone,
+                page: "signin"
+              });
+            });
+          }
+          else if(result['otp_verified'] == "1"){
+            localStorage.setItem('access_token', result['access_token']);
+            localStorage.setItem('user_id', result['user_id']);
+            this.commonService.getFaqs().then((res)=>{
+              localStorage.setItem('faqArr',JSON.stringify(res));
+            });
+            this.navCtrl.setRoot(TabsPage, {opentab: 5});
+          }
         }
         else{
           this.showAlert("Error", result['message']+". Please try again");

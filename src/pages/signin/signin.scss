@@ -3,12 +3,17 @@ page-signin {
         height: 100%;
         width: 100%;
         position: relative;
-        background: #F7F7F7;
+        background: #fff;
     }
     .page-holder{
         .form-holder{
             ion-item{
-                background: #F7F7F7;
+                background: #fff;
+                img{
+                    width: 1.2em;
+                    margin: 0;
+                    margin-top: 30px;
+                }
             }
             form{
                 padding:16px;
@@ -44,7 +49,7 @@ page-signin {
         margin-top: 0px;
         padding-top: 0px;
         text-align: right;
-        color: #6954e1;
+        color: #000;
     }
     .password-eye{
         z-index:1;
@@ -58,7 +63,7 @@ page-signin {
         margin-bottom: 10px;
     }
     .btn-submit{
-        background:linear-gradient(to right,#6954e1, #322560);
+        background:linear-gradient(to right,#ffb400, #f40000);
     }
     p {
         line-height: 30px;
@@ -74,11 +79,11 @@ page-signin {
         left: 0;
         padding-bottom: 8px !important;
         a{
-            color: #6954e1;
+            color: #f40000;
         }
     }
     .btn-register{
-        color: #6954e1;
-        border: 1px solid #6954e1;
+        color: #f40000;
+        border: 1px solid #f40000;
     }
 }

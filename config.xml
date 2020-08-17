@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.troubleshooter.customer" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Troubleshooters</name>
+    <name>TS Services</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
@@ -24,6 +24,7 @@
     <preference name="FadeSplashScreen" value="true" />
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="KeyboardResizeMode" value="ionic" />
+    <preference name="loadUrlTimeoutValue" value="100000" />
     <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyDfncHjZ0r15lr_9BOYRg6jAlJ4JO5XQRA" />
     <platform name="android">
         <allow-intent href="market:*" />

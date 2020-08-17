@@ -2,7 +2,7 @@ page-subfaq{
     ion-header{
         ion-navbar{
             .toolbar-background{
-                background: url('../assets/imgs/common_bg.jpg');
+                background: url('../assets/imgs/common-bg-2.jpg');
                 background-size: cover;
             }
             .back-button{
@@ -34,7 +34,6 @@ page-subfaq{
         font-weight:300;
     }
     .faq_list img{
-        transform: rotate(180deg);
         width: 20px;
     }
 

@@ -83,6 +83,18 @@ export class OtpPage {
         // this.presentToast(err);
       });
     }
+    else if(this.navParams.get('page') === "signin"){
+      this.authService.otp(formData).then((result) => {
+          if(result['status']){
+            this.showAlert(result['message']);
+            this.navCtrl.setRoot(SigninPage);
+          }
+        }, (err) => {
+
+          // this.loading.dismiss();
+          // this.presentToast(err);
+      });
+    }
     
   }
 

@@ -1,13 +1,17 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Account</ion-title>
+        <ion-title>Account <span (click)="goBack()">Back</span></ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content class="page-holder bg-light">
     <div class="order-head order-head-2">
         <ion-row>
-            <ion-col col-4><img src="assets/imgs/profilepic.jpg"></ion-col>
+            <ion-col col-4>
+                <div class="profile-pic">
+                    <img src="assets/imgs/profile-pic.png">
+                </div>
+            </ion-col>
             <ion-col>
                 <p>{{userData.name}}<span>{{userData.phone}}</span></p>
             </ion-col>
@@ -15,48 +19,48 @@
     </div>
     <ion-list no-lines>
         <ion-item (click)="profile()">
-            <ion-icon name="md-person" item-start></ion-icon>
+            <img src="assets/icon/profile3.png" item-start>
             View Profile
         </ion-item>
         <ion-item (click)="contact()">
-            <ion-icon name="md-mail" item-start></ion-icon>
+            <img src="assets/icon/contact.png" item-start>
             Contact us
         </ion-item>
         <ion-item (click)="tnc()">
-            <ion-icon name="md-clipboard" item-start></ion-icon>
+            <img src="assets/icon/terms.png" item-start>
             Terms & Conditions
         </ion-item>
         <ion-item (click)="about()">
-            <ion-icon name="help-buoy" item-start></ion-icon>
+            <img src="assets/icon/about.png" item-start>
             About Troubleshooters
         </ion-item>
         <ion-item (click)="faq()">
-            <ion-icon name="help" item-start></ion-icon>
+            <img src="assets/icon/faq.png" item-start>
             F.A.Q
         </ion-item>
         <ion-item (click)="inviteFriends()">
-            <ion-icon name="person-add" item-start></ion-icon>
+            <img src="assets/icon/invite.png" item-start>
             Invite Friends
         </ion-item>
         <ion-item (click)="shareProp()">
-            <ion-icon name="share" item-start></ion-icon>
+            <img src="assets/icon/share.png" item-start>
             Share Troubleshooters
         </ion-item>
         <ion-item>
-            <ion-icon name="star" item-start></ion-icon>
+            <img src="assets/icon/star.png" item-start>
             Rate Troubleshooters
         </ion-item>
         <ion-item (click)="changePassword()">
-            <ion-icon name="md-eye" item-start></ion-icon>
+            <img src="assets/icon/change-pass.png" item-start>
             Change Password
         </ion-item>
         <ion-item (click)="logout()">
-            <ion-icon name="md-open" item-start></ion-icon>
+            <img src="assets/icon/logout.png" item-start>
             Logout
         </ion-item>
     </ion-list>
     <!--    <p text-center class="about">Opus labs Version 2.0.101</p>-->
-    <div class="logo" text-center padding>
-        <!-- <img src="assets/imgs/logo2.png"> -->
-    </div>
+    <!-- <div class="logo" text-center padding>
+         <img src="assets/imgs/logo2.png"> 
+    </div> -->
 </ion-content>

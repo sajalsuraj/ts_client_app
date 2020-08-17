@@ -2,7 +2,7 @@ page-single-membership {
     ion-header{
         ion-navbar{
             .toolbar-background{
-                background: url('../assets/imgs/common_bg.jpg');
+                background: url('../assets/imgs/common-bg-2.jpg');
                 background-size: cover;
             }
             ion-title{
@@ -16,17 +16,20 @@ page-single-membership {
                     color: #fff;
                     font-weight: 400;
                 }
+                span{
+                    float:right;
+                }
             }
         }
     }
     ion-content.page-holder{
-        color: #5e4acd;
+        color: $text-theme;
         ion-row{
             h3{
                 font-size: 15px;
                 span{
                     font-size: 20px;
-                    color: #634daf;
+                    color: $text-theme;
                     font-weight: bold;
                 }
             }
@@ -42,7 +45,7 @@ page-single-membership {
             button{
                 height: 50px;
                 font-size: 1.5rem;
-                background:linear-gradient(to right,#6954e1, #322560);
+                background:linear-gradient(to right,#ffb400, $text-theme);
             }
         }
     }

@@ -2,7 +2,7 @@ page-cart{
     ion-header{
         ion-navbar{
             .toolbar-background{
-                background: url('../assets/imgs/common_bg.jpg');
+                background: url('../assets/imgs/common-bg-2.jpg');
                 background-size: cover;
             }
             ion-title{
@@ -16,12 +16,22 @@ page-cart{
                     color: #fff;
                     font-weight: 400;
                 }
+                span{
+                    float:right;
+                }
             }
         }
     }
     .empty-cart{
-        margin-top: 20px;
-        margin-left: 20%;
+        img{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 60%;
+        }
     }
 
     .list-item{
@@ -70,7 +80,7 @@ page-cart{
         left: 0;
         padding-bottom: 8px !important;
         .btn-update{
-            background:linear-gradient(to right,#6954e1, #322560);
+            background:linear-gradient(to right,#ffb400, $text-theme);
             border:none;
             padding:20px;
         }

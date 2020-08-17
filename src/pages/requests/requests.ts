@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { CommonService } from '../../providers/common-service/common-service';
-import { NavController, Slides, LoadingController } from 'ionic-angular';
+import { NavController, Slides, LoadingController, App } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
 import { TrackBookingPage } from '../track-booking/track-booking';
+import { TabsPage } from '../tabs/tabs';
 
 @Component({
   selector: 'page-requests',
@@ -16,7 +17,7 @@ export class RequestsPage {
   completedBookings = [];
   tabs: any = [];
   SwipedTabsIndicator: any = null;
-  constructor(public commonService: CommonService, private callNumber: CallNumber, public loading: LoadingController, private navCtrl: NavController) {
+  constructor(public commonService: CommonService, private app: App, private callNumber: CallNumber, public loading: LoadingController, private navCtrl: NavController) {
     this.tabs = ["Upcoming", "Completed"];
   }
 
@@ -83,5 +84,9 @@ export class RequestsPage {
 
   goToTrackBooking(booking) {
     this.navCtrl.setRoot(TrackBookingPage, { booking_details: booking });
+  }
+
+  goBack(){
+    this.app.getRootNav().setRoot(TabsPage);
   }
 }

@@ -29,7 +29,7 @@ export class MyApp {
       ]);
       this.pushSetup();
 
-      statusBar.backgroundColorByHexString('#6954e1');
+      statusBar.backgroundColorByHexString('#f40000');
       statusBar.styleLightContent();
 
       // let splash = modalCtrl.create(SplashPage);

@@ -38,6 +38,7 @@ import { ReferralPage } from '../pages/referral/referral';
 import { SubFaqPage } from '../pages/sub-faq/sub-faq';
 import { FinalPaymentPage } from '../pages/finalpayment/finalpayment';
 import { CartPage } from '../pages/cart/cart';
+import { CategoryDescPage } from '../pages/categorydesc/categorydesc';
 import { SingleMembershipPage } from '../pages/single-membership/single-membership';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Keyboard } from '@ionic-native/keyboard';
@@ -55,6 +56,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CallNumber } from '@ionic-native/call-number';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { Diagnostic } from '@ionic-native/diagnostic';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     SubFaqPage,
     RatingsPage,
     SingleMembershipPage,
-    FaqDetailPage
+    FaqDetailPage,
+    CategoryDescPage
   ],
   imports: [
     BrowserModule,
@@ -130,7 +133,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     SubFaqPage,
     RatingsPage,
     SingleMembershipPage,
-    FaqDetailPage
+    FaqDetailPage,
+    CategoryDescPage
   ],
   providers: [
     StatusBar,
@@ -149,6 +153,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     AndroidPermissions,
     Sim,
     Keyboard,
+    Diagnostic,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -1,8 +1,8 @@
-<!-- <ion-header>
+<ion-header>
     <ion-navbar>
-        <ion-title>My Profile</ion-title>
+        <ion-title>My Profile <span (click)="goBack()">Back</span></ion-title>
     </ion-navbar>
-</ion-header> -->
+</ion-header>
 
 <ion-content class="page-holder" padding>
     <!-- <div class="profile-img"><img src="assets/imgs/profilepic.jpg">
@@ -18,28 +18,28 @@
             <ion-item>
                 <ion-icon name="mail" item-start></ion-icon>
                 <ion-label floating>Street Address 1</ion-label>
-                <ion-input type="text"></ion-input>
+                <ion-input type="text" [(ngModel)]="userData.address_1" value="{{userData.address_1}}"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-icon name="mail" item-start></ion-icon>
                 <ion-label floating>Street Address 2</ion-label>
-                <ion-input type="text"></ion-input>
+                <ion-input type="text" [(ngModel)]="userData.address_2" value="{{userData.address_2}}"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-icon name="mail" item-start></ion-icon>
                 <ion-label floating>City</ion-label>
-                <ion-input type="text"></ion-input>
+                <ion-input type="text" [(ngModel)]="userData.city" value="{{userData.city}}"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-icon name="mail" item-start></ion-icon>
                 <ion-label floating>State/Province/Region</ion-label>
-                <ion-input type="text"></ion-input>
+                <ion-input type="text" [(ngModel)]="userData.state" value="{{userData.state}}"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-icon name="mail" item-start></ion-icon>
                 <ion-label floating>Postal/Zip Code</ion-label>
-                <ion-input type="text"></ion-input>
+                <ion-input type="text" [(ngModel)]="userData.pincode" value="{{userData.pincode}}"></ion-input>
             </ion-item>
             <!-- <ion-item>
                 <ion-icon name="md-mail" item-start></ion-icon>

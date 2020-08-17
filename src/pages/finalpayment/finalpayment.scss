@@ -2,7 +2,7 @@ page-finalpayment{
     ion-header{
         ion-navbar{
             .toolbar-background{
-                background: url('../assets/imgs/common_bg.jpg');
+                background: url('../assets/imgs/common-bg-2.jpg');
                 background-size: cover;
             }
             ion-title{
@@ -37,7 +37,7 @@ page-finalpayment{
             }
         }
         button.btn-item{
-            background:linear-gradient(to right,#6954e1, #322560);
+            background:linear-gradient(to right,#ffb400, $text-theme);
             padding: 7px;
             color: #fff;
             display: flex;

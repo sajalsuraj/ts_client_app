@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { CommonService } from '../../providers/common-service/common-service';
+import { AccountPage } from '../account/account';
 
 import { ChangepasswordPage } from '../changepassword/changepassword';
 @Component({
@@ -15,8 +16,11 @@ export class ProfilePage {
 
   userData = {
     "name": "",
-    "phone": "",
-    "email": ""
+    "address_1":"",
+    "address_2": "",
+    "city": "",
+    "state": "",
+    "pincode": ""
   }
 
   ionViewDidLoad(){
@@ -51,8 +55,11 @@ export class ProfilePage {
     let postData = new FormData();
     postData.append('user_id', user_id);
     postData.append('name', this.userData.name);
-    postData.append('email', this.userData.email);
-    postData.append('phone', this.userData.phone);
+    postData.append('address_1', this.userData.address_1);
+    postData.append('address_2', this.userData.address_2);
+    postData.append('city', this.userData.city);
+    postData.append('state', this.userData.state);
+    postData.append('pincode', this.userData.pincode);
     this.commonService.customerProfileInfo(postData, "update").then((result) => {
       if(result['status']){
         this.showAlert("Success", result['message']);
@@ -67,6 +74,10 @@ export class ProfilePage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  goBack(){
+    this.navCtrl.setRoot(AccountPage,{},{ animate: true, direction: 'back' });
   }
 
 }

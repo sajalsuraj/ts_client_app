@@ -84,4 +84,8 @@ export class SingleMembershipPage {
     });
   }
 
+  goBack(){
+    this.navCtrl.pop();
+  }
+
 }

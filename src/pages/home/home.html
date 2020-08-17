@@ -2,8 +2,17 @@
   <ion-navbar>
     <ion-title>
       <ion-toolbar>
-        <ion-searchbar placeholder="Enter your address" [(ngModel)]="query" (ionInput)="searchPlace()"></ion-searchbar>
-        <ion-icon *ngIf="query.length < 1" (click)="getCurrentLocation()" class="location-icon" name="locate">
+        <ion-searchbar
+          placeholder="Enter your address"
+          [(ngModel)]="query"
+          (ionInput)="searchPlace()"
+        ></ion-searchbar>
+        <ion-icon
+          *ngIf="query.length < 1"
+          (click)="getCurrentLocation()"
+          class="location-icon"
+          name="locate"
+        >
         </ion-icon>
       </ion-toolbar>
     </ion-title>
@@ -11,21 +20,45 @@
 </ion-header>
 
 <ion-content class="page-holder bg-light">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-list class="place-list">
-      <ion-item *ngFor="let place of places" (touchstart)="selectPlace(place)">{{place.description}}</ion-item>
-    </ion-list>
+    <ion-item *ngFor="let place of places" (touchstart)="selectPlace(place)"
+      >{{place.description}}</ion-item
+    >
+  </ion-list>
   <ion-toolbar>
-    <ion-searchbar placeholder="Search for services" [(ngModel)]="serviceText"></ion-searchbar>
+    <ion-searchbar
+      placeholder="Search for services"
+      [(ngModel)]="serviceText"
+    ></ion-searchbar>
   </ion-toolbar>
   <ion-list *ngIf="serviceText.length" class="service-list">
-    <ion-item *ngFor="let service of serviceList | filter:serviceText" (touchstart)="selectServiceFromList(service)">{{service.service_name}}</ion-item>
+    <ion-item
+      *ngFor="let service of serviceList | filter:serviceText"
+      (touchstart)="selectServiceFromList(service)"
+      >{{service.service_name}}</ion-item
+    >
   </ion-list>
-  <ion-row class="membership-row page-row">
-    <p class="heading"><span>Trending Services & Membership <br> packages</span> <a (click)="goToMembership()">See More</a></p>
-    <ion-slides *ngIf="packageArr.length" pager autoplay="1000" loop="true" slidesPerView="1.95">
+  <ion-row *ngIf="!error" class="membership-row page-row">
+    <p class="heading">
+      <span
+        >Trending packages & <br />
+        Memberships</span
+      >
+      <a (click)="goToMembership()">See More</a>
+    </p>
+    <ion-slides
+      *ngIf="packageArr.length"
+      pager
+      autoplay="2000"
+      loop="true"
+      slidesPerView="1.95"
+    >
       <ion-slide *ngFor="let package of packageArr">
         <ion-card (click)="selectOffer(package)">
-          <img class="p-img" src="{{package.image}}" />
+          <img class="p-img" onerror="this.src='assets/imgs/blank_package.jpg'" src="{{package.image}}" />
           <ion-card-content>
             <ion-card-title>
               {{package.name}}
@@ -35,15 +68,21 @@
       </ion-slide>
     </ion-slides>
   </ion-row>
-  <ion-row class="services-row page-row">
-    <p class="heading"><span>Our Services</span> <a (click)="goToService()">See More</a></p>
+  <ion-row *ngIf="!error" class="services-row page-row">
+    <p class="heading">
+      <span>Our Services</span> <a (click)="goToService()">See More</a>
+    </p>
     <ion-grid class="service-grid">
       <ion-row>
-        <ion-col col-6 *ngFor="let service of serviceData" (click)="selectServiceFromList(service)">
+        <ion-col
+          col-6
+          *ngFor="let service of serviceData"
+          (click)="selectServiceFromList(service)"
+        >
           <div class="service-holder">
-            <img class="service-img" src="assets/imgs/salon.jpg" alt="">
+            <img class="service-img" src="{{service.image?service.image:'assets/imgs/no-service-1.png'}}" alt="" />
             <div class="lower-content">
-              <img src="assets/icon/right-arrow.png" alt="">
+              <img src="assets/icon/right-arrow.png" alt="" /> 
               <span>{{service.service_name}}</span>
             </div>
           </div>
@@ -51,52 +90,32 @@
       </ion-row>
     </ion-grid>
   </ion-row>
-  <ion-row class="page-row insurance-row" *ngIf="upperContent.upper_content_heading || upperContent.upper_content_subheading">
-      <p class="heading"><span>{{upperContent.upper_content_heading}}</span></p>
-      <p class="subheading">{{upperContent.upper_content_subheading}}</p>
+  <ion-row
+    class="page-row insurance-row"
+    *ngIf="upperContent.upper_content_heading || upperContent.upper_content_subheading"
+  >
+    <p class="heading"><span>{{upperContent.upper_content_heading}}</span></p>
+    <p class="subheading">{{upperContent.upper_content_subheading}}</p>
   </ion-row>
-  <ion-row class="page-row partner-row">
-      <p class="heading"><span>Our Partners</span></p>
-      <ion-slides pager autoplay="1000" loop="true" slidesPerView="3">
-        <ion-slide>
-            <div class="service-holder">
-              <img class="service-img" src="assets/imgs/ts_logo.jpg" alt="">
-              <div class="lower-content">
-                <span>Partner</span>
-              </div>
-            </div>
-        </ion-slide>
-        <ion-slide>
-            <div class="service-holder">
-              <img class="service-img" src="assets/imgs/ts_logo.jpg" alt="">
-              <div class="lower-content">
-                <span>Partner</span>
-              </div>
-            </div>
-        </ion-slide>
-        <ion-slide>
-            <div class="service-holder">
-              <img class="service-img" src="assets/imgs/ts_logo.jpg" alt="">
-              <div class="lower-content">
-                <span>Partner</span>
-              </div>
-            </div>
-        </ion-slide>
-        <ion-slide>
-            <div class="service-holder">
-              <img class="service-img" src="assets/imgs/ts_logo.jpg" alt="">
-              <div class="lower-content">
-                <span>Partner</span>
-              </div>
-            </div>
-        </ion-slide>
-      </ion-slides>
+  <ion-row class="page-row partner-row" *ngIf="!error">
+    <p class="heading"><span>Our Partners</span></p>
+    <ion-slides *ngIf="partnerArr.length" pager autoplay="2000" loop="true" slidesPerView="3">
+      <ion-slide *ngFor="let partner of partnerArr">
+        <div class="service-holder">
+          <img class="service-img" onerror="this.src='assets/imgs/blank_package.jpg'" src="{{partner?.image}}" alt="" />
+          <div class="lower-content">
+            <span>{{partner?.name}}</span>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slides>
   </ion-row>
-  <ion-row class="page-row bottom-row" *ngIf="lowerContent">
-    <div [innerHTML]="lowerContent">
-
-    </div>
+  <ion-row class="page-row bottom-row" *ngIf="lowerContent && !error">
+    <div [innerHTML]="lowerContent"></div>
   </ion-row>
+  <div class="empty-cart" *ngIf="error">
+      <img (click)="refreshData()" src="assets/imgs/error.jpg" alt="" />
+  </div>
 </ion-content>
 <!-- <ion-content class="bg-light">
       <ion-row class="upper-section">

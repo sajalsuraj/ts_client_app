@@ -3,13 +3,13 @@
   padding
 >
   <div class="form-holder">
-    <img src="assets/imgs/background1.jpeg" alt="">
+    <img src="assets/imgs/background-2.png" alt="">
     <form (submit)="doReg()" [formGroup]="registerForm" novalidate>
       <!-- <ion-icon name="md-camera" class="cam-icon"></ion-icon>
             <p text-center>Add Photo</p> -->
       <ion-list no-lines class="form">
         <ion-item>
-          <ion-icon name="contact" item-start></ion-icon>
+          <img src="assets/icon/profile.png" item-start>
           <ion-label floating>Full Name</ion-label>
           <ion-input
             formControlName="name"
@@ -18,7 +18,7 @@
           ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-icon name="md-phone-portrait" item-start></ion-icon>
+          <img src="assets/icon/phone2.png" item-start>
           <ion-label floating>Phone Number</ion-label>
           <ion-input
             formControlName="Phone"
@@ -36,7 +36,7 @@
           Please enter a valid mobile number(10 digits, should start from 6-9).
         </div>
         <ion-item>
-          <ion-icon name="md-lock" item-start></ion-icon>
+          <img src="assets/icon/lock.png" item-start>
           <ion-label floating>Create Password</ion-label>
           <ion-input
             formControlName="Password"
@@ -59,7 +59,7 @@
           Uppercase, Number, Special Char).
         </div>
         <ion-item>
-          <ion-icon name="md-lock" item-start></ion-icon>
+          <img src="assets/icon/lock.png" item-start>
           <ion-label floating>Confirm Password</ion-label>
           <ion-input
             formControlName="confirm_pass"
@@ -81,7 +81,7 @@
           Password doesn't match
         </div>
         <ion-item>
-          <ion-icon name="contacts" item-start></ion-icon>
+          <img src="assets/icon/refer.png" item-start>
           <ion-label floating>Referral (Optional)</ion-label>
           <ion-input
             formControlName="referred_by"

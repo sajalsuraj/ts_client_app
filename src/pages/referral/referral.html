@@ -2,13 +2,14 @@
     <ion-navbar>
         <ion-title>
             Invite your friends
+            <span (click)="goBack()">Back</span>
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content class="bg-light">
    <p class="p-big">Kick off your friend's Troubleshooters Journey!</p>
-   <p class="p-small">For every friend, you both get &#8377;100 for free!</p>
+   <p class="p-small">For every friend, you both get &#8377;{{refer_amount}} for free!</p>
 
    <ion-row>
        <div class="invite-code-holder">

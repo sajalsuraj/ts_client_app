@@ -2,7 +2,7 @@ page-subcategorylist{
     ion-header{
         ion-navbar{
             .toolbar-background{
-                background: url('../assets/imgs/common_bg.jpg');
+                background: url('../assets/imgs/common-bg-2.jpg');
                 background-size: cover;
             }
             ion-title{
@@ -33,7 +33,6 @@ page-subcategorylist{
             padding-right: 0px !important;
         }
         .back-arrow{
-            transform: rotate(180deg);
             width: 20px;
         }
         .tick-icon{
@@ -78,7 +77,7 @@ page-subcategorylist{
         }
         div.lower-content{
             max-width:100%;
-            background:linear-gradient(to right,#6954e1, #322560);
+            background:linear-gradient(to right,#ffb400, $text-theme);
             height:50px;
             padding: 7px;
             margin-top: 2px;
@@ -156,7 +155,7 @@ page-subcategorylist{
         left: 0;
         padding-bottom: 8px !important;
         .btn-update{
-            background:linear-gradient(to right,#6954e1, #322560);
+            background:linear-gradient(to right,#ffb400, $text-theme);
             border:none;
             padding:20px;
         }

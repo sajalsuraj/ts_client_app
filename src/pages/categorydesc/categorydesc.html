@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <ion-title>
+            <img src="assets/icon/clipboard-white.png" alt="">
+            {{subCategoryName}}
+            <span (click)="goBack()">Back</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content class="page-holder bg-light">
+    <ion-list>
+        <ion-item no-lines class="list-item">
+            <div class="booking-item">
+                <div class="profile-pic" [ngStyle]="{'background':subcat.image?'url('+subcat.image+')':'url(assets/imgs/no-service-1.png)'}"></div>
+
+                <div class="content">
+                    <h2 class="d-flex ser-name">{{subcat.service_name}}</h2>
+                    <h2 class="d-flex customer-name">&#8377; {{subcat.rate_per_min}} {{subcat.mode == 'rate_per_min'?"/ min":"Fixed"}}</h2>
+                    <h2 class="d-flex">{{subcat.avg_time_taken}}</h2>
+                </div>
+            </div>
+            <div>
+                <p class="detail">
+                    {{subcat.detail}}
+                </p>
+            </div>
+        </ion-item>
+    </ion-list>
+</ion-content>

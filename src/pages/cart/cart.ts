@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, App } from 'ionic-angular';
 import { CommonService } from '../../providers/common-service/common-service';
 import { PaymentPage } from '../../pages/payment/payment';
 import _ from 'underscore';
+import { TabsPage } from '../tabs/tabs';
 
 @Component({
     selector: 'page-cart',
@@ -15,7 +16,7 @@ export class CartPage {
         "totalAmount": 0,
         "totalOrders": 0
     };
-    constructor(public navCtrl: NavController, public navParams: NavParams, public loading: LoadingController, public commonService:CommonService) {
+    constructor(public navCtrl: NavController, private app: App, public navParams: NavParams, public loading: LoadingController, public commonService:CommonService) {
 
     }
     ionViewDidEnter(){
@@ -87,6 +88,15 @@ export class CartPage {
                 "totalAmount": totalAmount,
                 "totalOrders": totalOrders
             };
+        }
+    }
+
+    goBack(){
+        if(this.navCtrl.canGoBack()){
+            this.navCtrl.pop();
+        }
+        else{
+            this.app.getRootNav().setRoot(TabsPage);
         }
     }
 }

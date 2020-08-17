@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, App, LoadingController } from 'ionic-angular';
+import { NavController, App, LoadingController} from 'ionic-angular';
 
 import { ProfilePage } from '../profile/profile';
 import { ContactPage } from '../contact/contact';
@@ -11,6 +11,7 @@ import { CommonService } from '../../providers/common-service/common-service';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { PasswordPage } from '../password/password';
 import { NotificationPage } from '../notification/notification';
+import { TabsPage } from '../tabs/tabs';
 
 @Component({
   selector: 'page-account',
@@ -24,6 +25,7 @@ export class AccountPage {
     "email": "",
     "referral": ""
   }
+  referAmount = "0";
   shouldHeight = document.body.clientHeight + 'px' ;
   constructor(public navCtrl: NavController, public loading: LoadingController, private socialSharing: SocialSharing, public appCtrl:App, public commonService: CommonService) {
 
@@ -69,6 +71,7 @@ export class AccountPage {
       postData.append('user_id', user_id);
       this.commonService.customerProfileInfo(postData, "get").then((result) => {
         this.userData = result['data'];
+        this.referAmount = result['refer_amount'];
         loader.dismiss();
       },
       error => {
@@ -78,7 +81,7 @@ export class AccountPage {
   }
 
   inviteFriends(){
-    this.navCtrl.setRoot(ReferralPage, {referral: this.userData['referral']}, {animate: true, direction: 'forward'});
+    this.navCtrl.setRoot(ReferralPage, {referral: this.userData['referral'], refer_amount: this.referAmount}, {animate: true, direction: 'forward'});
   }
   
   profile(){
@@ -110,6 +113,10 @@ export class AccountPage {
     }).catch(() => {
       // Sharing via email is not possible
     });
+  }
+
+  goBack(){
+    this.appCtrl.getRootNav().setRoot(TabsPage);
   }
   
    logout(){

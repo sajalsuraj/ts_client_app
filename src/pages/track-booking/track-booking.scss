@@ -2,7 +2,7 @@ page-trackbooking{
     ion-header{
         ion-navbar{
             .toolbar-background{
-                background: url('../assets/imgs/common_bg.jpg');
+                background: url('../assets/imgs/common-bg-2.jpg');
                 background-size: cover;
             }
             ion-title{
@@ -71,7 +71,7 @@ page-trackbooking{
         margin-top: 5px;
         button.pay-button{
             
-                background:linear-gradient(to right,#6954e1, #322560);
+                background:linear-gradient(to right,#ffb400, $text-theme);
                 padding: 7px;
                 color: #fff;
                 display: flex;
@@ -137,7 +137,7 @@ page-trackbooking{
                     margin-left: 10px;
                     button.btn-item{
                         width:100%;
-                        background:linear-gradient(to right,#6954e1, #322560);
+                        background:linear-gradient(to right,#ffb400, $text-theme);
                         padding: 17px;
                         color: #fff;
                         
@@ -193,7 +193,7 @@ page-trackbooking{
             padding:0;
             ion-col{
                 button.btn-item{
-                    background:linear-gradient(to right,#6954e1, #322560);
+                    background:linear-gradient(to right,#ffb400, $text-theme);
                     padding: 7px;
                     color: #fff;
                     display: flex;

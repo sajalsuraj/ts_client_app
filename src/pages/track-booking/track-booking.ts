@@ -5,6 +5,7 @@ import { CallNumber } from '@ionic-native/call-number';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { FinalPaymentPage } from '../finalpayment/finalpayment';
 import { RequestsPage } from '../requests/requests';
+import * as moment from 'moment';
 
 @Component({
     selector: 'page-trackbooking',

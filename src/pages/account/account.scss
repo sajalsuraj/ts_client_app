@@ -2,7 +2,7 @@ page-account {
     ion-header{
         ion-navbar{
             .toolbar-background{
-                background: url('../assets/imgs/common_bg.jpg');
+                background: url('../assets/imgs/common-bg-2.jpg');
                 background-size: cover;
             }
             ion-title{
@@ -15,6 +15,9 @@ page-account {
                     color: #fff;
                     font-weight: 400;
                 }
+                span{
+                    float:right;
+                }
             }
         }
     }
@@ -22,12 +25,23 @@ page-account {
         color: #000;
     }
     
-    .item-md ion-icon[item-left], .item-md ion-icon[item-right], .item-md ion-icon[item-start], .item-md ion-icon[item-end]{
+    .item-md ion-icon[item-left], .item-md ion-icon[item-right], .item-md ion-icon[item-start], .item-md ion-icon[item-end], .item-md img{
         margin:0 !important;
+    }
+    .item-md img{
+        width: 1.8rem;
+    }
+
+    ion-content{
+        div.scroll-content{
+            background-image: url(../assets/imgs/profile-background.png);
+            background-size: cover;
+            background-position-y: 67%;
+        }
     }
     
     .order-head {
-        padding: 20px 16px 25px;
+        padding: 15px 16px 15px;
         background-image: url('../assets/imgs/blue-dots.png');
         background-size: 100%;
         background-repeat: no-repeat;
@@ -44,12 +58,21 @@ page-account {
             align-items: center;
         }
         .col {
-            img {
-                width: 95%;
+            .profile-pic{
                 margin: auto;
                 max-width: 100px;
                 border-radius: 50%;
                 border: 1px solid $text-theme;
+                height: 100px;
+                width: 100px;
+                img{
+                    width: auto;
+                    height: 81%;
+                    margin: auto;
+                    object-fit: contain;
+                    display: block;
+                    margin-top: 5%;
+                }
             }
             p {
                 font-weight: 900;
@@ -72,6 +95,8 @@ page-account {
         color: $text-muted;
     }
     .list {
+        //margin-top:5px;
+        margin-bottom:0px;
         .item{
             background: transparent;
             margin-bottom: -6px;
@@ -88,7 +113,7 @@ page-account {
         //     padding-top: 16px;
         // }
         .item:last-child {
-            padding-bottom: 16px;
+            padding-bottom: 0px;
         }
     }
     .item {
@@ -110,10 +135,16 @@ page-account {
         }
     }
     ion-list{
-        background-image: url('../assets/imgs/profile-background.png');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position-y: 92%;
+        border-top: 2px solid #eee;
+    }
+    @media only screen and (max-width: 400px) {
+        ion-list{
+            background-image: url('../assets/imgs/profile-background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position-y: 87%;
+            background-color: #fff;
+        }
     }
     .logo {
         img {

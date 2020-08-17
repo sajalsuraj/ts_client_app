@@ -1,6 +1,6 @@
 page-otp {
     .page-holder{
-        background-image: url('../assets/imgs/background.jpeg');
+        background-image: url('../assets/imgs/background.png');
         background-size: cover;
         background-repeat: no-repeat;
         .form-holder{
@@ -16,7 +16,7 @@ page-otp {
     .button {
         height: 50px;
         font-size: 1.5rem;
-        background:linear-gradient(to right,#6954e1, #322560);
+        background:linear-gradient(to right,#ffb400, $text-theme);
     }
     .form {
         margin-bottom: 15px;

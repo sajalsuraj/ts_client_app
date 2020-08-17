@@ -27,8 +27,9 @@ body{
 $bg-light: #f5f5f5;
 $white: #ffffff;
 $black: #000000;
-$bg-theme: #18c2ef;
-$text-theme: #6954e1;
+$bg-theme: #18c2ef;    
+$text-theme:  #f40000;
+$text-theme-1:  #ffb400;
 $text-light: #a4a3a3;
 $text-muted: #9c9c9c;
 $text-dark: #2e2e2e;
@@ -47,6 +48,16 @@ $text-black: #000000;
 
 .back-button-text-ios {
     color: transparent;
+}
+
+ion-popover{
+    .popover-content{
+        top: 15% !important;
+        left: 0 !important;
+        right: 0;
+        margin: auto;
+        width: 300px !important;
+    }
 }
 
 //default form style

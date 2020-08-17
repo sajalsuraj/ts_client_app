@@ -20,6 +20,7 @@ export class CommonService {
     "lat":"",
     "lng": ""
   };
+  location = "";
 
   createAuthorizationHeader(headers: Headers) {
     headers.append('access_token', localStorage.getItem('access_token'));
@@ -73,13 +74,21 @@ export class CommonService {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
       this.createAuthorizationHeader(headers);
-      // if(this.platform.is('android')){
-      //   this.httpNative.get(baseURL + 'get/packages', {}, {}).then(res => {
-      //     resolve(JSON.parse(res.data));
-      //   });
-      // }
-      // else{
         this.http.get(baseURL + 'get/packages', { headers: headers })
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+      //}
+    });
+  }
+
+  getAllPackageMemberships(){
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      this.createAuthorizationHeader(headers);
+        this.http.get(baseURL + 'get/getAllPackageMembership', { headers: headers })
         .subscribe(res => {
           resolve(res.json());
         }, (err) => {
@@ -137,6 +146,17 @@ export class CommonService {
   getHomePageData() {
     return new Promise((resolve, reject) => {
       this.http.get(baseURL + 'get/homepage')
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  getPartners() {
+    return new Promise((resolve, reject) => {
+      this.http.get(baseURL + 'get/partners')
         .subscribe(res => {
           resolve(res.json());
         }, (err) => {

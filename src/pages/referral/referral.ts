@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { CommonService } from '../../providers/common-service/common-service';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { AccountPage } from '../account/account';
 
 @Component({
   selector: 'page-referral',
@@ -10,12 +11,14 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 export class ReferralPage {
 
     referralCode = "";
+    refer_amount = "";
     constructor(public navCtrl: NavController, public navParams: NavParams, private socialSharing: SocialSharing, public loading: LoadingController, public commonService:CommonService) {
 
     }
 
     ionViewDidLoad(){
         this.referralCode = this.navParams.get('referral');
+        this.refer_amount = this.navParams.get('refer_amount');
     }
 
     shareWhatsapp(){
@@ -34,5 +37,9 @@ export class ReferralPage {
         }).catch(() => {
             // Sharing via email is not possible
         });
+    }
+
+    goBack(){
+        this.navCtrl.setRoot(AccountPage,{},{ animate: true, direction: 'back' });
     }
 }

@@ -1,11 +1,11 @@
 <ion-content class="page-holder" [style.background-size]="'100% ' + shouldHeight">
     <div class="image-holder">
-        <img src="assets/imgs/background1.jpeg" alt="">
+        <img src="assets/imgs/background-2.png" alt="">
         <div class="form-holder">
             <form (submit)="doLogin()" [formGroup]="loginForm" novalidate>
                 <ion-list no-lines class="form">
                     <ion-item>
-                        <ion-icon name="md-call" item-start></ion-icon>
+                        <img src="assets/icon/phone2.png" item-start>
                         <ion-label floating>Phone Number</ion-label>
                         <ion-input formControlName="Phone" [(ngModel)]="logData.phone" name="phone" type="number">
                         </ion-input>
@@ -15,7 +15,8 @@
                         Please enter a valid mobile number(10 digits, should start from 6-9).
                     </div>
                     <ion-item>
-                        <ion-icon name="md-lock" item-start></ion-icon>
+                        <img src="assets/icon/lock.png" item-start>
+                        <!-- <ion-icon name="md-lock" item-start></ion-icon> -->
                         <ion-label floating>Password</ion-label>
                         <ion-input formControlName="Password" [(ngModel)]="logData.password" name="password"
                             type="{{passwordType}}"></ion-input>

@@ -2,8 +2,13 @@ page-tabs{
     .tabs-md .tabbar{
         background: #fff;
     }
-    .tab-button .tab-button-icon{
+    .tab-button .tab-button-text{
         color: $text-theme !important;
+        font-size: 9px;
+    }
+    .tab-button .tab-button-icon{
+        color: $text-theme-1 !important;
+        font-size: 20px;
     }
     .tab-button[aria-selected="true"]::after{
         background-color: $text-theme;
@@ -24,7 +29,7 @@ page-tabs{
             background-size: contain;
         }//in case of active
         &[class*="home"][ng-reflect-is-active="false"] {
-            background: url("../assets/icon/home.png") no-repeat 50% 50%;
+            background: url("../assets/icon/home-active.png") no-repeat 50% 50%;
             background-size: contain;
         }//in case of inactive
         &[class*="calendar"][ng-reflect-is-active="true"] {
@@ -32,7 +37,7 @@ page-tabs{
             background-size: contain;
         }
         &[class*="calendar"][ng-reflect-is-active="false"] {
-            background: url("../assets/icon/calendar.png") no-repeat 50% 50%;
+            background: url("../assets/icon/calendar-active.png") no-repeat 50% 50%;
             background-size: contain;
         }
         &[class*="qm"][ng-reflect-is-active="true"] {
@@ -48,7 +53,7 @@ page-tabs{
             background-size: contain;
         }
         &[class*="account"][ng-reflect-is-active="false"] {
-            background: url("../assets/icon/profile.png") no-repeat 50% 50%;
+            background: url("../assets/icon/profile-active.png") no-repeat 50% 50%;
             background-size: contain;
         }
         &[class*="discount"][ng-reflect-is-active="true"] {
@@ -56,7 +61,7 @@ page-tabs{
             background-size: contain;
         }
         &[class*="discount"][ng-reflect-is-active="false"] {
-            background: url("../assets/icon/discount.png") no-repeat 50% 50%;
+            background: url("../assets/icon/discount-active.png") no-repeat 50% 50%;
             background-size: contain;
         }
         &[class*="clipboard"][ng-reflect-is-active="true"] {
@@ -64,7 +69,15 @@ page-tabs{
             background-size: contain;
         }
         &[class*="clipboard"][ng-reflect-is-active="false"] {
-            background: url("../assets/icon/clipboard.png") no-repeat 50% 50%;
+            background: url("../assets/icon/clipboard-active.png") no-repeat 50% 50%;
+            background-size: contain;
+        }
+        &[class*="cart"][ng-reflect-is-active="true"] {
+            background: url("../assets/icon/cart.png") no-repeat 50% 50%;
+            background-size: contain;
+        }
+        &[class*="cart"][ng-reflect-is-active="false"] {
+            background: url("../assets/icon/cart-active.png") no-repeat 50% 50%;
             background-size: contain;
         }
     }
