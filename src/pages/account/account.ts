@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, App, LoadingController} from 'ionic-angular';
+import { NavController, App, LoadingController, AlertController, Alert} from 'ionic-angular';
 
 import { ProfilePage } from '../profile/profile';
 import { ContactPage } from '../contact/contact';
@@ -12,6 +12,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { PasswordPage } from '../password/password';
 import { NotificationPage } from '../notification/notification';
 import { TabsPage } from '../tabs/tabs';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Component({
   selector: 'page-account',
@@ -23,41 +24,66 @@ export class AccountPage {
     "full_name": "",
     "phone": "",
     "email": "",
-    "referral": ""
+    "referral": "",
+    "photo": ""
   }
   referAmount = "0";
+  isFixedProfile = true;
+  photo = "../assets/imgs/profile-pic.png";
   shouldHeight = document.body.clientHeight + 'px' ;
-  constructor(public navCtrl: NavController, public loading: LoadingController, private socialSharing: SocialSharing, public appCtrl:App, public commonService: CommonService) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, private camera: Camera, public loading: LoadingController, private socialSharing: SocialSharing, public appCtrl:App, public commonService: CommonService) {
 
   }
-  ionViewDidLoad(){
-    // if(!localStorage.getItem('name')){
-    //   this.commonService.getUserDetails().then(result => {
-    //     if(result['status']){
-    //       localStorage.setItem('name', result['data']['full_name']);
-    //       localStorage.setItem('phone', result['data']["phone"]);
-    //       localStorage.setItem('email', result['data']['email'])
-    //       this.userData = {
-    //         "full_name": result['data']['full_name'],
-    //         "phone": result['data']["phone"],
-    //         "email": result['data']['email']
-    //       }
-    //     }
-    //   });
-    // }
-    // else{
-    //   this.userData = {
-    //     "full_name": localStorage.getItem('name'),
-    //     "phone": localStorage.getItem('phone'),
-    //     "email": localStorage.getItem('email')
-    //   }
-    // }
-    // this.userData = {
-    //   "full_name": "Sajal Suraj",
-    //   "phone": "8210907970",
-    //   "email": ""
-    // }
+
+  selectImage(){
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64 (DATA_URL):
+     let base64Image = 'data:image/jpeg;base64,' + imageData;
+     this.photo = base64Image;
+   
+      let loader = this.loading.create({
+        spinner: 'bubbles',
+        content: 'Updating image...',
+      });
+
+      loader.present().then(() => {
+        let user_id = localStorage.getItem('user_id');
+        let postData = new FormData();
+        postData.append('user_id', user_id);
+        postData.append('photo', this.photo);
+        this.commonService.customerProfileInfo(postData, "update").then((result) => {
+            if(result['status']){
+              this.showAlert("Success", result['message']);
+            }
+            loader.dismiss();
+            this.isFixedProfile = false;
+          });
+        }, (err) => {
+        // Handle error
+        loader.dismiss();
+        });
+    });
   }
+
+  showAlert(title, msg) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: msg,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  
 
   ionViewWillEnter(){
     let loader = this.loading.create({
@@ -72,6 +98,15 @@ export class AccountPage {
       this.commonService.customerProfileInfo(postData, "get").then((result) => {
         this.userData = result['data'];
         this.referAmount = result['refer_amount'];
+        if(this.userData['photo'] !== ""){
+          this.photo = this.userData['photo'];
+        }
+        if(this.photo == "../assets/imgs/profile-pic.png"){
+          this.isFixedProfile = true;
+        }
+        else{
+          this.isFixedProfile = false;
+        }
         loader.dismiss();
       },
       error => {

@@ -65,14 +65,25 @@ page-account {
                 border: 1px solid $text-theme;
                 height: 100px;
                 width: 100px;
+                background-size: cover;
+                background-repeat: no-repeat;
                 img{
-                    width: auto;
-                    height: 81%;
-                    margin: auto;
-                    object-fit: contain;
-                    display: block;
-                    margin-top: 5%;
+                    position: absolute;
+                    margin-top: 69px;
+                    margin-left: 75px;
+                    width: 25px;
                 }
+                ion-icon{
+                    position: absolute;
+                    margin-top: 69px;
+                    font-size: 29px;
+                    margin-left: 80px;
+                    border-radius: 50%;
+                }
+            }
+            .fixed-profile{
+                background-size: 80%;
+                background-position: 10px 6px;
             }
             p {
                 font-weight: 900;

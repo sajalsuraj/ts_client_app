@@ -8,8 +8,9 @@
     <div class="order-head order-head-2">
         <ion-row>
             <ion-col col-4>
-                <div class="profile-pic">
-                    <img src="assets/imgs/profile-pic.png">
+                <div class="profile-pic" [ngClass]="{'fixed-profile':isFixedProfile}" [ngStyle]="{'background-image': 'url(' + photo + ')'}" (click)="selectImage()">
+                    <img src="assets/imgs/plus.png">
+                    <!-- <ion-icon name="md-add-circle"></ion-icon> -->
                 </div>
             </ion-col>
             <ion-col>

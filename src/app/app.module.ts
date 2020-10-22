@@ -57,6 +57,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { CallNumber } from '@ionic-native/call-number';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { Diagnostic } from '@ionic-native/diagnostic';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -153,6 +154,7 @@ import { Diagnostic } from '@ionic-native/diagnostic';
     AndroidPermissions,
     Sim,
     Keyboard,
+    Camera,
     Diagnostic,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

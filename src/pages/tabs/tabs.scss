@@ -16,69 +16,142 @@ page-tabs{
     ion-icon{
         color:$text-theme;
     }
-    ion-icon {
-        &[class*="custom-"] {
-            // margin: 0 5px 0 0;
-            // vertical-align: middle;
-            // $sz: 20px;
-            // width: $sz;
-            height: 20px;
-        } // custom icons
-        &[class*="home"][ng-reflect-is-active="true"] {
-            background: url("../assets/icon/home.png") no-repeat 50% 50%;
-            background-size: contain;
-        }//in case of active
-        &[class*="home"][ng-reflect-is-active="false"] {
-            background: url("../assets/icon/home-active.png") no-repeat 50% 50%;
-            background-size: contain;
-        }//in case of inactive
-        &[class*="calendar"][ng-reflect-is-active="true"] {
-            background: url("../assets/icon/calendar.png") no-repeat 50% 50%;
-            background-size: contain;
+    .tabs-md{
+        a[aria-selected=true]{  
+            .tab-button-icon[ng-reflect-name=custom-home], .tab-button-icon[aria-label="custom home"] {
+                background: url("../assets/icon/home.png") no-repeat 50% 50%;
+                background-size: contain;
+                height: 20px;
+            }
+            .tab-button-icon[ng-reflect-name=custom-calendar], .tab-button-icon[aria-label="custom calendar"] {
+                background: url("../assets/icon/calendar.png") no-repeat 50% 50%;
+                background-size: contain;
+                height: 20px;
+            }
+            .tab-button-icon[ng-reflect-name=custom-qm], .tab-button-icon[aria-label="custom qm"] {
+                background: url("../assets/icon/qm2.png") no-repeat 50% 50%;
+                background-size: contain;
+                height: 20px;
+            }
+            .tab-button-icon[ng-reflect-name=custom-account], .tab-button-icon[aria-label="custom account"] {
+                background: url("../assets/icon/profile.png") no-repeat 50% 50%;
+                background-size: contain;
+                height: 20px;
+            }
+            .tab-button-icon[ng-reflect-name=custom-discount], .tab-button-icon[aria-label="custom discount"] {
+                background: url("../assets/icon/discount.png") no-repeat 50% 50%;
+                background-size: contain;
+                height: 20px;
+            }
+            .tab-button-icon[ng-reflect-name=custom-cart], .tab-button-icon[aria-label="custom cart"] {
+                background: url("../assets/icon/cart.png") no-repeat 50% 50%;
+                background-size: contain;
+                height: 20px;
+            }
+            .tab-button-icon[ng-reflect-name=custom-clipboard], .tab-button-icon[aria-label="custom clipboard"] {
+                background: url("../assets/icon/clipboard.png") no-repeat 50% 50%;
+                background-size: contain;
+                height: 20px;
+            }
         }
-        &[class*="calendar"][ng-reflect-is-active="false"] {
-            background: url("../assets/icon/calendar-active.png") no-repeat 50% 50%;
-            background-size: contain;
-        }
-        &[class*="qm"][ng-reflect-is-active="true"] {
-            background: url("../assets/icon/qm2.png") no-repeat 50% 50%;
-            background-size: contain;
-        }
-        &[class*="qm"][ng-reflect-is-active="false"] {
-            background: url("../assets/icon/qm2.png") no-repeat 50% 50%;
-            background-size: contain;
-        }
-        &[class*="account"][ng-reflect-is-active="true"] {
-            background: url("../assets/icon/profile.png") no-repeat 50% 50%;
-            background-size: contain;
-        }
-        &[class*="account"][ng-reflect-is-active="false"] {
-            background: url("../assets/icon/profile-active.png") no-repeat 50% 50%;
-            background-size: contain;
-        }
-        &[class*="discount"][ng-reflect-is-active="true"] {
-            background: url("../assets/icon/discount.png") no-repeat 50% 50%;
-            background-size: contain;
-        }
-        &[class*="discount"][ng-reflect-is-active="false"] {
-            background: url("../assets/icon/discount-active.png") no-repeat 50% 50%;
-            background-size: contain;
-        }
-        &[class*="clipboard"][ng-reflect-is-active="true"] {
-            background: url("../assets/icon/clipboard.png") no-repeat 50% 50%;
-            background-size: contain;
-        }
-        &[class*="clipboard"][ng-reflect-is-active="false"] {
-            background: url("../assets/icon/clipboard-active.png") no-repeat 50% 50%;
-            background-size: contain;
-        }
-        &[class*="cart"][ng-reflect-is-active="true"] {
-            background: url("../assets/icon/cart.png") no-repeat 50% 50%;
-            background-size: contain;
-        }
-        &[class*="cart"][ng-reflect-is-active="false"] {
-            background: url("../assets/icon/cart-active.png") no-repeat 50% 50%;
-            background-size: contain;
+
+        a[aria-selected=false]{  
+            .tab-button-icon[ng-reflect-name=custom-home], .tab-button-icon[aria-label="custom home"] {
+                background: url("../assets/icon/home-active.png") no-repeat 50% 50%;
+                background-size: contain;
+                height: 20px;
+            }
+            .tab-button-icon[ng-reflect-name=custom-calendar], .tab-button-icon[aria-label="custom calendar"] {
+                background: url("../assets/icon/calendar-active.png") no-repeat 50% 50%;
+                background-size: contain;
+                height: 20px;
+            }
+            .tab-button-icon[ng-reflect-name=custom-qm], .tab-button-icon[aria-label="custom qm"] {
+                background: url("../assets/icon/qm2-active.png") no-repeat 50% 50%;
+                background-size: contain;
+                height: 20px;
+            }
+            .tab-button-icon[ng-reflect-name=custom-account], .tab-button-icon[aria-label="custom account"] {
+                background: url("../assets/icon/profile-active.png") no-repeat 50% 50%;
+                background-size: contain;
+                height: 20px;
+            }
+            .tab-button-icon[ng-reflect-name=custom-discount], .tab-button-icon[aria-label="custom discount"] {
+                background: url("../assets/icon/discount-active.png") no-repeat 50% 50%;
+                background-size: contain;
+                height: 20px;
+            }
+            .tab-button-icon[ng-reflect-name=custom-cart], .tab-button-icon[aria-label="custom cart"] {
+                background: url("../assets/icon/cart-active.png") no-repeat 50% 50%;
+                background-size: contain;
+                height: 20px;
+            }
+            .tab-button-icon[ng-reflect-name=custom-clipboard], .tab-button-icon[aria-label="custom clipboard"] {
+                background: url("../assets/icon/clipboard-active.png") no-repeat 50% 50%;
+                background-size: contain;
+                height: 20px;
+            }
         }
     }
+    // ion-icon {
+    //     &[class*="custom-"] {
+    //         height: 20px;
+    //     } // custom icons
+    //     &[class*="home"][ng-reflect-is-active="true"][ng-reflect-name="custom-home"] {
+    //         background: url("../assets/icon/home.png") no-repeat 50% 50%;
+    //         background-size: contain;
+    //     }//in case of active
+    //     &[class*="home"][ng-reflect-is-active="false"][ng-reflect-name="custom-home"] {
+    //         background: url("../assets/icon/home-active.png") no-repeat 50% 50%;
+    //         background-size: contain;
+    //     }//in case of inactive
+    //     &[class*="calendar"][ng-reflect-is-active="true"] {
+    //         background: url("../assets/icon/calendar.png") no-repeat 50% 50%;
+    //         background-size: contain;
+    //     }
+    //     &[class*="calendar"][ng-reflect-is-active="false"] {
+    //         background: url("../assets/icon/calendar-active.png") no-repeat 50% 50%;
+    //         background-size: contain;
+    //     }
+    //     &[class*="qm"][ng-reflect-is-active="true"] {
+    //         background: url("../assets/icon/qm2.png") no-repeat 50% 50%;
+    //         background-size: contain;
+    //     }
+    //     &[class*="qm"][ng-reflect-is-active="false"] {
+    //         background: url("../assets/icon/qm2.png") no-repeat 50% 50%;
+    //         background-size: contain;
+    //     }
+    //     &[class*="account"][ng-reflect-is-active="true"] {
+    //         background: url("../assets/icon/profile.png") no-repeat 50% 50%;
+    //         background-size: contain;
+    //     }
+    //     &[class*="account"][ng-reflect-is-active="false"] {
+    //         background: url("../assets/icon/profile-active.png") no-repeat 50% 50%;
+    //         background-size: contain;
+    //     }
+    //     &[class*="discount"][ng-reflect-is-active="true"] {
+    //         background: url("../assets/icon/discount.png") no-repeat 50% 50%;
+    //         background-size: contain;
+    //     }
+    //     &[class*="discount"][ng-reflect-is-active="false"] {
+    //         background: url("../assets/icon/discount-active.png") no-repeat 50% 50%;
+    //         background-size: contain;
+    //     }
+    //     &[class*="clipboard"][ng-reflect-is-active="true"] {
+    //         background: url("../assets/icon/clipboard.png") no-repeat 50% 50%;
+    //         background-size: contain;
+    //     }
+    //     &[class*="clipboard"][ng-reflect-is-active="false"] {
+    //         background: url("../assets/icon/clipboard-active.png") no-repeat 50% 50%;
+    //         background-size: contain;
+    //     }
+    //     &[class*="cart"][ng-reflect-is-active="true"] {
+    //         background: url("../assets/icon/cart.png") no-repeat 50% 50%;
+    //         background-size: contain;
+    //     }
+    //     &[class*="cart"][ng-reflect-is-active="false"] {
+    //         background: url("../assets/icon/cart-active.png") no-repeat 50% 50%;
+    //         background-size: contain;
+    //     }
+    // }
 }
